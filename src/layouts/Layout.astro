@@ -1,0 +1,39 @@
+---
+import Button from "../components/Button.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="description" content="Astro description" />
+
+    <meta name="viewport" content="width=device-width" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+  </head>
+
+  <body class="bg-martinique-950">
+    <header>
+      <Button>Button</Button>
+    </header>
+
+    <slot />
+
+    <div
+      class="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#272341_100%)]"
+    >
+    </div>
+  </body>
+</html>
