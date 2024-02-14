@@ -1,7 +1,91 @@
 ---
+import ContactButton from "../components/Buttons/ContactButton.astro";
+import GithubButton from "../components/Buttons/GithubButton.astro";
+import LinkedinButton from "../components/Buttons/LinkedinButton.astro";
+import CvButton from "../components/Buttons/CvButton.astro";
+import MobileButton from "../components/Buttons/MobileButton.astro";
+import LinkButton from "../components/Links/LinkButton.astro";
+import Link from "../components/Links/Link.astro";
+import Section from "../components/Section.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Welcome to Astro.">
-  <main></main>
+  <main class="flex justify-center items-center flex-col">
+    <section
+      class="flex justify-center items-center flex-col w-full h-screen z-10 relative"
+    >
+      <h1 class="text-6xl font-bold text-center mb-4">
+        Hi, I'm Agustín Arenas
+      </h1>
+      <p class="text-lg">I'm a Web Developer</p>
+
+      <div class="flex space-x-4">
+        <GithubButton />
+
+        <LinkedinButton />
+
+        <ContactButton />
+
+        <CvButton />
+      </div>
+
+      <div class="absolute top-0 left-0 w-full h-full z-[-1] opacity-40">
+        <img
+          src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1707351026/background_iftweo.jpg"
+          alt="background"
+          class="w-full h-full"
+        />
+      </div>
+    </section>
+
+    <Section title="About me" extraClass="bg-bunker-700">
+      <div class="flex w-full justify-center items-stretch space-x-9 mt-7">
+        <img
+          src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1707865099/profile_xaqxsz.webp"
+          alt="profile"
+          class="rounded-md w-60 h-auto"
+        />
+
+        <div class="flex flex-col justify-center items-start">
+          <p class="w-full max-w-md mb-5">
+            Programmer and web developer, imaginative, curious and capable of
+            solving various problems. I am a programmer willing to help my
+            colleagues.
+          </p>
+          <p class="w-full max-w-md mb-5">
+            I am interested in studying different technologies. I also enjoy
+            music and drawing.
+          </p>
+          <div class="flex space-x-4">
+            <LinkButton>Download CV</LinkButton>
+            <LinkButton>Read more</LinkButton>
+          </div>
+        </div>
+      </div>
+    </Section>
+
+    <Section title="Projects">
+      <p>
+        To get started, open the <code>src/pages/index.astro</code> file and start
+        editing. You can also add new pages in the <code>src/pages</code> directory.
+      </p>
+    </Section>
+
+    <Section title="Contact" extraClass="bg-bunker-700">
+      <div class="flex justify-center items-stretch space-x-9">
+        <div class="flex flex-col justify-center items-center">
+          <ContactButton />
+          <Link>arenasagustin7@gmail.com</Link>
+        </div>
+
+        <div class="flex flex-col justify-center items-center">
+          <MobileButton />
+          <Link>+54 9 351-7738914</Link>
+        </div>
+      </div>
+    </Section>
+  </main>
 </Layout>
+
+<!-- bg-bunker-700/75 bg-clip-padding backdrop-filter backdrop-blur-xl border border-bunker-700 -->

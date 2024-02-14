@@ -1,5 +1,9 @@
 ---
-import Button from "../components/Button.astro";
+import ContactButton from "../components/Buttons/ContactButton.astro";
+import CvButton from "../components/Buttons/CvButton.astro";
+import GithubButton from "../components/Buttons/GithubButton.astro";
+import LinkedinButton from "../components/Buttons/LinkedinButton.astro";
+import Link from "../components/Links/Link.astro";
 
 interface Props {
   title: string;
@@ -24,16 +28,37 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
 
-  <body class="bg-martinique-950">
-    <header>
-      <Button>Button</Button>
+  <body class="bg-bunker-900 text-polar-50">
+    <header
+      class="flex justify-center align-middle fixed w-full z-30 bg-clip-padding backdrop-filter backdrop-blur-xl border bg-bunker-800/75 border-bunker-800"
+    >
+      <Link href="/" extraClass="capitalize">Home</Link>
+
+      <Link href="/about" extraClass="capitalize">About</Link>
+
+      <Link href="/blog" extraClass="capitalize">Portfolio</Link>
+
+      <Link href="/contact" extraClass="capitalize">Contact</Link>
     </header>
 
     <slot />
 
-    <div
-      class="absolute inset-0 -z-10 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_40%,#272341_100%)]"
+    <footer
+      class="w-full bg-bunker-900 p-4 flex justify-center items-center flex-col"
     >
-    </div>
+      <div class="flex space-x-4">
+        <GithubButton />
+
+        <LinkedinButton />
+
+        <ContactButton />
+
+        <CvButton />
+      </div>
+
+      <hr class="w-3/5 my-2 text-bunker-800" />
+
+      <p class="text-center text-xs text-white">© 2024 Agustín Arenas</p>
+    </footer>
   </body>
 </html>
