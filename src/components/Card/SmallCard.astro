@@ -1,0 +1,25 @@
+---
+const { title, subtitle, description, time } = Astro.props;
+---
+
+<div
+  class="flex justify-between gap-8 rounded-md px-5 py-4 md:-ml-4 md:p-4 w-full"
+>
+  <div class="">
+    {time && <span class="text-overline text-xs">{time}</span>}
+
+    {title && <h3 class="subtitle balance font-bold">{title}</h3>}
+
+    {subtitle && <p class="balance line-clamp-3 py-1">{subtitle}</p>}
+
+    {
+      description && (
+        <div class="inline-flex md:flex gap-2 flex-wrap mt-2">
+          <span class="block py-0.5 text-xs uppercase tracking-widest opacity-90">
+            {description}
+          </span>
+        </div>
+      )
+    }
+  </div>
+</div>

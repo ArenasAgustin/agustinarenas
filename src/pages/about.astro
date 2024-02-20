@@ -1,0 +1,73 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section/Section.astro";
+import SectionAbout from "../components/Section/SectionAbout.astro";
+import SmallCard from "../components/Card/SmallCard.astro";
+---
+
+<Layout title="Agustin Arenas | About me">
+  <Section title="About me" extraClass="bg-bunker-700">
+    <p>
+      I'm a software engineer from Argentina. I'm passionate about web
+      development, open source, and building communities.
+    </p>
+  </Section>
+
+  <SectionAbout extraClass="bg-bunker" id="work">
+    <div
+      slot="slot1"
+      class="relative w-full h-full flex justify-center items-center flex-col"
+    >
+      <h2 class="text-7xl font-bold mb-4">Work</h2>
+      <p class="text-3xl">My current work is</p>
+
+      <div class="absolute top-0 left-0 w-full h-full z-[-1] opacity-40">
+        <img
+          src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708052028/background_rjlpdx.jpg"
+          alt="Work"
+          slot="slot1"
+        />
+      </div>
+    </div>
+
+    <div
+      slot="slot2"
+      class="flex justify-center items-center flex-col w-full p-5"
+    >
+      <SmallCard
+        title="Full Stack Developer"
+        subtitle="Dequo"
+        description="I worked as a backend developer at a company in Argentina."
+        time="January 2024 - Present"
+      />
+
+      <SmallCard
+        title="Front-end Developer"
+        subtitle="Sellers Latam"
+        description="I worked as a backend developer at a company in Argentina."
+        time="March 2022 - January 2024"
+      />
+
+      <SmallCard
+        title="Full Stack Developer"
+        subtitle="Last Horde"
+        description="I worked as a backend developer at a company in Argentina."
+        time="February 2022 - July 2022"
+      />
+
+      <SmallCard
+        title="Sales and customer service"
+        subtitle="Praga Revestimientos"
+        description="I worked as a backend developer at a company in Argentina."
+        time="August 2020 - November 2021"
+      />
+
+      <SmallCard
+        title="Customer Service (Internships)"
+        subtitle="Municipality of Córdoba"
+        description="I worked as a backend developer at a company in Argentina."
+        time="October 2019 - November 2019"
+      />
+    </div>
+  </SectionAbout>
+</Layout>
