@@ -1,10 +1,24 @@
 ---
-const { id, title, extraClass, direction = "col" } = Astro.props;
+interface Props {
+  title?: string;
+  id: string;
+  extraClass?: string;
+  direction?: string;
+  padding?: string;
+}
+
+const {
+  id,
+  title,
+  extraClass,
+  direction = "col",
+  padding = "py-16",
+} = Astro.props;
 ---
 
 <section
   id={id}
-  class={`flex justify-center items-center py-16 w-full z-10 relative text-xl ${direction === "col" ? "flex-col" : "flex-row"} ${extraClass}`}
+  class={`flex-center-center w-full z-10 relative text-xl ${direction === "col" ? "flex-col" : "flex-row"} ${padding} ${extraClass}`}
 >
   {title && <h2 class="text-5xl font-bold text-center">{title}</h2>}
   <slot />

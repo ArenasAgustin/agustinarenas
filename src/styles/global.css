@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+
+@layer components {
+  .shadow-inset {
+    box-shadow: 0 0 #0000, 0 0 #0000, inset 2px 2px 40px -20px #6b7280;
+  }
+}
+
+.flex-center-center {
+  @apply flex items-center justify-center;
+}
+
+.shadow-box-inset {
+  @apply relative before:absolute before:inset-0 before:rounded-lg before:opacity-0 before:shadow-inset before:transition-opacity before:duration-500 hover:before:opacity-100;
+}

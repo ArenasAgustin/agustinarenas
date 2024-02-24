@@ -1,3 +1,16 @@
-<button class="bg-polar-500 text-white px-4 py-2 rounded-3xl">
+---
+interface Props {
+  href: string;
+  targetBlank?: boolean;
+}
+
+const { href, targetBlank = false } = Astro.props;
+---
+
+<a
+  class="bg-tradewind-500 text-white px-4 py-2 rounded-3xl cursor-pointer font-medium transition-all duration-400 hover:-translate-y-px hover:brightness-110"
+  href={href}
+  target={targetBlank ? "_blank" : undefined}
+>
   <slot />
-</button>
+</a>

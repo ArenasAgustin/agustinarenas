@@ -1,8 +1,9 @@
 ---
 import ContactButton from "../components/Buttons/ContactButton.astro";
-import GithubButton from "../components/Buttons/GithubButton.astro";
-import LinkedinButton from "../components/Buttons/LinkedinButton.astro";
-import CvButton from "../components/Buttons/CvButton.astro";
+import ContactLink from "../components/Links/ContactLink.astro";
+import GithubLink from "../components/Links/GithubLink.astro";
+import LinkedinLink from "../components/Links/LinkedinLink.astro";
+import CvLink from "../components/Links/CvLink.astro";
 import MobileButton from "../components/Buttons/MobileButton.astro";
 import LinkButton from "../components/Links/LinkButton.astro";
 import Link from "../components/Links/Link.astro";
@@ -11,81 +12,81 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Agustin Arenas | I'm a Web Developer">
-  <main class="flex justify-center items-center flex-col">
-    <Section extraClass="h-screen z-10" id="introduction">
-      <h1 class="text-7xl font-bold mb-4">Hi, I'm Agustín Arenas</h1>
-      <p class="text-3xl">I'm a Web Developer</p>
+  <Section extraClass="h-screen z-10" id="introduction">
+    <h1 class="text-7xl font-bold mb-4">Hi, I'm Agustín Arenas</h1>
+    <p class="text-3xl">I'm a Web Developer</p>
 
-      <div class="flex space-x-4">
-        <GithubButton />
+    <div class="flex-center-center">
+      <GithubLink />
 
-        <LinkedinButton />
+      <LinkedinLink />
 
+      <ContactLink />
+
+      <CvLink />
+    </div>
+
+    <div class="absolute top-0 left-0 w-full h-full z-[-1] opacity-40">
+      <img
+        src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708052028/background_rjlpdx.jpg"
+        alt="background of introduction section"
+        class="w-full h-full"
+      />
+    </div>
+  </Section>
+
+  <Section title="About me" id="about">
+    <div class="w-full flex-center-center mt-7">
+      <img
+        src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1707865099/profile_xaqxsz.webp"
+        alt="profile"
+        class="rounded-md w-60 h-60 mr-20 object-cover"
+      />
+
+      <div class="flex flex-col justify-center items-start ml-20">
+        <p class="w-full max-w-xl mb-5">
+          I am a programmer and web developer with problem-solving skills,
+          imaginative, and curious. I have experience as a Full Stack Developer
+          at Dequo, Front-end Developer at Sellers Latam, and previously as a
+          Full Stack Developer at Last Horde.
+        </p>
+        <p class="w-full max-w-lg mb-5">
+          My education includes a Full Stack Web Developer course at Soy Henry
+          and studies in Computer Engineering. Additionally, I have skills in
+          customer service and sales, acquired at Praga Revestimientos and at
+          the Municipality of Córdoba. Outside of work, I enjoy music and
+          drawing.
+        </p>
+        <div class="flex space-x-4">
+          <LinkButton href="" targetBlank={true}>Download CV</LinkButton>
+          <LinkButton href="/about">Read more</LinkButton>
+        </div>
+      </div>
+    </div>
+  </Section>
+
+  <Section title="Projects" id="projects">
+    <p>
+      To get started, open the <code>src/pages/index.astro</code> file and start
+      editing. You can also add new pages in the <code>src/pages</code> directory.
+    </p>
+  </Section>
+
+  <Section title="Contact" id="contact">
+    <div class="flex justify-center items-stretch space-x-9">
+      <div class="flex flex-col justify-center items-center">
         <ContactButton />
-
-        <CvButton />
+        <Link href="arenasagustin7@gmail.com">arenasagustin7@gmail.com</Link>
       </div>
 
-      <div class="absolute top-0 left-0 w-full h-full z-[-1] opacity-40">
-        <img
-          src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708052028/background_rjlpdx.jpg"
-          alt="background of introduction section"
-          class="w-full h-full"
-        />
+      <div class="flex-center-center flex-col">
+        <MobileButton />
+        <Link href="https://api.whatsapp.com/send/?phone=5493517738914">
+          +54 9 351-7738914
+        </Link>
       </div>
-    </Section>
-
-    <Section title="About me" extraClass="bg-bunker-700" id="about">
-      <div class="flex w-full justify-center items-center mt-7">
-        <img
-          src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1707865099/profile_xaqxsz.webp"
-          alt="profile"
-          class="rounded-md w-60 h-60 mr-20"
-        />
-
-        <div class="flex flex-col justify-center items-start ml-20">
-          <p class="w-full max-w-xl mb-5">
-            I am a programmer and web developer with problem-solving skills,
-            imaginative, and curious. I have experience as a Full Stack
-            Developer at Dequo, Front-end Developer at Sellers Latam, and
-            previously as a Full Stack Developer at Last Horde.
-          </p>
-          <p class="w-full max-w-lg mb-5">
-            My education includes a Full Stack Web Developer course at Soy Henry
-            and studies in Computer Engineering. Additionally, I have skills in
-            customer service and sales, acquired at Praga Revestimientos and at
-            the Municipality of Córdoba. Outside of work, I enjoy music and
-            drawing.
-          </p>
-          <div class="flex space-x-4">
-            <LinkButton>Download CV</LinkButton>
-            <LinkButton>Read more</LinkButton>
-          </div>
-        </div>
-      </div>
-    </Section>
-
-    <Section title="Projects" id="projects">
-      <p>
-        To get started, open the <code>src/pages/index.astro</code> file and start
-        editing. You can also add new pages in the <code>src/pages</code> directory.
-      </p>
-    </Section>
-
-    <Section title="Contact" extraClass="bg-bunker-700" id="contact">
-      <div class="flex justify-center items-stretch space-x-9">
-        <div class="flex flex-col justify-center items-center">
-          <ContactButton />
-          <Link>arenasagustin7@gmail.com</Link>
-        </div>
-
-        <div class="flex flex-col justify-center items-center">
-          <MobileButton />
-          <Link>+54 9 351-7738914</Link>
-        </div>
-      </div>
-    </Section>
-  </main>
+    </div>
+  </Section>
 </Layout>
 
 <!-- bg-bunker-700/75 bg-clip-padding backdrop-filter backdrop-blur-xl border border-bunker-700 -->

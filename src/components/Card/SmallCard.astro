@@ -1,24 +1,29 @@
 ---
-const { title, subtitle, description, time } = Astro.props;
+interface Props {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+  time?: string;
+  id?: string;
+}
+
+const { title, subtitle, description, time, id } = Astro.props;
 ---
 
 <div
-  class="flex justify-between gap-8 rounded-md px-5 py-4 md:-ml-4 md:p-4 w-full"
+  class="flex justify-between gap-8 rounded-lg px-5 py-4 my-1 md:-mx-4 md:p-4 w-full shadow-box-inset"
+  id={id}
 >
   <div class="">
-    {time && <span class="text-overline text-xs">{time}</span>}
+    {time && <p class="text-overline text-sm">{time}</p>}
 
-    {title && <h3 class="subtitle balance font-bold">{title}</h3>}
+    {title && <h3 class="subtitle balance text-3xl font-bold">{title}</h3>}
 
-    {subtitle && <p class="balance line-clamp-3 py-1">{subtitle}</p>}
+    {subtitle && <p class="balance line-clamp-3 text-xl py-1">{subtitle}</p>}
 
     {
       description && (
-        <div class="inline-flex md:flex gap-2 flex-wrap mt-2">
-          <span class="block py-0.5 text-xs uppercase tracking-widest opacity-90">
-            {description}
-          </span>
-        </div>
+        <p class="mt-2 py-0.5 text-sm tracking-widest">{description}</p>
       )
     }
   </div>

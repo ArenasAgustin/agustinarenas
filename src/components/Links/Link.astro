@@ -1,10 +1,23 @@
 ---
-const { href, extraClass } = Astro.props;
+interface Props {
+  href: string;
+  extraClass?: string;
+  underlined?: boolean;
+  targetBlank?: boolean;
+}
+
+const {
+  href,
+  extraClass = "",
+  underlined = false,
+  targetBlank = false,
+} = Astro.props;
 ---
 
 <a
   href={href}
-  class={`text-xl mx-6 my-3 relative after:absolute after:h-[2px] after:bottom-[-1px] after:left-0 after:bg-white-50 hover:after:w-full ${extraClass}`}
+  class={`text-xl mx-6 my-3  ${underlined ? "relative after:absolute after:h-[2px] after:bottom-[-2px] after:left-0 after:bg-mine-shaft-900 dark:after:bg-mine-shaft-50 hover:after:w-full" : ""} ${extraClass}`}
+  target={targetBlank ? "_blank" : undefined}
 >
   <slot />
 </a>

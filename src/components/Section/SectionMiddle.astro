@@ -1,0 +1,27 @@
+---
+import Section from "./Section.astro";
+
+interface Props {
+  title?: string;
+  id: string;
+  extraClass?: string;
+}
+
+const { id, title, extraClass } = Astro.props;
+---
+
+<Section
+  id={id}
+  title={title}
+  extraClass={extraClass}
+  direction="row"
+  padding="pt-12"
+>
+  <div class="flex-center-center flex-col w-1/2 h-full min-h-[354px] relative">
+    <slot name="slot1" />
+  </div>
+
+  <div class="flex-center-center flex-col w-1/2 h-full min-h-[354px] relative">
+    <slot name="slot2" />
+  </div>
+</Section>

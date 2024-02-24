@@ -1,19 +1,17 @@
 ---
-import ContactButton from "../components/Buttons/ContactButton.astro";
-import CvButton from "../components/Buttons/CvButton.astro";
-import GithubButton from "../components/Buttons/GithubButton.astro";
-import LinkedinButton from "../components/Buttons/LinkedinButton.astro";
+import ContactLink from "../components/Links/ContactLink.astro";
+import CvLink from "../components/Links/CvLink.astro";
+import GithubLink from "../components/Links/GithubLink.astro";
+import LinkedinLink from "../components/Links/LinkedinLink.astro";
 import Link from "../components/Links/Link.astro";
-
-interface Props {
-  title: string;
-}
+import { ViewTransitions } from "astro:transitions";
+import "../styles/global.css";
 
 const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
 
@@ -26,34 +24,41 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
+
+    <ViewTransitions />
   </head>
 
-  <body class="bg-bunker-900 text-polar-50">
+  <body
+    class="bg-mine-shaft-100 text-mine-shaft-900 dark:bg-mine-shaft-900 dark:text-mine-shaft-100"
+  >
     <header
-      class="flex justify-center align-middle fixed w-full z-30 bg-clip-padding backdrop-filter backdrop-blur-xl border bg-bunker-800/60 border-bunker-800"
+      class="flex justify-center align-middle fixed w-full z-30 bg-clip-padding backdrop-filter backdrop-blur-xl border bg-mine-shaft-200/60 dark:bg-mine-shaft-950/60 border-none"
     >
-      <Link href="/" extraClass="capitalize">Home</Link>
+      <Link href="/" extraClass="capitalize" underlined={true}>Home</Link>
 
-      <Link href="/about" extraClass="capitalize">About</Link>
+      <Link href="/about" extraClass="capitalize" underlined={true}>About</Link>
 
-      <Link href="/blog" extraClass="capitalize">Portfolio</Link>
+      <Link href="/blog" extraClass="capitalize" underlined={true}>
+        Portfolio
+      </Link>
 
-      <Link href="/contact" extraClass="capitalize">Contact</Link>
+      <Link href="/contact" extraClass="capitalize" underlined={true}>
+        Contact
+      </Link>
     </header>
+    <main class="flex-center-center flex-col w-full">
+      <slot />
+    </main>
 
-    <slot />
+    <footer class="w-full p-4 flex justify-center items-center flex-col">
+      <div class="flex-center-center">
+        <GithubLink />
 
-    <footer
-      class="w-full bg-bunker-900 p-4 flex justify-center items-center flex-col"
-    >
-      <div class="flex space-x-4">
-        <GithubButton />
+        <LinkedinLink />
 
-        <LinkedinButton />
+        <ContactLink />
 
-        <ContactButton />
-
-        <CvButton />
+        <CvLink />
       </div>
 
       <hr class="w-3/5 my-2 text-bunker-800" />
