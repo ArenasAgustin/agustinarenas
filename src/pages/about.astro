@@ -8,17 +8,23 @@ import LinkButton from "../components/Links/LinkButton.astro";
 ---
 
 <Layout title="Agustin Arenas | About me">
-  <Section id="about" title="About me">
+  <Section id="about" title="About me" extraClass="text-mine-shaft-100">
     <p class="text-center md:text-3xl w-full md:w-3/5 m-8">
       I'm a software engineer from Argentina. I'm passionate about web
       development, open source, and building communities.
     </p>
 
-    <LinkButton href="" targetBlank={true}>Download CV</LinkButton>
+    <LinkButton
+      href=""
+      targetBlank={true}
+      extraClass="text-mine-shaft-900 dark:text-mine-shaft-100"
+    >
+      Download CV
+    </LinkButton>
 
-    <div class="absolute top-0 left-0 w-full h-full z-[-1] opacity-60">
+    <div class="absolute top-0 left-0 w-full h-full z-[-1]">
       <img
-        src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708052028/background_rjlpdx.jpg"
+        src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708743916/aerial_3702074_hzxktw.webp"
         alt="Work"
         class="w-full h-full object-cover"
       />
@@ -28,13 +34,13 @@ import LinkButton from "../components/Links/LinkButton.astro";
   <SectionMiddle extraClass="bg-bunker" id="education">
     <div
       slot="slot2"
-      class="sticky w-full h-screen max-h-[354px] flex-center-center flex-col"
+      class="sticky w-full h-screen max-h-[354px] flex-center-center flex-col text-mine-shaft-900"
     >
       <h2 class="text-7xl font-bold mb-4">Education</h2>
 
-      <div class="absolute top-0 left-0 w-full h-full z-[-1] opacity-40">
+      <div class="absolute top-0 left-0 w-full h-full z-[-1]">
         <img
-          src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708052028/background_rjlpdx.jpg"
+          src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708743895/FRS_1021_Racool-140_am7mjp.webp"
           alt="Work"
           class="w-full h-full object-cover"
         />
@@ -67,11 +73,11 @@ import LinkButton from "../components/Links/LinkButton.astro";
       slot="slot1"
       class="sticky w-full h-screen max-h-full flex-center-center flex-col top-0 left-0"
     >
-      <h2 class="text-7xl font-bold mb-4">Work</h2>
+      <h2 class="text-7xl font-bold mb-4 text-mine-shaft-100">Work</h2>
 
-      <div class="absolute top-0 left-0 w-full h-full z-[-1] opacity-40">
+      <div class="absolute top-0 left-0 w-full h-full z-[-1]">
         <img
-          src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708052028/background_rjlpdx.jpg"
+          src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708743914/paper_3164718_nefyfs.webp"
           alt="Work"
           class="w-full h-full object-cover"
         />
