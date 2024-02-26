@@ -3,6 +3,7 @@ import ContactLink from "../components/Links/ContactLink.astro";
 import CvLink from "../components/Links/CvLink.astro";
 import GithubLink from "../components/Links/GithubLink.astro";
 import LinkedinLink from "../components/Links/LinkedinLink.astro";
+import ToggleTheme from "../components/Buttons/ToggleTheme.astro";
 import Link from "../components/Links/Link.astro";
 import { ViewTransitions } from "astro:transitions";
 import "../styles/global.css";
@@ -29,7 +30,7 @@ const { title } = Astro.props;
   </head>
 
   <body
-    class="bg-mine-shaft-100 text-mine-shaft-900 dark:bg-mine-shaft-900 dark:text-mine-shaft-100"
+    class="relative overflow-x-hidden background-image bg-mine-shaft-100 text-mine-shaft-900 dark:bg-mine-shaft-900 dark:text-mine-shaft-100"
   >
     <header
       class="flex justify-center align-middle fixed w-full z-30 bg-clip-padding backdrop-filter backdrop-blur-xl border bg-mine-shaft-200/60 dark:bg-mine-shaft-950/60 border-none"
@@ -59,6 +60,8 @@ const { title } = Astro.props;
         <ContactLink />
 
         <CvLink />
+
+        <ToggleTheme />
       </div>
 
       <hr class="w-3/5 my-2 text-bunker-800" />

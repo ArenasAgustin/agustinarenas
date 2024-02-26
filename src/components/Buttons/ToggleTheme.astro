@@ -1,0 +1,48 @@
+---
+import Button from "./IconButton.astro";
+---
+
+<div class="text-xl mx-6 my-3" id="themeToggle">
+  <Button>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="opacity-100 dark:opacity-0"
+      width="24"
+      height="24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><path d="M0 0h24v24H0z" stroke="none"></path><path
+        d="M8 12a4 4 0 1 0 8 0 4 4 0 1 0-8 0M3 12h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7-.7.7m0 11.4.7.7m-12.1-.7-.7.7"
+      ></path></svg
+    >
+
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 opacity-0 dark:opacity-100"
+      width="24"
+      height="24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      ><path d="M0 0h24v24H0z" stroke="none"></path><path
+        d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"
+      ></path></svg
+    >
+  </Button>
+
+  <script is:inline>
+    const handleToggleClick = () => {
+      const html = document.documentElement;
+      html.classList.toggle("dark");
+    };
+
+    document
+      .getElementById("themeToggle")
+      .addEventListener("click", handleToggleClick);
+  </script>
+</div>

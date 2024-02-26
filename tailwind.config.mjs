@@ -2,7 +2,6 @@
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    darkMode: "selector",
     colors: {
       tradewind: {
         50: "#ffffff",
@@ -32,5 +31,6 @@ export default {
       },
     },
   },
+  darkMode: "class",
   plugins: [],
 };
