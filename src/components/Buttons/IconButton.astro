@@ -1,5 +1,14 @@
+---
+interface Props {
+  ariaLabel?: string;
+}
+
+const { ariaLabel } = Astro.props;
+---
+
 <button
   class="p-1 relative transition-all duration-400 *:transition-all *:duration-400 rounded-md hover:text-tradewind-500 hover:bg-mine-shaft-100/60 dark:hover:bg-mine-shaft-400/30 hover:rotate-45 *:hover:rotate-[-45deg]"
+  aria-label={ariaLabel}
 >
   <slot />
 </button>
