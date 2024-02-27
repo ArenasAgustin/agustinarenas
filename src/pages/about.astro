@@ -5,6 +5,10 @@ import SectionMiddle from "../components/Section/SectionMiddle.astro";
 import SmallCard from "../components/Card/SmallCard.astro";
 import SkillCard from "../components/Card/SkillCard.astro";
 import LinkButton from "../components/Links/LinkButton.astro";
+import { Image } from "astro:assets";
+import aboutBackground from "../assets/images/about-background.webp";
+import educationBackground from "../assets/images/education-background.webp";
+import workBackground from "../assets/images/work-background.webp";
 ---
 
 <Layout title="Agustin Arenas | About me">
@@ -23,8 +27,8 @@ import LinkButton from "../components/Links/LinkButton.astro";
     </LinkButton>
 
     <div class="absolute top-0 left-0 w-full h-full z-[-1]">
-      <img
-        src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708743916/aerial_3702074_hzxktw.webp"
+      <Image
+        src={aboutBackground}
         alt="Work"
         class="w-full h-full object-cover"
         loading="lazy"
@@ -40,8 +44,8 @@ import LinkButton from "../components/Links/LinkButton.astro";
       <h2 class="text-7xl font-bold mb-4">Education</h2>
 
       <div class="absolute top-0 left-0 w-full h-full z-[-1]">
-        <img
-          src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708743895/FRS_1021_Racool-140_am7mjp.webp"
+        <Image
+          src={educationBackground}
           alt="Work"
           class="w-full h-full object-cover"
           loading="lazy"
@@ -78,8 +82,8 @@ import LinkButton from "../components/Links/LinkButton.astro";
       <h2 class="text-7xl font-bold mb-4 text-mine-shaft-100">Work</h2>
 
       <div class="absolute top-0 left-0 w-full h-full z-[-1]">
-        <img
-          src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708743914/paper_3164718_nefyfs.webp"
+        <Image
+          src={workBackground}
           alt="Work"
           class="w-full h-full object-cover"
           loading="lazy"

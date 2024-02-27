@@ -9,6 +9,9 @@ import LinkButton from "../components/Links/LinkButton.astro";
 import Link from "../components/Links/Link.astro";
 import Section from "../components/Section/Section.astro";
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import homeBackground from "../assets/home-background.webp";
+import profileImg from "../assets/profile.webp";
 ---
 
 <Layout title="Agustin Arenas | I'm a Web Developer">
@@ -27,22 +30,20 @@ import Layout from "../layouts/Layout.astro";
     </div>
 
     <div class="absolute top-0 left-0 w-full h-full z-[-1]">
-      <img
-        src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708743904/FRS_070721-Racool-188_gzn1i6.webp"
+      <Image
+        src={homeBackground}
         alt="background of introduction section"
-        class="w-full h-full object-cover"
-        loading="lazy"
+        class:list="w-full h-full object-cover"
       />
     </div>
   </Section>
 
   <Section title="About me" id="about">
     <div class="w-full flex-center-center mt-7">
-      <img
-        src="https://res.cloudinary.com/df7zuvuxu/image/upload/v1708744215/profile_lanehu.webp"
+      <Image
+        src={profileImg}
         alt="profile"
-        class="rounded-md size-64 mr-20 object-cover aspect-square"
-        loading="lazy"
+        class:list="rounded-md size-64 mr-20 object-cover aspect-square"
       />
 
       <div class="flex flex-col justify-center items-start ml-20">
