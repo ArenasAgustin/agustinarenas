@@ -18,6 +18,7 @@ const {
   href={href}
   class={`text-xl mx-6 my-3  ${underlined ? "relative after:absolute after:h-[2px] after:bottom-[-2px] after:left-0 after:bg-mine-shaft-900 dark:after:bg-mine-shaft-50 hover:after:w-full" : ""} ${extraClass}`}
   target={targetBlank ? "_blank" : undefined}
+  rel={targetBlank ? "noopener noreferrer nofollow" : undefined}
 >
   <slot />
 </a>
