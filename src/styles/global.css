@@ -19,7 +19,7 @@
   @apply p-3 m-3 rounded-lg bg-mine-shaft-800/70 text-mine-shaft-50/100;
 }
 
-/* .dark .background-image {
+.dark .background-image {
   background: #333333
     url(https://res.cloudinary.com/df7zuvuxu/image/upload/v1708986506/concrete-dark_fevjos.png);
 }
@@ -34,4 +34,4 @@
   overscroll-behavior: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-text-size-adjust: 100%;
-} */
+}
