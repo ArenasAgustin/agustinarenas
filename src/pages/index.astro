@@ -10,6 +10,8 @@ import Link from "../components/Links/Link.astro";
 import Section from "../components/Section/Section.astro";
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
+import homeImg from "../assets/home.webp";
+import profileImg from "../assets/profile.webp";
 ---
 
 <Layout title="Agustin Arenas | I'm a Web Developer">
@@ -33,11 +35,11 @@ import { Image } from "astro:assets";
 
     <div class="absolute top-0 left-0 w-full h-full z-[-1]">
       <Image
-        src="https://res.cloudinary.com/df7zuvuxu/image/upload/ar_16:9,c_fill,g_auto,w_1768/v1708743904/FRS_070721-Racool-188_gzn1i6.webp"
+        src={homeImg}
         alt="background of introduction section"
-        class:list="w-full h-full object-cover"
-        width="1920"
-        height="1080"
+        class="w-full h-full object-cover"
+        widths={[240, 540, 720, 1600]}
+        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, 1600px`}
       />
     </div>
   </Section>
@@ -45,11 +47,11 @@ import { Image } from "astro:assets";
   <Section title="About me" id="about">
     <div class="w-full flex-center-center flex-wrap mt-7">
       <Image
-        src="https://res.cloudinary.com/df7zuvuxu/image/upload/ar_1:1,c_fill,g_auto,w_1000/v1708744215/profile_lanehu.webp"
+        src={profileImg}
         alt="profile"
-        class:list="rounded-md size-64 md:mr-20 object-cover aspect-square"
-        width="1000"
-        height="1000"
+        class="rounded-md size-64 md:mr-20 object-cover aspect-square"
+        widths={[240, 540, 720, profileImg.width]}
+        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${profileImg.width}px`}
       />
 
       <div
