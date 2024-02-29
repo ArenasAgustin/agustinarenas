@@ -10,55 +10,59 @@ import Link from "../components/Links/Link.astro";
 import Section from "../components/Section/Section.astro";
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import homeBackground from "../assets/home-background.webp";
-import profileImg from "../assets/profile.webp";
 ---
 
 <Layout title="Agustin Arenas | I'm a Web Developer">
-  <Section extraClass="h-screen z-10 text-mine-shaft-100" id="introduction">
-    <h1 class="text-7xl font-bold mb-4">Hi, I'm Agustín Arenas</h1>
-    <p class="text-3xl">I'm a Web Developer</p>
+  <Section extraClass="h-screen z-10 text-mine-shaft-100 " id="introduction">
+    <div class="text-img flex-center-center flex-col">
+      <h1 class="text-5xl md:text-7xl text-center font-bold m-0 mb-4">
+        Hi, I'm Agustín Arenas
+      </h1>
+      <p class="text-2xl">I'm a Web Developer</p>
 
-    <div class="flex-center-center">
-      <GithubLink />
+      <div class="flex-center-center">
+        <GithubLink />
 
-      <LinkedinLink />
+        <LinkedinLink />
 
-      <ContactLink />
+        <ContactLink />
 
-      <CvLink />
+        <CvLink />
+      </div>
     </div>
 
     <div class="absolute top-0 left-0 w-full h-full z-[-1]">
       <Image
-        src={homeBackground}
+        src="https://res.cloudinary.com/df7zuvuxu/image/upload/ar_16:9,c_fill,g_auto,w_1768/v1708743904/FRS_070721-Racool-188_gzn1i6.webp"
         alt="background of introduction section"
         class:list="w-full h-full object-cover"
+        width="1920"
+        height="1080"
       />
     </div>
   </Section>
 
   <Section title="About me" id="about">
-    <div class="w-full flex-center-center mt-7">
+    <div class="w-full flex-center-center flex-wrap mt-7">
       <Image
-        src={profileImg}
+        src="https://res.cloudinary.com/df7zuvuxu/image/upload/ar_1:1,c_fill,g_auto,w_1000/v1708744215/profile_lanehu.webp"
         alt="profile"
-        class:list="rounded-md size-64 mr-20 object-cover aspect-square"
+        class:list="rounded-md size-64 md:mr-20 object-cover aspect-square"
+        width="1000"
+        height="1000"
       />
 
-      <div class="flex flex-col justify-center items-start ml-20">
+      <div
+        class="flex flex-col justify-center items-start m-10 md:m-0 md:ml-20"
+      >
         <p class="w-full max-w-xl mb-5">
-          I am a programmer and web developer with problem-solving skills,
+          I'm a programmer and web developer with problem-solving skills,
           imaginative, and curious. I have experience as a Full Stack Developer
-          at Dequo, Front-end Developer at Sellers Latam, and previously as a
-          Full Stack Developer at Last Horde.
+          at Dequo.
         </p>
         <p class="w-full max-w-lg mb-5">
-          My education includes a Full Stack Web Developer course at Soy Henry
-          and studies in Computer Engineering. Additionally, I have skills in
-          customer service and sales, acquired at Praga Revestimientos and at
-          the Municipality of Córdoba. Outside of work, I enjoy music and
-          drawing.
+          I'm a software engineer from Argentina. I'm passionate about web
+          development, open source, and building communities.
         </p>
         <div class="flex space-x-4">
           <LinkButton href="" targetBlank={true}>Download CV</LinkButton>
@@ -76,7 +80,7 @@ import profileImg from "../assets/profile.webp";
   </Section>
 
   <Section title="Contact" id="contact">
-    <div class="flex justify-center items-stretch space-x-9">
+    <div class="flex justify-center items-stretch flex-wrap p-4 md:space-x-9">
       <div class="flex flex-col justify-center items-center">
         <ContactButton />
         <Link href="arenasagustin7@gmail.com">arenasagustin7@gmail.com</Link>

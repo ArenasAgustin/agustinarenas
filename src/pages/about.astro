@@ -6,49 +6,59 @@ import SmallCard from "../components/Card/SmallCard.astro";
 import SkillCard from "../components/Card/SkillCard.astro";
 import LinkButton from "../components/Links/LinkButton.astro";
 import { Image } from "astro:assets";
-import aboutBackground from "../assets/about-background.webp";
-import educationBackground from "../assets/about-background.webp";
-import workBackground from "../assets/work-background.webp";
+import aboutBackground from "../image/about-background.jpg";
+import educationBackground from "../image/about-background.jpg";
+import workBackground from "../image/work-background.jpg";
 ---
 
 <Layout title="Agustin Arenas | About me">
-  <Section id="about" title="About me" extraClass="text-mine-shaft-100">
-    <p class="text-center md:text-3xl w-full md:w-3/5 m-8">
-      I'm a software engineer from Argentina. I'm passionate about web
-      development, open source, and building communities.
-    </p>
+  <Section id="about" extraClass="text-mine-shaft-100">
+    <div class="text-img flex-center-center flex-col">
+      <h1 class="text-5xl md:text-7xl text-center font-bold m-0 mb-4">
+        About me
+      </h1>
 
-    <LinkButton
-      href=""
-      targetBlank={true}
-      extraClass="text-mine-shaft-900 dark:text-mine-shaft-100"
-    >
-      Download CV
-    </LinkButton>
+      <p class="text-center text-3xl md:text-3xl w-5/6 md:w-3/5 mb-6">
+        I'm a software engineer from Argentina. I'm passionate about web
+        development, open source, and building communities.
+      </p>
+
+      <LinkButton
+        href=""
+        targetBlank={true}
+        extraClass="text-mine-shaft-900 dark:text-mine-shaft-100"
+      >
+        Download CV
+      </LinkButton>
+    </div>
 
     <div class="absolute top-0 left-0 w-full h-full z-[-1]">
       <Image
-        src={aboutBackground}
+        src="https://res.cloudinary.com/df7zuvuxu/image/upload/ar_16:9,c_fill,g_auto,w_1800/v1708743916/aerial_3702074_hzxktw.webp"
         alt="Work"
         class="w-full h-full object-cover"
         loading="lazy"
+        width="1920"
+        height="1080"
       />
     </div>
   </Section>
 
-  <SectionMiddle extraClass="bg-bunker" id="education">
+  <SectionMiddle extraClass="bg-bunker" id="education" slotFirst="slot2">
     <div
       slot="slot2"
       class="sticky w-full h-screen max-h-[354px] flex-center-center flex-col text-mine-shaft-900"
     >
-      <h2 class="text-7xl font-bold mb-4">Education</h2>
+      <h2 class="text-4xl md:text-5xl font-bold text-img mb-4">Education</h2>
 
       <div class="absolute top-0 left-0 w-full h-full z-[-1]">
         <Image
-          src={educationBackground}
-          alt="Work"
+          src="https://res.cloudinary.com/df7zuvuxu/image/upload/ar_16:9,c_fill,g_auto,w_1800/v1708743895/FRS_1021_Racool-140_am7mjp.webp"
+          alt="Education"
           class="w-full h-full object-cover"
           loading="lazy"
+          width="1920"
+          height="1080"
         />
       </div>
     </div>
@@ -74,19 +84,21 @@ import workBackground from "../assets/work-background.webp";
     </div>
   </SectionMiddle>
 
-  <SectionMiddle extraClass="bg-bunker" id="work">
+  <SectionMiddle extraClass="bg-bunker" id="work" slotFirst="slot1">
     <div
       slot="slot1"
       class="sticky w-full h-screen max-h-full flex-center-center flex-col top-0 left-0"
     >
-      <h2 class="text-7xl font-bold mb-4 text-mine-shaft-100">Work</h2>
+      <h2 class="text-4xl md:text-5xl font-bold text-img mb-4">Work</h2>
 
       <div class="absolute top-0 left-0 w-full h-full z-[-1]">
         <Image
-          src={workBackground}
+          src="https://res.cloudinary.com/df7zuvuxu/image/upload/ar_16:9,c_fill,g_auto,w_1800/v1708743914/paper_3164718_nefyfs.webp"
           alt="Work"
           class="w-full h-full object-cover"
           loading="lazy"
+          width="1920"
+          height="1080"
         />
       </div>
     </div>

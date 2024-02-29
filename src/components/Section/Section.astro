@@ -3,23 +3,29 @@ interface Props {
   title?: string;
   id: string;
   extraClass?: string;
-  direction?: string;
   padding?: string;
+  titleClass?: string;
 }
 
 const {
   id,
   title,
-  extraClass,
-  direction = "col",
+  extraClass = "",
   padding = "py-16",
+  titleClass = "",
 } = Astro.props;
 ---
 
 <section
   id={id}
-  class={`flex-center-center w-full z-10 relative text-xl ${direction === "col" ? "flex-col" : "flex-row"} ${padding} ${extraClass}`}
+  class={`flex-center-center w-full z-10 relative text-xl flex-col ${padding} ${extraClass}`}
 >
-  {title && <h2 class="text-5xl font-bold text-center">{title}</h2>}
+  {
+    title && (
+      <h2 class={`text-4xl md:text-5xl font-bold text-center ${titleClass}`}>
+        {title}
+      </h2>
+    )
+  }
   <slot />
 </section>
