@@ -18,20 +18,3 @@
 .text-img {
   @apply p-3 m-3 rounded-lg bg-mine-shaft-800/70 text-mine-shaft-50/100;
 }
-
-/* .dark .background-image {
-  background: #333333
-    url(https://res.cloudinary.com/df7zuvuxu/image/upload/v1708986506/concrete-dark_fevjos.png);
-}
-
-.background-image {
-  background: #e7e7e7
-    url(https://res.cloudinary.com/df7zuvuxu/image/upload/v1708747024/concrete_z6maff.png);
-  background-repeat: repeat;
-  scroll-behavior: smooth;
-  perspective: 2000px;
-  overflow-x: hidden;
-  overscroll-behavior: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-text-size-adjust: 100%;
-} */
