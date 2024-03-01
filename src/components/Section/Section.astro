@@ -5,6 +5,7 @@ interface Props {
   extraClass?: string;
   padding?: string;
   titleClass?: string;
+  direction?: "row" | "column";
 }
 
 const {
@@ -13,12 +14,15 @@ const {
   extraClass = "",
   padding = "py-16",
   titleClass = "",
+  direction = "column",
 } = Astro.props;
 ---
 
 <section
   id={id}
-  class={`flex-center-center w-full z-10 relative text-xl flex-col ${padding} ${extraClass}`}
+  class={`flex-center-center w-full z-10 relative text-xl ${padding} ${extraClass} ${
+    direction === "row" ? "flex-row flex-wrap" : "flex-col"
+  }`}
 >
   {
     title && (

@@ -33,7 +33,7 @@ import Button from "./IconButton.astro";
 
   <script is:inline>
     const handleToggleClick = () => {
-      const html = document.documentElement;
+      const html = document.querySelector("html");
       html.classList.toggle("dark");
     };
 

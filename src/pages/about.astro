@@ -37,8 +37,8 @@ import aboutImg from "../assets/about.webp";
         src={aboutImg}
         alt="Work"
         class="w-full h-full object-cover"
-        widths={[240, 540, 720, 1600]}
-        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, 1600px`}
+        widths={[240, 540, 720, aboutImg.width]}
+        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${aboutImg.width}px`}
       />
     </div>
   </Section>
@@ -55,8 +55,8 @@ import aboutImg from "../assets/about.webp";
           src={educationImg}
           alt="Education"
           class="w-full h-full object-cover"
-          widths={[240, 540, 720, 1600]}
-          sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, 1600px`}
+          widths={[240, 540, 720, educationImg.width]}
+          sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${educationImg.width}px`}
         />
       </div>
     </div>
@@ -94,8 +94,8 @@ import aboutImg from "../assets/about.webp";
           src={workImg}
           alt="Work"
           class="w-full h-full object-cover"
-          widths={[240, 540, 720, 1600]}
-          sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, 1600px`}
+          widths={[240, 540, 720, workImg.width]}
+          sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${workImg.width}px`}
         />
       </div>
     </div>
