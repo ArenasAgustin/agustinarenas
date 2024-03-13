@@ -31,14 +31,16 @@ import Button from "./IconButton.astro";
     >
   </Button>
 
-  <script is:inline>
+  <script>
+    if (typeof window === "undefined") return;
+
     const handleToggleClick = () => {
       const html = document.querySelector("html");
-      html.classList.toggle("dark");
+      html?.classList?.toggle("dark");
     };
 
     document
-      .getElementById("themeToggle")
-      .addEventListener("click", handleToggleClick);
+      ?.getElementById("themeToggle")
+      ?.addEventListener("click", handleToggleClick);
   </script>
 </div>
