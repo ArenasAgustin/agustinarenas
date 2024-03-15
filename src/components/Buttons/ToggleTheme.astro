@@ -32,15 +32,15 @@ import Button from "./IconButton.astro";
   </Button>
 
   <script>
-    if (typeof window === "undefined") return;
+    if (typeof window !== "undefined") {
+      const handleToggleClick = () => {
+        const html = document.querySelector("html");
+        if (html) html.classList.toggle("dark");
+      };
 
-    const handleToggleClick = () => {
-      const html = document.querySelector("html");
-      html?.classList?.toggle("dark");
-    };
-
-    document
-      ?.getElementById("themeToggle")
-      ?.addEventListener("click", handleToggleClick);
+      document
+        ?.getElementById("themeToggle")
+        ?.addEventListener("click", handleToggleClick);
+    }
   </script>
 </div>
