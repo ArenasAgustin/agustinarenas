@@ -1,8 +1,11 @@
 import {
+  BOOTSTRAP,
   CSS,
   HTML,
   JAVASCRIPT,
+  LARAVEL,
   MONGODB,
+  MYSQL,
   NEXT,
   NODE,
   PHP,
@@ -72,6 +75,16 @@ export const projects: Project[] = [
     description:
       "Project carried out to practice and improve technologies such as TypeScript, Tailwind CSS, Next.js, React, PostgreSQL and Prisma ORM.",
     tecnologies: [JAVASCRIPT, REACT, TAILWIND, POSTGRESQL, NEXT],
+    repositoryUrl: "https://github.com/ArenasAgustin/url-shortener",
+    imageUrl:
+      "https://res.cloudinary.com/dk5bvgq20/image/upload/v1625651319/morse-decoder.png",
+  },
+  {
+    id: "cinema",
+    name: "Cinema",
+    description:
+      "Project to learn to use Php and Laravel. In it you can see a list of movies, see the details of each one, add movies, edit them and delete them. You can also add, edit and delete both genders and users.",
+    tecnologies: [PHP, LARAVEL, BOOTSTRAP, JAVASCRIPT, MYSQL],
     repositoryUrl: "https://github.com/ArenasAgustin/url-shortener",
     imageUrl:
       "https://res.cloudinary.com/dk5bvgq20/image/upload/v1625651319/morse-decoder.png",
