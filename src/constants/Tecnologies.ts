@@ -11,6 +11,8 @@ export const TYPESCRIPT = "TypeScript";
 export const PHP = "Php";
 
 export const NODE = "Node";
+export const EXPRESS = "Express";
+export const ASTRO = "Astro";
 export const REACT = "React";
 export const ANGULAR = "Angular";
 export const NEXT = "Next";
