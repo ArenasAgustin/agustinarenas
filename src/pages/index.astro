@@ -1,101 +1,19 @@
 ---
-import ContactButton from "components/Buttons/ContactButton.astro";
-import ContactLink from "components/Links/ContactLink.astro";
-import GithubLink from "components/Links/GithubLink.astro";
-import LinkedinLink from "components/Links/LinkedinLink.astro";
-import CvLink from "components/Links/CvLink.astro";
-import MobileButton from "components/Buttons/MobileButton.astro";
-import LinkButton from "components/Links/LinkButton.astro";
-import Link from "components/Links/Link.astro";
-import Section from "components/Section/Section.astro";
 import Layout from "@/layouts/Layout.astro";
-import { Image } from "astro:assets";
-import homeImg from "@/assets/home.webp";
-import profileImg from "@/assets/profile.webp";
+import Hero from "@/sections/home/Hero.astro";
+import About from "@/sections/home/About.astro";
+import Portfolio from "@/sections/home/Portfolio.astro";
+import Contact from "@/sections/home/Contact.astro";
 ---
 
 <Layout title="Agustin Arenas | I'm a Web Developer">
-  <Section extraClass="h-screen z-10 text-mine-shaft-100 " id="introduction">
-    <div class="text-img flex-center-center flex-col">
-      <h1 class="text-5xl md:text-7xl text-center font-bold m-0 mb-4">
-        Hi, I'm Agustín Arenas
-      </h1>
-      <p class="text-2xl">I'm a Web Developer</p>
+  <Hero />
 
-      <div class="flex-center-center">
-        <GithubLink />
+  <About />
 
-        <LinkedinLink />
+  <Portfolio />
 
-        <ContactLink />
-
-        <CvLink />
-      </div>
-    </div>
-
-    <div class="absolute top-0 left-0 w-full h-full z-[-1]">
-      <Image
-        src={homeImg}
-        alt="background of introduction section"
-        class="w-full h-full object-cover"
-        widths={[540, 720, homeImg.width]}
-        sizes={`(max-width: 360px) 540px, (max-width: 720px) 720px, ${homeImg.width}px`}
-      />
-    </div>
-  </Section>
-
-  <Section title="About me" id="about">
-    <div class="w-full flex-center-center flex-wrap mt-7">
-      <Image
-        src={profileImg}
-        alt="profile"
-        class="rounded-md size-64 md:mr-20 object-cover aspect-square"
-        widths={[240, 540, 720, profileImg.width]}
-        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${profileImg.width}px`}
-      />
-
-      <div
-        class="flex flex-col justify-center items-start m-10 md:m-0 md:ml-20"
-      >
-        <p class="w-full max-w-xl mb-5">
-          I'm a programmer and web developer with problem-solving skills,
-          imaginative, and curious. I have experience as a Full Stack Developer
-          at Dequo.
-        </p>
-        <p class="w-full max-w-lg mb-5">
-          I'm a software engineer from Argentina. I'm passionate about web
-          development, open source, and building communities.
-        </p>
-        <div class="flex space-x-4">
-          <LinkButton href="" targetBlank={true}>Download CV</LinkButton>
-          <LinkButton href="/about">Read more</LinkButton>
-        </div>
-      </div>
-    </div>
-  </Section>
-
-  <Section title="Projects" id="projects">
-    <p>
-      To get started, open the <code>src/pages/index.astro</code> file and start
-      editing. You can also add new pages in the <code>src/pages</code> directory.
-    </p>
-  </Section>
-
-  <Section title="Contact" id="contact">
-    <div class="flex justify-center items-stretch flex-wrap p-4 md:space-x-9">
-      <div class="flex flex-col justify-center items-center">
-        <ContactButton />
-        <Link href="arenasagustin7@gmail.com">arenasagustin7@gmail.com</Link>
-      </div>
-
-      <div class="flex-center-center flex-col">
-        <MobileButton />
-        <Link href="https://api.whatsapp.com/send/?phone=5493517738914">
-          +54 9 351-7738914
-        </Link>
-      </div>
-    </div>
-  </Section>
+  <Contact />
 </Layout>
 
 <!-- bg-bunker-700/75 bg-clip-padding backdrop-filter backdrop-blur-xl border border-bunker-700 -->

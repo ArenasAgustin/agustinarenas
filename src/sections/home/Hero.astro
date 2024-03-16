@@ -1,0 +1,38 @@
+---
+import ContactLink from "components/Links/ContactLink.astro";
+import GithubLink from "components/Links/GithubLink.astro";
+import LinkedinLink from "components/Links/LinkedinLink.astro";
+import CvLink from "components/Links/CvLink.astro";
+import Section from "components/Section/Section.astro";
+import { Image } from "astro:assets";
+import homeImg from "@/assets/home.webp";
+---
+
+<Section extraClass="h-screen z-10 text-mine-shaft-100 " id="introduction">
+  <div class="text-img flex-center-center flex-col">
+    <h1 class="text-5xl md:text-7xl text-center font-bold m-0 mb-4">
+      Hi, I'm Agustín Arenas
+    </h1>
+    <p class="text-2xl">I'm a Web Developer</p>
+
+    <div class="flex-center-center">
+      <GithubLink />
+
+      <LinkedinLink />
+
+      <ContactLink />
+
+      <CvLink />
+    </div>
+  </div>
+
+  <div class="absolute top-0 left-0 w-full h-full z-[-1]">
+    <Image
+      src={homeImg}
+      alt="background of introduction section"
+      class="w-full h-full object-cover"
+      widths={[540, 720, homeImg.width]}
+      sizes={`(max-width: 360px) 540px, (max-width: 720px) 720px, ${homeImg.width}px`}
+    />
+  </div>
+</Section>
