@@ -9,6 +9,9 @@ import { Image } from "astro:assets";
 import educationImg from "@/assets/education.webp";
 import workImg from "@/assets/work.webp";
 import aboutImg from "@/assets/about.webp";
+import { educations, type Education } from "@/constants/educations";
+import { works, type Work } from "@/constants/works";
+import { skills } from "@/constants/skills";
 ---
 
 <Layout title="Agustin Arenas | About me">
@@ -62,23 +65,15 @@ import aboutImg from "@/assets/about.webp";
     </div>
 
     <div slot="slot1" class="flex-center-center flex-col w-full p-5">
-      <SmallCard
-        title="Full Stack Web Developer Course"
-        subtitle="Soy Henry"
-        time="July 2021 - November 2021"
-      />
-
-      <SmallCard
-        title="Computer Engineering Career"
-        subtitle="Facultad de Ciencias Exactas, Físicas y Naturales"
-        time="February 2020 - Present"
-      />
-
-      <SmallCard
-        title="Secondary Technical Senior Master Builder"
-        subtitle="Instituto de Enseñanza Domingo F. Sarmiento"
-        time="March 2015 - December 2019"
-      />
+      {
+        educations.map((education: Education) => (
+          <SmallCard
+            title={education.title}
+            subtitle={education.subtitle}
+            time={education.time}
+          />
+        ))
+      }
     </div>
   </SectionMiddle>
 
@@ -101,68 +96,22 @@ import aboutImg from "@/assets/about.webp";
     </div>
 
     <div slot="slot2" class="flex-center-center flex-col w-full p-5">
-      <SmallCard
-        title="Full Stack Developer"
-        subtitle="Dequo"
-        description="I carried out improvement and maintenance tasks for the Tiendaquick product, both on the frontend and backend, using PHP, Laravel, LESS, Bootstrap, MySQL, JavaScript, and React."
-        time="January 2024 - Present"
-      />
-
-      <SmallCard
-        title="Front-end Developer"
-        subtitle="Sellers Latam"
-        description="I performed maintenance and enhancements on the Sellers Latam website and created the website for Nuvex Uruguay. For both websites, I utilized JavaScript, Sass, React, and Next.js. Additionally, I developed a script for a Tiendanube application using JavaScript, jQuery, and Bootstrap."
-        time="March 2022 - January 2024"
-      />
-
-      <SmallCard
-        title="Full Stack Developer"
-        subtitle="Last Horde"
-        description="I created an NFT card marketplace and NFT card packs using JavaScript, React, Sass, and Bootstrap. Additionally, I developed a server for data storage using Node.js, Express, Sequelize, and MySQL."
-        time="February 2022 - July 2022"
-      />
-
-      <SmallCard
-        title="Sales and customer service"
-        subtitle="Praga Revestimientos"
-        description="I tracked customer satisfaction for all company products and services. I assisted in troubleshooting and finding solutions for existing issues."
-        time="August 2020 - November 2021"
-      />
-
-      <SmallCard
-        title="Customer Service (Internships)"
-        subtitle="Municipalidad de Córdoba"
-        description="I personally handled customer inquiries and managed internal operations to enhance service quality."
-        time="October 2019 - November 2019"
-      />
+      {
+        works.map((work: Work) => (
+          <SmallCard
+            title={work.title}
+            subtitle={work.subtitle}
+            description={work.description}
+            time={work.time}
+          />
+        ))
+      }
     </div>
   </SectionMiddle>
 
   <Section id="skils" title="Skils">
     <div class="flex-center-center w-full md:w-3/5 flex-wrap mx-12">
-      <SkillCard nameProp="HTML" />
-
-      <SkillCard nameProp="CSS" />
-
-      <SkillCard nameProp="Sass" />
-
-      <SkillCard nameProp="Tailwind" />
-
-      <SkillCard nameProp="Bootstrap" />
-
-      <SkillCard nameProp="JavaScript" />
-
-      <SkillCard nameProp="TypeScript" />
-
-      <SkillCard nameProp="Php" />
-
-      <SkillCard nameProp="Node" />
-
-      <SkillCard nameProp="React" />
-
-      <SkillCard nameProp="Next" />
-
-      <SkillCard nameProp="Laravel" />
+      {skills.map((skill: string) => <SkillCard nameProp={skill} />)}
     </div>
   </Section>
 </Layout>
