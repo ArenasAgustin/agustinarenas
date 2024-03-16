@@ -1,10 +1,29 @@
 ---
 import Section from "components/Section/Section.astro";
+import Card from "components/Card/Card.astro";
+import { projects, type Project } from "@/constants/projects.ts";
+
+const treeProjects = projects.slice(0, 3);
 ---
 
 <Section title="Projects" id="projects">
-  <p>
+  <p class="mt-4">
     To get started, open the <code>src/pages/index.astro</code> file and start editing.
     You can also add new pages in the <code>src/pages</code> directory.
   </p>
+
+  <div class="flex-center-center flex-wrap gap-5 mt-5">
+    {
+      treeProjects.map((project: Project) => (
+        <Card
+          name={project.name}
+          description={project.description}
+          imageUrl={project.imageUrl}
+          tecnologies={project.tecnologies}
+          repositoryUrl={project.repositoryUrl}
+          deployedUrl={project.deployedUrl}
+        />
+      ))
+    }
+  </div>
 </Section>

@@ -36,7 +36,7 @@ export const projects: Project[] = [
     repositoryUrl: "https://github.com/ArenasAgustin/brain-games",
     deployedUrl: "https://brain-games.vercel.app/",
     imageUrl:
-      "https://res.cloudinary.com/dk5bvgq20/image/upload/v1625651319/brain-games_es.png",
+      "https://res.cloudinary.com/df7zuvuxu/image/upload/v1644522692/Brain_Games_Es_fixlbo.png",
   },
   {
     id: "wave-music",
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     tecnologies: [JAVASCRIPT, CSS, REACT, NODE, MONGODB],
     repositoryUrl: "https://github.com/ArenasAgustin/Repo-para-PG",
     imageUrl:
-      "https://res.cloudinary.com/dk5bvgq20/image/upload/v1625651319/wave-music.png",
+      "https://res.cloudinary.com/df7zuvuxu/image/upload/v1636982756/WaveMusic_ndbdix.png",
   },
   {
     id: "blackparadox",
@@ -56,7 +56,7 @@ export const projects: Project[] = [
     tecnologies: [PHP, HTML, SASS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/udemy-blackparadox",
     imageUrl:
-      "https://res.cloudinary.com/dk5bvgq20/image/upload/v1625651319/blackparadox.png",
+      "https://res.cloudinary.com/df7zuvuxu/image/upload/v1645539715/Blackparadox-portfolio_ohcdwg.png",
   },
   {
     id: "morse-decoder",
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     repositoryUrl: "https://github.com/ArenasAgustin/morce",
     deployedUrl: "https://morse.vercel.app/",
     imageUrl:
-      "https://res.cloudinary.com/dk5bvgq20/image/upload/v1625651319/morse-decoder.png",
+      "https://res.cloudinary.com/df7zuvuxu/image/upload/v1710620610/Morse-Decoder_ybhzqz.jpg",
   },
   {
     id: "url-shortener",
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     tecnologies: [JAVASCRIPT, REACT, TAILWIND, POSTGRESQL, NEXT],
     repositoryUrl: "https://github.com/ArenasAgustin/url-shortener",
     imageUrl:
-      "https://res.cloudinary.com/dk5bvgq20/image/upload/v1625651319/morse-decoder.png",
+      "https://res.cloudinary.com/df7zuvuxu/image/upload/v1710620611/UrlShorter_wsykvv.jpg",
   },
   {
     id: "cinema",
@@ -87,6 +87,6 @@ export const projects: Project[] = [
     tecnologies: [PHP, LARAVEL, BOOTSTRAP, JAVASCRIPT, MYSQL],
     repositoryUrl: "https://github.com/ArenasAgustin/url-shortener",
     imageUrl:
-      "https://res.cloudinary.com/dk5bvgq20/image/upload/v1625651319/morse-decoder.png",
+      "https://res.cloudinary.com/df7zuvuxu/image/upload/v1710620610/Cinema_mus1bt.jpg",
   },
 ];

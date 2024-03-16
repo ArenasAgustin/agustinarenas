@@ -1,0 +1,59 @@
+---
+import LinkButton from "components/Links/LinkButton.astro";
+
+interface Props {
+  name: string;
+  description: string;
+  tecnologies: string[];
+  repositoryUrl?: string;
+  deployedUrl?: string;
+  imageUrl: string;
+}
+
+const { name, description, tecnologies, repositoryUrl, deployedUrl, imageUrl } =
+  Astro.props;
+---
+
+<div class="max-w-sm overflow-hidden shadow-box-inset rounded-lg">
+  <img class="w-full" src={imageUrl} alt="Proyecto 1" />
+
+  <div class="px-6 py-4">
+    <div class="font-bold text-xl mb-2">{name}</div>
+
+    <p class="text-base overflow-hidden text-ellipsis display line-clamp-4">
+      {description}
+    </p>
+
+    <div class="mt-4">
+      <p class="text-base">
+        Tecnologies: {tecnologies.join(", ")}
+      </p>
+    </div>
+  </div>
+
+  <div class="px-6 py-4 flex justify-between gap-5">
+    {
+      repositoryUrl && (
+        <LinkButton
+          href={repositoryUrl}
+          targetBlank={true}
+          extraClass="w-2/5 flex-center-center"
+        >
+          Repo
+        </LinkButton>
+      )
+    }
+
+    {
+      deployedUrl && (
+        <LinkButton
+          href={deployedUrl}
+          targetBlank={true}
+          extraClass="w-2/5 flex-center-center"
+        >
+          Deploy
+        </LinkButton>
+      )
+    }
+  </div>
+</div>

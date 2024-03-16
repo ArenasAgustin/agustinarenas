@@ -1,0 +1,20 @@
+---
+import Section from "components/Section/Section.astro";
+import Card from "components/Card/Card.astro";
+import { projects, type Project } from "@/constants/projects.ts";
+---
+
+<Section id="portfolio" extraClass="text-mine-shaft-100">
+  {
+    projects.map((project: Project) => (
+      <Card
+        name={project.name}
+        description={project.description}
+        imageUrl={project.imageUrl}
+        tecnologies={project.tecnologies}
+        repositoryUrl={project.repositoryUrl}
+        deployedUrl={project.deployedUrl}
+      />
+    ))
+  }
+</Section>
