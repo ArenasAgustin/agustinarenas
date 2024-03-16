@@ -1,0 +1,38 @@
+---
+import SectionMiddle from "components/Section/SectionMiddle.astro";
+import SmallCard from "components/Card/SmallCard.astro";
+import { Image } from "astro:assets";
+import educationImg from "@/assets/education.webp";
+import { educations, type Education } from "@/constants/educations";
+---
+
+<SectionMiddle extraClass="bg-bunker" id="education" slotFirst="slot2">
+  <div
+    slot="slot2"
+    class="sticky w-full h-screen max-h-[354px] flex-center-center flex-col text-mine-shaft-900"
+  >
+    <h2 class="text-4xl md:text-5xl font-bold text-img mb-4">Education</h2>
+
+    <div class="absolute top-0 left-0 w-full h-full z-[-1]">
+      <Image
+        src={educationImg}
+        alt="Education"
+        class="w-full h-full object-cover"
+        widths={[240, 540, 720, educationImg.width]}
+        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${educationImg.width}px`}
+      />
+    </div>
+  </div>
+
+  <div slot="slot1" class="flex-center-center flex-col w-full p-5">
+    {
+      educations.map((education: Education) => (
+        <SmallCard
+          title={education.title}
+          subtitle={education.subtitle}
+          time={education.time}
+        />
+      ))
+    }
+  </div>
+</SectionMiddle>
