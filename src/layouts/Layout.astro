@@ -1,4 +1,5 @@
 ---
+import SpeedInsights from "@vercel/speed-insights/astro";
 import ContactLink from "components/Links/ContactLink.astro";
 // import CvLink from "components/Links/CvLink.astro";
 import GithubLink from "components/Links/GithubLink.astro";
@@ -63,6 +64,8 @@ const {
     <meta name="generator" content={Astro.generator} />
 
     <ViewTransitions />
+
+    <SpeedInsights />
   </head>
 
   <body
