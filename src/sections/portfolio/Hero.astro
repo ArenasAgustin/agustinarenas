@@ -5,19 +5,19 @@ import portfolioImg from "@/assets/portfolio.webp";
 ---
 
 <Section id="portfolio" extraClass="text-mine-shaft-100">
-    <div class="text-img flex-center-center flex-col">
-      <h1 class="text-5xl md:text-7xl text-center font-bold m-0 mb-4">
-        My Projects
-      </h1>
-    </div>
+  <div class="text-img flex-center-center flex-col">
+    <h1 class="text-5xl md:text-7xl text-center font-bold m-0 mb-4">
+      My Projects
+    </h1>
+  </div>
 
-    <div class="absolute top-0 left-0 w-full h-full z-[-1]">
-      <Image
-        src={portfolioImg}
-        alt="Work"
-        class="w-full h-full object-cover"
-        widths={[540, 720, portfolioImg.width]}
-        sizes={`(max-width: 360px) 540px, (max-width: 720px) 720px, ${portfolioImg.width}px`}
-      />
-    </div>
-  </Section>
+  <div class="absolute top-0 left-0 w-full h-full z-[-1]">
+    <Image
+      src={portfolioImg}
+      alt="Work"
+      class="w-full h-full object-cover"
+      widths={[540, 720, 1600, portfolioImg.width]}
+      sizes={`(max-width: 360px) 540px, (max-width: 720px) 540px, (max-width: 1600px) 720px, 1600px`}
+    />
+  </div>
+</Section>
