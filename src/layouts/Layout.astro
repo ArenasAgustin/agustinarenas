@@ -9,49 +9,54 @@ import { ViewTransitions } from "astro:transitions";
 import "@/styles/global.css";
 import "@/styles/stars.css";
 
-const { title } = Astro.props;
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Agustin Arenas | I'm a Web Developer",
+  description = "This is my portfolio. I'm a programmer and web developer with problem-solving skills, imaginative, and curious.",
+  image = "https://res.cloudinary.com/df7zuvuxu/image/upload/v1711677643/Captura_de_pantalla_2024-03-28_224304_q683qd.png",
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
-
-    <!-- Primary Meta Tags -->
     <title>{title}</title>
     <meta name="title" content={title} />
-    <meta
-      name="description"
-      content="This is my portfolio. I'm a programmer and web developer with problem-solving skills, imaginative, and curious."
-    />
+    <meta name="description" content={description} />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://agustinarenas.vercel.app/" />
     <meta property="og:title" content={title} />
-    <meta
-      property="og:description"
-      content="This is my portfolio. I'm a programmer and web developer with problem-solving skills, imaginative, and curious."
-    />
-    <meta
-      property="og:image"
-      content="https://res.cloudinary.com/df7zuvuxu/image/upload/v1711677643/Captura_de_pantalla_2024-03-28_224304_q683qd.png"
-    />
+    <meta property="og:description" content={description} />
+    <meta name="og:site_name" content="Agustin Arenas Portfolio" />
+    <meta name="og:locale" content="en_US" />
+    <meta property="og:image" content={image} />
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="" />
+    <meta name="twitter:creator" content="" />
     <meta property="twitter:url" content="https://agustinarenas.vercel.app/" />
     <meta property="twitter:title" content={title} />
-    <meta
-      property="twitter:description"
-      content="This is my portfolio. I'm a programmer and web developer with problem-solving skills, imaginative, and curious."
-    />
-    <meta
-      property="twitter:image"
-      content="https://res.cloudinary.com/df7zuvuxu/image/upload/v1711677643/Captura_de_pantalla_2024-03-28_224304_q683qd.png"
-    />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
 
     <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#262626" />
+
+    <meta
+      name="keywords"
+      content="portfolio, full stack, frontend, front-end, web, develop, programmer, agustin areanas"
+    />
+
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
