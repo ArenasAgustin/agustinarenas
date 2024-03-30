@@ -18,7 +18,7 @@ interface Props {
 const {
   title = "Agustin Arenas | Software Developer",
   description = "This is my portfolio. I'm a programmer and web developer with problem-solving skills, imaginative, and curious.",
-  image = "https://res.cloudinary.com/df7zuvuxu/image/upload/v1711677643/Captura_de_pantalla_2024-03-28_224304_q683qd.png",
+  image = "/img/meta-image.webp",
 } = Astro.props;
 ---
 
@@ -36,7 +36,7 @@ const {
     <meta property="og:description" content={description} />
     <meta name="og:site_name" content="Agustin Arenas Portfolio" />
     <meta name="og:locale" content="en_US" />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="" />
@@ -44,7 +44,7 @@ const {
     <meta property="twitter:url" content="https://agustinarenas.vercel.app/" />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#262626" />
