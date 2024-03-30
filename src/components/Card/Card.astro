@@ -1,5 +1,31 @@
 ---
 import LinkButton from "components/Links/LinkButton.astro";
+import { Image } from "astro:assets";
+import brainGameEs from "@/assets/brain_games_es.webp";
+import waveMusic from "@/assets/wave_music.webp";
+import blackParadox from "@/assets/blackparadox.webp";
+import morseDecoder from "@/assets/morse_decoder.webp";
+import urlShortener from "@/assets/url_shortener.webp";
+import cinema from "@/assets/cinema.webp";
+
+function getImage(id: string | undefined): ImageMetadata {
+  switch (id) {
+    case "brain_games_es":
+      return brainGameEs;
+    case "wave_music":
+      return waveMusic;
+    case "blackparadox":
+      return blackParadox;
+    case "morse_decoder":
+      return morseDecoder;
+    case "url_shortener":
+      return urlShortener;
+    case "cinema":
+      return cinema;
+    default:
+      return brainGameEs;
+  }
+}
 
 interface Props {
   name: string;
@@ -7,17 +33,25 @@ interface Props {
   tecnologies: string[];
   repositoryUrl?: string;
   deployedUrl?: string;
-  imageUrl: string;
+  id?: string;
 }
 
-const { name, description, tecnologies, repositoryUrl, deployedUrl, imageUrl } =
+const { name, description, tecnologies, repositoryUrl, deployedUrl, id } =
   Astro.props;
+
+const imageUrl = getImage(id);
 ---
 
 <div
   class="max-w-sm mx-6 my-4 overflow-hidden shadow-box-inset rounded-lg h-[33rem] relative"
 >
-  <img class="w-full h-52" src={imageUrl} alt="Proyecto 1" />
+  <Image
+    class="w-full h-52"
+    src={imageUrl}
+    alt="Proyecto 1"
+    widths={[240, 540, 720, imageUrl.width]}
+    sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${imageUrl.width}px`}
+  />
 
   <div class="px-6 py-4">
     <div class="font-bold text-xl mb-2">{name}</div>
