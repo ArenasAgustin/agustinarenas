@@ -1,11 +1,12 @@
 import { defineConfig, squooshImageService } from "astro/config";
-
+import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import vercel from "@astrojs/vercel/serverless";
 
 export default defineConfig({
   output: "server",
-  integrations: [tailwind()],
+  site: "https://agustinarenas.vercel.app",
+  integrations: [tailwind(), sitemap()],
   image: {
     service: squooshImageService(),
   },
