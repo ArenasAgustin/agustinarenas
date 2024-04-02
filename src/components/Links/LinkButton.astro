@@ -9,7 +9,8 @@ const { href, targetBlank = false, extraClass = "" } = Astro.props;
 ---
 
 <a
-  class={`bg-tradewind-500 text-white px-4 py-2 rounded-3xl cursor-pointer font-medium transition-all duration-400 hover:-translate-y-px hover:brightness-110 ${extraClass}`}
+  class={`bg-tradewind-500 px-4 py-2 rounded-3xl cursor-pointer font-medium transition-all duration-400 hover:-translate-y-px hover:brightness-110 ${extraClass}`}
+  style="color: #1F1F1F;"
   href={href}
   target={targetBlank ? "_blank" : undefined}
 >
