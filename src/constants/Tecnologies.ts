@@ -20,6 +20,7 @@ export const LARAVEL = "Laravel";
 
 export const MONGODB = "MongoDB";
 export const MYSQL = "MySQL";
+export const MARIADB = "MariaDB";
 export const POSTGRESQL = "PostgreSQL";
 
 export const FIREBASE = "Firebase";

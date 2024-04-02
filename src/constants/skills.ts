@@ -4,6 +4,7 @@ import {
   HTML,
   JAVASCRIPT,
   LARAVEL,
+  MARIADB,
   MONGODB,
   MYSQL,
   NEXT,
@@ -30,6 +31,6 @@ export const skills: string[] = [
   NEXT,
   LARAVEL,
   MONGODB,
-  MYSQL,
+  MARIADB,
   POSTGRESQL,
 ];
