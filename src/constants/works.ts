@@ -28,7 +28,7 @@ export const works: Work[] = [
     time: "February 2022 - July 2022",
   },
 
-  {
+  /* {
     title: "Sales and customer service",
     subtitle: "Praga Revestimientos",
     description:
@@ -42,5 +42,5 @@ export const works: Work[] = [
     description:
       "I personally handled customer inquiries and managed internal operations to enhance service quality.",
     time: "October 2019 - November 2019",
-  },
+  }, */
 ];
