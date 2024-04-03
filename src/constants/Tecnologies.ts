@@ -10,12 +10,12 @@ export const JAVASCRIPT = "JavaScript";
 export const TYPESCRIPT = "TypeScript";
 export const PHP = "Php";
 
-export const NODE = "Node";
+export const NODE = "Node.js";
 export const EXPRESS = "Express";
 export const ASTRO = "Astro";
 export const REACT = "React";
 export const ANGULAR = "Angular";
-export const NEXT = "Next";
+export const NEXT = "Next.js";
 export const LARAVEL = "Laravel";
 
 export const MONGODB = "MongoDB";
