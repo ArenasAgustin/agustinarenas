@@ -14,7 +14,7 @@ import {
   SASS,
   TAILWIND,
   TYPESCRIPT,
-} from "./Tecnologies";
+} from "./tecnologies";
 
 export interface Project {
   id: string;

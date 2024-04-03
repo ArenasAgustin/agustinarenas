@@ -6,7 +6,6 @@ import {
   LARAVEL,
   MARIADB,
   MONGODB,
-  MYSQL,
   NEXT,
   NODE,
   PHP,
@@ -15,7 +14,7 @@ import {
   SASS,
   TAILWIND,
   TYPESCRIPT,
-} from "./Tecnologies";
+} from "./tecnologies";
 
 export const skills: string[] = [
   HTML,
