@@ -14,7 +14,7 @@ import {
   SASS,
   TAILWIND,
   TYPESCRIPT,
-} from "./tecnologies";
+} from "./Tecnologies";
 
 export const skills: string[] = [
   HTML,

@@ -9,6 +9,7 @@ export const BOOTSTRAP = "Bootstrap";
 export const JAVASCRIPT = "JavaScript";
 export const TYPESCRIPT = "TypeScript";
 export const PHP = "Php";
+export const PYTHON = "Python";
 
 export const NODE = "Node.js";
 export const EXPRESS = "Express";
