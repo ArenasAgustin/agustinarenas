@@ -38,8 +38,10 @@ switch (type) {
 }
 ---
 
-<div class={`relative z-10 glow-after glow-before ${glowType}`}>
-  <div class="rounded-lg flex-center-center flex-col glow-bg-md p-6 m-3">
+<div class={`relative z-10 glow-after glow-before ${glowType} `}>
+  <div
+    class="rounded-lg flex-center-center flex-col glow-bg-md p-8 m-5 text-mine-shaft-900 dark:text-mine-shaft-100"
+  >
     <slot />
   </div>
 </div>
