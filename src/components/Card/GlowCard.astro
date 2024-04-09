@@ -1,0 +1,45 @@
+---
+interface Props {
+  type?: number;
+}
+
+const { type } = Astro.props;
+let glowType = "";
+
+switch (type) {
+  case 1:
+    glowType =
+      "after:skew-x-12 after:from-tradewind-200 after:to-tradewind-800 before:skew-x-12 before:from-tradewind-200 before:to-tradewind-800";
+    break;
+  case 2:
+    glowType =
+      "after:skew-x-12 after:from-tradewind-300 after:to-tradewind-900 before:skew-x-12 before:from-tradewind-300 before:to-tradewind-900";
+    break;
+  case 3:
+    glowType =
+      "after:skew-x-12 after:from-tradewind-400 after:to-tradewind-900 before:skew-x-12 before:from-tradewind-400 before:to-tradewind-900";
+    break;
+  case 4:
+    glowType =
+      "after:-skew-x-12 after:from-tradewind-200 after:to-tradewind-800 before:-skew-x-12 before:from-tradewind-200 before:to-tradewind-800";
+    break;
+  case 5:
+    glowType =
+      "after:-skew-x-12 after:from-tradewind-300 after:to-tradewind-900 before:-skew-x-12 before:from-tradewind-300 before:to-tradewind-900";
+    break;
+  case 6:
+    glowType =
+      "after:-skew-x-12 after:from-tradewind-400 after:to-tradewind-900 before:-skew-x-12 before:from-tradewind-400 before:to-tradewind-900";
+    break;
+  default:
+    glowType =
+      "after:skew-x-12 after:from-tradewind-200 after:to-tradewind-800 before:skew-x-12 before:from-tradewind-200 before:to-tradewind-800";
+    break;
+}
+---
+
+<div class={`relative z-10 glow-after glow-before ${glowType}`}>
+  <div class="rounded-lg flex-center-center flex-col glow-bg-md p-6 m-3">
+    <slot />
+  </div>
+</div>

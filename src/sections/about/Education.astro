@@ -1,28 +1,14 @@
 ---
 import SectionMiddle from "components/Section/SectionMiddle.astro";
 import SmallCard from "components/Card/SmallCard.astro";
-import { Image } from "astro:assets";
-import educationImg from "@/assets/education.webp";
+import GlowCard from "components/Card/GlowCard.astro";
 import { educations, type Education } from "@/constants/educations";
 ---
 
 <SectionMiddle extraClass="bg-bunker" id="education" slotFirst="slot2">
-  <div
-    slot="slot2"
-    class="sticky w-full h-screen max-h-[354px] flex-center-center flex-col text-mine-shaft-900"
-  >
-    <h2 class="text-4xl md:text-5xl font-bold text-img mb-4">Academic data</h2>
-
-    <div class="absolute top-0 left-0 w-full h-full z-[-1]">
-      <Image
-        src={educationImg}
-        alt="Education"
-        class="w-full h-full object-cover"
-        widths={[240, 540, 720, 1600, educationImg.width]}
-        sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, 1600px`}
-      />
-    </div>
-  </div>
+  <GlowCard type={5} slot="slot2">
+    <h2 class="text-4xl md:text-5xl font-bold m-8">Academic data</h2>
+  </GlowCard>
 
   <div slot="slot1" class="flex-center-center flex-col w-full p-5">
     {

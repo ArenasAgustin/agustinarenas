@@ -18,3 +18,23 @@
 .text-img {
   @apply p-3 m-3 rounded-lg bg-mine-shaft-800/70 text-mine-shaft-50/100;
 }
+
+.glow-bg-xl {
+  @apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-mine-shaft-200/60 dark:bg-mine-shaft-950/60 border-none;
+}
+
+.glow-bg-md {
+  @apply bg-clip-padding backdrop-filter backdrop-blur-md bg-mine-shaft-200/60 dark:bg-mine-shaft-950/60 border-none;
+}
+
+.glow-after {
+  @apply after:absolute after:z-[-2] after:top-[-10%] after:left-1/2 after:translate-x-[-45%] after:w-2/3 after:h-[120%] after:rounded-lg;
+  @apply after:transition-all after:ease-in after:duration-200 hover:after:skew-x-0;
+  @apply after:blur-2xl after:bg-gradient-to-br after:via-tradewind-500;
+}
+
+.glow-before {
+  @apply before:absolute before:z-[-1] before:top-[-10%] before:left-1/2 before:translate-x-[-50%] before:w-2/3 before:h-[120%] before:rounded-lg;
+  @apply before:transition-all before:ease-in before:duration-200 hover:before:skew-x-0;
+  @apply before:bg-gradient-to-br before:via-tradewind-500;
+}
