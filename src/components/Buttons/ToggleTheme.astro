@@ -33,12 +33,21 @@ import Button from "./IconButton.astro";
     document.addEventListener("astro:page-load", () => {
       const theme = (() => {
         if (
+          typeof window !== "undefined" &&
+          window.location.href.includes("theme=light")
+        ) {
+          return "light";
+        } else if (
+          typeof window !== "undefined" &&
+          window.location.href.includes("theme=dark")
+        ) {
+          return "dark";
+        } else if (
           typeof localStorage !== "undefined" &&
           localStorage.getItem("theme")
         ) {
           return localStorage.getItem("theme");
-        }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
           return "dark";
         }
         return "light";
