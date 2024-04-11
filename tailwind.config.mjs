@@ -30,6 +30,9 @@ export default {
         950: "#262626",
       },
     },
+    fontFamily: {
+      junction: ["Junction", "sans-serif"],
+    }
   },
   plugins: [require("@tailwindcss/line-clamp")],
   darkMode: "class",

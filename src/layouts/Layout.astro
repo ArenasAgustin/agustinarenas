@@ -25,6 +25,14 @@ const {
 <!doctype html>
 <html lang="en" class="dark">
   <head>
+    <link
+      rel="preload"
+      href="font/junction-regular.woff"
+      as="font"
+      type="font/woff"
+      crossorigin
+    />
+
     <meta charset="UTF-8" />
     <title>{title}</title>
     <meta name="title" content={title} />
@@ -71,7 +79,7 @@ const {
   </head>
 
   <body
-    class="relative overflow-x-hidden background-image bg-mine-shaft-100 text-mine-shaft-900 dark:bg-mine-shaft-900 dark:text-mine-shaft-100"
+    class="relative overflow-x-hidden background-image bg-mine-shaft-100 text-mine-shaft-900 dark:bg-mine-shaft-900 dark:text-mine-shaft-100 font-junction"
   >
     <header
       class="flex justify-center align-middle fixed w-full z-30 glow-bg-xl"
