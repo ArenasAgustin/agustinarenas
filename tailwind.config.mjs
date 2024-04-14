@@ -32,7 +32,18 @@ export default {
     },
     fontFamily: {
       junction: ["Junction", "sans-serif"],
-    }
+    },
+    animation: {
+      scroll: "scroll 1s ease-in-out infinite",
+    },
+    extend: {
+      keyframes: {
+        scroll: {
+          "0%": { transform: "translate(-50%, 0)", opacity: 1 },
+          "100%": { transform: "translate(-50%, 300%)", opacity: 0.1 },
+        },
+      },
+    },
   },
   plugins: [require("@tailwindcss/line-clamp")],
   darkMode: "class",

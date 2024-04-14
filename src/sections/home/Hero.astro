@@ -7,7 +7,7 @@ import Section from "components/Section/Section.astro";
 import GlowCard from "components/Card/GlowCard.astro";
 ---
 
-<Section extraClass="h-screen " id="introduction">
+<Section extraClass="h-screen relative" id="introduction">
   <GlowCard>
     <h1 class="text-5xl md:text-7xl text-center font-bold m-0 mb-4">
       Hi, I'm Agustín Arenas
@@ -24,4 +24,13 @@ import GlowCard from "components/Card/GlowCard.astro";
       <!-- <CvLink /> -->
     </div>
   </GlowCard>
+
+  <div
+    class="w-5 h-8 border-2 border-opacity-100 border-b-mine-shaft-900 dark:border-b-mine-shaft-100 rounded-xl absolute bottom-5 left-1/2 -translate-x-1/2"
+  >
+    <div
+      class="w-1 h-1 bg-mine-shaft-900 dark:bg-mine-shaft-100 rounded-full absolute top-1 left-1/2 -translate-x-1/2 animate-scroll"
+    >
+    </div>
+  </div>
 </Section>
