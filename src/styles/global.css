@@ -28,13 +28,15 @@
 }
 
 .glow-after {
-  @apply after:absolute after:z-[-2] after:top-[-10%] after:left-1/2 after:translate-x-[-45%] after:w-2/3 after:h-[120%] after:rounded-lg;
+  @apply after:content-['*'] after:absolute after:z-[-2] after:top-[-10%] after:left-1/2 after:translate-x-[-45%];
+  @apply after:w-full after:md:w-2/3 after:h-[120%] after:rounded-lg;
   @apply after:transition-all after:ease-in after:duration-200 hover:after:skew-x-0;
   @apply after:blur-2xl after:bg-gradient-to-br after:via-tradewind-500;
 }
 
 .glow-before {
-  @apply before:absolute before:z-[-1] before:top-[-10%] before:left-1/2 before:translate-x-[-50%] before:w-2/3 before:h-[120%] before:rounded-lg;
+  @apply before:content-['*'] before:absolute before:z-[-1] before:top-[-10%] before:left-1/2 before:translate-x-[-50%];
+  @apply before:w-full before:md:w-2/3 before:h-[120%] before:rounded-lg;
   @apply before:transition-all before:ease-in before:duration-200 hover:before:skew-x-0;
   @apply before:bg-gradient-to-br before:via-tradewind-500;
 }
