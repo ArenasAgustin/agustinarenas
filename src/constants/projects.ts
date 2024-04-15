@@ -49,7 +49,7 @@ export const projects: Project[] = [
     description:
       "Project made from a course on Udemy to improve technologies like HTML, Scss, JQuery, Ajax and learn a little about Php and Prepros.",
     tecnologies: [PHP, HTML, SASS, JAVASCRIPT],
-    repositoryUrl: "https://github.com/ArenasAgustin/udemy-blackparadox",
+    repositoryUrl: "https://github.com/ArenasAgustin/blackparadox",
   },
   {
     id: "morse_decoder",
@@ -74,6 +74,6 @@ export const projects: Project[] = [
     description:
       "Project to learn to use Php and Laravel. In it you can see a list of movies, see the details of each one, add movies, edit them and delete them. You can also add, edit and delete both genders and users.",
     tecnologies: [PHP, LARAVEL, BOOTSTRAP, JAVASCRIPT, MYSQL],
-    repositoryUrl: "https://github.com/ArenasAgustin/url-shortener",
+    repositoryUrl: "https://github.com/ArenasAgustin/cinema-app",
   },
 ];
