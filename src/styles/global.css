@@ -2,6 +2,96 @@
 @tailwind components;
 
 @layer components {
+  :root {
+    --color-html: #f16529;
+
+    --color-css: #2965f1;
+    --color-sass: #c6538c;
+    --color-tailwind: #06b6d4;
+    --color-bootstrap: #7952b3;
+
+    --color-js: #f1db29;
+    --color-ts: #3178c6;
+    --color-php: #8892be;
+    --color-node: #8cc84b;
+
+    --color-react: #61dafb;
+    --color-next: #818181;
+    --color-laravel: #ff2d20;
+
+    --color-mongodb: #4db33d;
+    --color-mariadb: #003545;
+    --color-postgres: #336791;
+
+    --color-svg: var(--color-html);
+  }
+
+  .color-skill:hover {
+    & svg {
+      color: var(--color-html);
+    }
+
+    & svg.html {
+      color: var(--color-html);
+    }
+
+    & svg.css {
+      color: var(--color-css);
+    }
+
+    & svg.sass {
+      color: var(--color-sass);
+    }
+
+    & svg.tailwind {
+      color: var(--color-tailwind);
+    }
+
+    & svg.bootstrap {
+      color: var(--color-bootstrap);
+    }
+
+    & svg.js {
+      color: var(--color-js);
+    }
+
+    & svg.ts {
+      color: var(--color-ts);
+    }
+
+    & svg.php {
+      color: var(--color-php);
+    }
+
+    & svg.node {
+      color: var(--color-node);
+    }
+
+    & svg.react {
+      color: var(--color-react);
+    }
+
+    & svg.next {
+      color: var(--color-next);
+    }
+
+    & svg.laravel {
+      color: var(--color-laravel);
+    }
+
+    & svg.mongodb {
+      color: var(--color-mongodb);
+    }
+
+    & svg.mariadb {
+      color: var(--color-mariadb);
+    }
+
+    & svg.postgresql {
+      color: var(--color-postgres);
+    }
+  }
+
   .shadow-inset {
     box-shadow: 0 0 #0000, 0 0 #0000, inset 2px 2px 40px -20px #6b7280;
   }
