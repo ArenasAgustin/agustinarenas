@@ -1,0 +1,27 @@
+---
+import ContactLink from "components/Links/ContactLink.astro";
+import GithubLink from "components/Links/GithubLink.astro";
+import LinkedinLink from "components/Links/LinkedinLink.astro";
+// import CvLink from "components/Links/CvLink.astro";
+import ToggleTheme from "components/Buttons/ToggleTheme.astro";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full p-4 flex justify-center items-center flex-col">
+  <div class="flex-center-center">
+    <GithubLink />
+
+    <LinkedinLink />
+
+    <ContactLink />
+
+    <!-- <CvLink /> -->
+
+    <ToggleTheme />
+  </div>
+
+  <hr class="w-5/6 md:w-3/5 my-2 text-bunker-800" />
+
+  <p class="text-center text-xs text-white">© {currentYear} Agustín Arenas</p>
+</footer>
