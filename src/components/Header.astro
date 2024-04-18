@@ -1,0 +1,27 @@
+---
+import Link from "components/Links/Link.astro";
+
+const { pathname } = Astro.url;
+
+const pages = [
+  { page: "Home", href: "/" },
+  { page: "About me", href: "/about" },
+  { page: "My projects", href: "/projects" },
+  /* { page: "Contact", href: "/contact" }, */
+];
+---
+
+<header class="flex justify-center align-middle fixed w-full z-30 glow-bg-xl">
+  {
+    pages.map(({ page, href }) => (
+      <Link
+        href={href}
+        extraClass="capitalize"
+        underlined={true}
+        active={pathname === href}
+      >
+        {page}
+      </Link>
+    ))
+  }
+</header>

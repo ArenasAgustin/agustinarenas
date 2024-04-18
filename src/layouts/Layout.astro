@@ -1,10 +1,10 @@
 ---
+import Header from "components/Header.astro";
 import ContactLink from "components/Links/ContactLink.astro";
 // import CvLink from "components/Links/CvLink.astro";
 import GithubLink from "components/Links/GithubLink.astro";
 import LinkedinLink from "components/Links/LinkedinLink.astro";
 import ToggleTheme from "components/Buttons/ToggleTheme.astro";
-import Link from "components/Links/Link.astro";
 import { ViewTransitions } from "astro:transitions";
 import "@/styles/global.css";
 import "@/styles/stars.css";
@@ -81,21 +81,8 @@ const {
   <body
     class="relative w-screen overflow-x-hidden background-image bg-mine-shaft-100 text-mine-shaft-900 dark:bg-mine-shaft-900 dark:text-mine-shaft-100 font-junction"
   >
-    <header
-      class="flex justify-center align-middle fixed w-full z-30 glow-bg-xl"
-    >
-      <Link href="/" extraClass="capitalize" underlined={true}>Home</Link>
+    <Header />
 
-      <Link href="/about" extraClass="capitalize" underlined={true}>About</Link>
-
-      <Link href="/portfolio" extraClass="capitalize" underlined={true}>
-        Portfolio
-      </Link>
-
-      <!-- <Link href="/contact" extraClass="capitalize" underlined={true}>
-        Contact
-      </Link> -->
-    </header>
     <main class="flex-center-center flex-col w-full">
       <slot />
     </main>
