@@ -14,12 +14,7 @@ const pages = [
 <header class="flex justify-center align-middle fixed w-full z-30 glow-bg-xl">
   {
     pages.map(({ page, href }) => (
-      <Link
-        href={href}
-        extraClass="capitalize"
-        underlined={true}
-        active={pathname === href}
-      >
+      <Link href={href} underlined={true} active={pathname === href}>
         {page}
       </Link>
     ))
