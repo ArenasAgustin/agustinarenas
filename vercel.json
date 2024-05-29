@@ -58,6 +58,10 @@
                 {
                     "key": "Feature-Policy",
                     "value": "geolocation 'none'; midi 'none'; sync-xhr 'none'; microphone 'none'; camera 'none'; magnetometer 'none'; gyroscope 'none'; speaker 'none'; fullscreen 'self'; payment 'none'"
+                },
+                {
+                    "key": "Permissions-Policy",
+                    "value": "geolocation=(), microphone=(), sync-xhr=(), midi=(), camera=(), magnetometer=(), gyroscope=(), speaker=(), fullscreen=(self), payment=()"
                 }
             ]
         }
