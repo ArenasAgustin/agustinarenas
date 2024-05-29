@@ -41,11 +41,11 @@
             "headers": [
                 {
                     "key": "Content-Security-Polic",
-                    "value": "default-src 'self'; script-src 'self'; img-src 'self'; style-src 'self';"
+                    "value": "upgrade-insecure-requests; block-all-mixed-content"
                 },
                 {
                     "key": "X-Frame-Options",
-                    "value": "DENY"
+                    "value": "SAMEORIGIN"
                 },
                 {
                     "key": "X-Content-Type-Options",
@@ -58,6 +58,18 @@
                 {
                     "key": "Permissions-Policy",
                     "value": "geolocation=(), microphone=(), sync-xhr=(), midi=(), camera=(), magnetometer=(), gyroscope=(), speaker=(), fullscreen=(), payment=()"
+                },
+                {
+                    "key": "Strict-Transport-Security",
+                    "value": "max-age=31536000; includeSubDomains; preload"
+                },
+                {
+                    "key": "X-XSS-Protection",
+                    "value": "1; mode=block"
+                },
+                {
+                    "key": "Server",
+                    "value": "vercel"
                 }
             ]
         }
