@@ -58,7 +58,7 @@ export const projects: Project[] = [
       "Morse decoder is a web application that allows you to decode messages in morse code.",
     tecnologies: [JAVASCRIPT, REACT, TAILWIND],
     repositoryUrl: "https://github.com/ArenasAgustin/morse",
-    deployedUrl: "https://morse.vercel.app/",
+    deployedUrl: "https://morsetranslator.vercel.app/",
   },
   {
     id: "url_shortener",
