@@ -130,3 +130,19 @@
   @apply before:transition-all before:ease-in before:duration-200 hover:before:skew-x-0;
   @apply before:bg-gradient-to-br before:via-tradewind-500;
 }
+
+.scrollbar::-webkit-scrollbar {
+  @apply w-4 w-4;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  @apply bg-mine-shaft-300 dark:bg-mine-shaft-800;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-mine-shaft-400 rounded-full border-2 border-solid border-mine-shaft-300 dark:bg-mine-shaft-600 dark:border-mine-shaft-800;
+}
+
+.scrollbar::-webkit-scrollbar-thumb:hover {
+  @apply bg-mine-shaft-500 dark:bg-mine-shaft-500;
+}
