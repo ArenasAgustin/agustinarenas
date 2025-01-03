@@ -12,7 +12,10 @@ import { educations, type Education } from "@/constants/educations";
     </h2>
   </GlowCard>
 
-  <div slot="slot1" class="flex-center-center flex-col w-full p-5">
+  <div
+    slot="slot1"
+    class="flex-center-center flex-col w-full p-5 max-w-[85rem]"
+  >
     {
       educations.map((education: Education) => (
         <SmallCard

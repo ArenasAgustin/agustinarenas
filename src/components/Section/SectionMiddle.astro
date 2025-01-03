@@ -19,13 +19,13 @@ const { id, title, extraClass, slotFirst } = Astro.props;
   direction="row"
 >
   <div
-    class={`flex-center-center flex-col md:flex-row w-full md:w-1/2 h-full relative ${slotFirst === "slot1" ? "max-h-[250px] md:max-h-none mb-5 md:m-0" : "min-h-[354px]"}`}
+    class={`flex-center-center flex-col md:flex-row w-full h-full relative ${slotFirst === "slot1" ? "max-h-64 md:max-h-none mb-5 md:m-0 md:w-5/12" : "min-h-96 md:w-7/12"}`}
   >
     <slot name="slot1" />
   </div>
 
   <div
-    class={`flex-center-center flex-col w-full md:w-1/2 h-full relative ${slotFirst === "slot2" ? "max-h-[250px] md:max-h-none mb-5 md:m-0 order-first md:order-last" : "min-h-[354px]"}`}
+    class={`flex-center-center flex-col w-full h-full relative ${slotFirst === "slot2" ? "max-h-64 md:max-h-none mb-5 md:m-0 order-first md:order-last md:w-5/12" : "min-h-96 md:w-7/12"}`}
   >
     <slot name="slot2" />
   </div>
