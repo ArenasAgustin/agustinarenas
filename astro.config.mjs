@@ -1,7 +1,7 @@
-import { defineConfig, squooshImageService } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,11 +9,11 @@ export default defineConfig({
   site: "https://agustinarenas.vercel.app",
   integrations: [tailwind(), sitemap()],
   image: {
-    service: squooshImageService()
+    service: passthroughImageService(),
   },
   adapter: vercel({
     webAnalytics: {
-      enabled: true
-    }
-  })
+      enabled: true,
+    },
+  }),
 });
