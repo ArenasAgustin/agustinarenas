@@ -21,6 +21,7 @@ export default defineConfig({
             "connect-src": "'self'",
             "img-src": "'self'",
             "font-src": "'self'",
+            "unsafe-inline": "'self'",
           },
         },
       },
