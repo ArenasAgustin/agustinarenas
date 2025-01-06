@@ -15,8 +15,12 @@ export default defineConfig({
       securityHeaders: {
         contentSecurityPolicy: {
           contentSecurityPolicy: {
-            "default-src": "'self'",
+            "default-src": "'none'",
             "style-src": "'self'",
+            "script-src": "'self'",
+            "connect-src": "'self'",
+            "img-src": "'self'",
+            "font-src": "'self'",
           },
         },
       },
