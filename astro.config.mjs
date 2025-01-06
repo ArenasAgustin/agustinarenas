@@ -16,4 +16,7 @@ export default defineConfig({
       enabled: true,
     },
   }),
+  vite: {
+    build: { assetsInlineLimit: 0 },
+  },
 });
