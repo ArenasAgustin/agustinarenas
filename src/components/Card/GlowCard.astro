@@ -1,9 +1,10 @@
 ---
 interface Props {
   type?: number;
+  name?: string;
 }
 
-const { type } = Astro.props;
+const { type, name } = Astro.props;
 let glowType = "";
 
 switch (type) {
@@ -38,7 +39,10 @@ switch (type) {
 }
 ---
 
-<div class={`relative z-10 glow-after glow-before ${glowType} `}>
+<div
+  class={`relative z-10 glow-after glow-before ${glowType} `}
+  transition:name={name ? name : ""}
+>
   <div
     class="rounded-lg flex-center-center flex-col glow-bg-md p-8 m-5 text-mine-shaft-900 dark:text-mine-shaft-100"
   >
