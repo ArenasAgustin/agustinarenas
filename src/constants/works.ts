@@ -20,7 +20,7 @@ const allWorks: Work[] = [
     title: "Full Stack Developer",
     subtitle: "Dequo",
     description:
-      "I carried out improvement and maintenance tasks for the Tiendaquick product, both on the frontend and backend, using PHP, Laravel, LESS, Bootstrap, MariaDB, JavaScript, and React.",
+      "I carried out improvement and maintenance tasks for the Tiendaquick product, both on the front-end and back-end, using PHP, Laravel, LESS, Bootstrap, MariaDB, JavaScript, and React, focusing on improving the design and performance of the product.",
     time: "January 2024 - Present",
   },
   {
@@ -36,7 +36,7 @@ const allWorks: Work[] = [
     title: "Full Stack Developer",
     subtitle: "Last Horde",
     description:
-      "I created an NFT card marketplace and NFT card packs using JavaScript, React, Sass, and Bootstrap. Additionally, I developed a server for data storage using Node.js, Express, Sequelize, and MySQL.",
+      "I created an NFT card marketplace and NFT card packs using JavaScript, React, Sass, Bootstrap, and Web3.js. Additionally, I developed a back-end for data storage using Node.js, Express, Sequelize, and MySQL.",
     time: "February 2022 - July 2022",
   },
 

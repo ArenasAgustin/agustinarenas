@@ -12,6 +12,9 @@ export const PHP = "Php";
 export const PYTHON = "Python";
 export const SOLIDITY = "Solidity";
 
+export const JQUERY = "jQuery";
+export const WEB3 = "Web3.js";
+
 export const NODE = "Node.js";
 export const EXPRESS = "Express";
 export const ASTRO = "Astro";
