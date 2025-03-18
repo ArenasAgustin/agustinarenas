@@ -33,10 +33,10 @@ const projectsIds = {
   brain_games_es_api: "brain_games_es_api",
   wave_music: "wave_music",
   blackparadox: "blackparadox",
+  js_benchmark: "js_benchmark",
   morse_decoder: "morse_decoder",
   url_shortener: "url_shortener",
   cinema: "cinema",
-  js_benchmark: "js_benchmark",
   old_portfolio: "old_portfolio",
   cv_2: "cv_2",
   boxcustodia_test: "boxcustodia_test",
@@ -98,6 +98,15 @@ const allProjects: Project[] = [
     repositoryUrl: "https://github.com/ArenasAgustin/blackparadox",
   },
   {
+    id: projectsIds.js_benchmark,
+    name: "JS Benchmark Tool",
+    description:
+      "A benchmark to compare the performance of different JavaScript code snippets. This project is built with pure HTML, CSS, and JavaScript.",
+    tecnologies: [JAVASCRIPT, HTML, CSS],
+    repositoryUrl: "https://github.com/ArenasAgustin/benchmarck",
+    deployedUrl: "https://arenasagustin.github.io/benchmarck/",
+  },
+  {
     id: projectsIds.morse_decoder,
     name: "Morse Decoder",
     description:
@@ -121,15 +130,6 @@ const allProjects: Project[] = [
       "Project to learn to use Php and Laravel. In it you can see a list of movies, see the details of each one, add movies, edit them and delete them. You can also add, edit and delete both genders and users.",
     tecnologies: [PHP, LARAVEL, BOOTSTRAP, JAVASCRIPT, MYSQL],
     repositoryUrl: "https://github.com/ArenasAgustin/cinema-app",
-  },
-  {
-    id: projectsIds.js_benchmark,
-    name: "JS Benchmark",
-    description:
-      "A benchmark to compare the performance of different JavaScript code snippets. This project is built with pure HTML, CSS, and JavaScript.",
-    tecnologies: [JAVASCRIPT, HTML, CSS],
-    repositoryUrl: "https://github.com/ArenasAgustin/benchmarck",
-    deployedUrl: "https://arenasagustin.github.io/benchmarck/",
   },
   {
     id: projectsIds.old_portfolio,
@@ -305,6 +305,7 @@ const proyectsActves = [
   projectsIds.brain_games_es,
   projectsIds.wave_music,
   projectsIds.blackparadox,
+  projectsIds.js_benchmark,
   projectsIds.morse_decoder,
   projectsIds.url_shortener,
   projectsIds.cinema,

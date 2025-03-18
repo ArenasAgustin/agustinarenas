@@ -1,9 +1,10 @@
 ---
 import LinkButton from "components/Links/LinkButton.astro";
-import { Image } from "astro:assets";
+import { Image, ImageMetadata } from "astro:assets";
 import brainGameEs from "@/assets/brain_games_es.webp";
 import waveMusic from "@/assets/wave_music.webp";
 import blackParadox from "@/assets/blackparadox.webp";
+import js_benchmark from "@/assets/js_benchmark.webp";
 import morseDecoder from "@/assets/morse_decoder.webp";
 import urlShortener from "@/assets/url_shortener.webp";
 import cinema from "@/assets/cinema.webp";
@@ -16,6 +17,8 @@ function getImage(id: string | undefined): ImageMetadata {
       return waveMusic;
     case "blackparadox":
       return blackParadox;
+    case "js_benchmark":
+      return js_benchmark;
     case "morse_decoder":
       return morseDecoder;
     case "url_shortener":
