@@ -17,6 +17,7 @@ export const WEB3 = "Web3.js";
 
 export const NODE = "Node.js";
 export const EXPRESS = "Express";
+export const SEQUELIZE = "Sequelize";
 export const ASTRO = "Astro";
 export const REACT = "React";
 export const ANGULAR = "Angular";
