@@ -5,6 +5,7 @@ interface Props {
   underlined?: boolean;
   targetBlank?: boolean;
   active?: boolean;
+  ariaLabel?: string;
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   underlined = false,
   targetBlank = false,
   active = false,
+  ariaLabel = "",
 } = Astro.props;
 ---
 
@@ -31,6 +33,7 @@ const {
   ]}
   target={targetBlank ? "_blank" : undefined}
   rel={targetBlank ? "noopener noreferrer nofollow" : undefined}
+  aria-label={ariaLabel}
 >
   <slot />
 </a>

@@ -4,17 +4,17 @@ import Link from "components/Links/Link.astro";
 const { pathname } = Astro.url;
 
 const pages = [
-  { page: "Home", href: "/" },
-  { page: "About me", href: "/about" },
-  { page: "My projects", href: "/projects" },
+  { page: "Home", href: "/", ariaLabel: "Home" },
+  { page: "About me", href: "/about", ariaLabel: "About me" },
+  { page: "My projects", href: "/projects", ariaLabel: "My projects" },
   // { page: "Contact", href: "/#home" },
 ];
 ---
 
 <header class="flex justify-center align-middle fixed w-full z-30 glow-bg-xl">
   {
-    pages.map(({ page, href }) => (
-      <Link href={href} underlined={true} active={pathname === href}>
+    pages.map(({ page, href, ariaLabel }) => (
+      <Link href={href} underlined={true} active={pathname === href} ariaLabel={ariaLabel}>
         {page}
       </Link>
     ))
