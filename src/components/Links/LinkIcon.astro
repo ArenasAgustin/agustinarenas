@@ -1,0 +1,21 @@
+---
+import Link from "./Link.astro";
+
+interface Props {
+  ariaLabel?: string;
+}
+
+const { ariaLabel } = Astro.props;
+---
+
+<Link
+  href="https://www.linkedin.com/in/agustin-ezequiel-arenas-barea/"
+  targetBlank={true}
+>
+  <div
+    class="p-1 relative transition-all duration-400 place-item-center *:size-10 md:*:size-9 *:stroke-2 *:transition-all *:duration-400 rounded-md hover:text-tradewind-500 hover:bg-mine-shaft-400/30 hover:rotate-45 hover:*:rotate-[-45deg]"
+    aria-label={ariaLabel}
+  >
+    <slot />
+  </div>
+</Link>

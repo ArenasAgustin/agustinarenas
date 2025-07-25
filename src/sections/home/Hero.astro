@@ -1,10 +1,11 @@
 ---
-import ContactLink from "components/Links/ContactLink.astro";
-import GithubLink from "components/Links/GithubLink.astro";
-import LinkedinLink from "components/Links/LinkedinLink.astro";
-import CvLink from "components/Links/CvLink.astro";
 import Section from "components/Section/Section.astro";
 import GlowCard from "components/Card/GlowCard.astro";
+import LinkIcon from "components/Links/LinkIcon.astro";
+import LinkedinIcon from "components/Icons/LinkedinIcon.astro";
+import GithubIcon from "components/Icons/GithubIcon.astro";
+import ContactIcon from "components/Icons/ContactIcon.astro";
+import CvIcon from "components/Icons/CvIcon.astro";
 ---
 
 <Section extraClass="h-screen relative" id="home">
@@ -15,13 +16,21 @@ import GlowCard from "components/Card/GlowCard.astro";
     <p class="text-2xl">Software Developer</p>
 
     <div class="flex-center-center">
-      <GithubLink />
+      <LinkIcon ariaLabel="Github">
+        <GithubIcon />
+      </LinkIcon>
 
-      <LinkedinLink />
+      <LinkIcon ariaLabel="Linkedin">
+        <LinkedinIcon />
+      </LinkIcon>
 
-      <ContactLink />
+      <LinkIcon ariaLabel="Contact">
+        <ContactIcon />
+      </LinkIcon>
 
-      <CvLink />
+      <LinkIcon ariaLabel="Cv">
+        <CvIcon />
+      </LinkIcon>
     </div>
   </GlowCard>
 

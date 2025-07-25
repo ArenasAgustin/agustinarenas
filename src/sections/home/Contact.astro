@@ -1,6 +1,6 @@
 ---
-import ContactButton from "components/Buttons/ContactButton.astro";
-import MobileButton from "components/Buttons/MobileButton.astro";
+import ContactIcon from "components/Icons/ContactIcon.astro";
+import MobileIcon from "components/Icons/MobileIcon.astro";
 import Link from "components/Links/Link.astro";
 import Section from "components/Section/Section.astro";
 ---
@@ -8,12 +8,22 @@ import Section from "components/Section/Section.astro";
 <Section title="Contact" id="contact">
   <div class="flex justify-center items-stretch flex-wrap p-4 md:space-x-9">
     <div class="flex flex-col justify-center items-center">
-      <ContactButton />
+      <div
+        class="p-1 relative transition-all duration-400 place-item-center *:size-10 md:*:size-9 *:stroke-2 *:transition-all *:duration-400 rounded-md hover:text-tradewind-500 hover:bg-mine-shaft-400/30 hover:rotate-45 hover:*:rotate-[-45deg]"
+        aria-label="Contact"
+      >
+        <ContactIcon />
+      </div>
       <Link href="arenasagustin7@gmail.com">arenasagustin7@gmail.com</Link>
     </div>
 
     <div class="flex-center-center flex-col">
-      <MobileButton />
+      <div
+        class="p-1 relative transition-all duration-400 place-item-center *:size-10 md:*:size-9 *:stroke-2 *:transition-all *:duration-400 rounded-md hover:text-tradewind-500 hover:bg-mine-shaft-400/30 hover:rotate-45 hover:*:rotate-[-45deg]"
+        aria-label="Mobile"
+      >
+        <MobileIcon />
+      </div>
       <Link href="https://api.whatsapp.com/send/?phone=5493517738914">
         +54 9 351-7738914
       </Link>
