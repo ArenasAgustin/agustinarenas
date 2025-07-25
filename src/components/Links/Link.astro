@@ -33,7 +33,7 @@ const {
   ]}
   target={targetBlank ? "_blank" : undefined}
   rel={targetBlank ? "noopener noreferrer nofollow" : undefined}
-  aria-label={ariaLabel}
+  aria-label={ariaLabel || undefined}
 >
   <slot />
 </a>
