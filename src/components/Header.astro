@@ -1,5 +1,6 @@
 ---
 import Link from "components/Links/Link.astro";
+import ToggleTheme from "components/Buttons/ToggleTheme.astro";
 
 const { pathname } = Astro.url;
 
@@ -28,4 +29,7 @@ const pages = [
       </Link>
     ))
   }
+  <div class="absolute right-4 top-1/2 -translate-y-1/2">
+    <ToggleTheme />
+  </div>
 </header>
