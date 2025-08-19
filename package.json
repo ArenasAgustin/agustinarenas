@@ -16,7 +16,7 @@
     "@kindspells/astro-shield": "^1.7.1",
     "@tailwindcss/vite": "^4.0.14",
     "@vercel/analytics": "^1.5.0",
-    "astro": "^5.5.2",
+    "astro": "^5.13.1",
     "tailwindcss": "^4.0.14",
     "typescript": "^5.8.2"
   },
