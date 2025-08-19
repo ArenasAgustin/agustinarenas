@@ -1,11 +1,202 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
+# Dependabot configuration for JavaScript/TypeScript projects
+# Optimized for Astro, React, Vue, TypeScript, and modern web development
 # https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
 updates:
-  - package-ecosystem: "" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  # Main npm dependencies (production and development)
+  - package-ecosystem: "npm"
+    directory: "/"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "America/Argentina/Cordoba"
+    # Limit the number of open PRs to prevent spam
+    open-pull-requests-limit: 5
+    # Auto-assign to repository owner
+    assignees:
+      - "ArenasAgustin"
+    # Add labels for better organization
+    labels:
+      - "dependencies"
+      - "npm"
+      - "automated"
+    # Group related dependencies together
+    groups:
+      # Astro framework and related packages
+      astro:
+        patterns:
+          - "astro*"
+          - "@astrojs/*"
+        update-types:
+          - "minor"
+          - "patch"
+      
+      # TypeScript and related tooling
+      typescript:
+        patterns:
+          - "typescript"
+          - "@types/*"
+          - "ts-*"
+        update-types:
+          - "minor"
+          - "patch"
+      
+      # Tailwind CSS and related packages
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+          - "tailwind*"
+        update-types:
+          - "minor"
+          - "patch"
+      
+      # React ecosystem (for future React projects)
+      react:
+        patterns:
+          - "react"
+          - "react-*"
+          - "@react*"
+        update-types:
+          - "minor"
+          - "patch"
+      
+      # Vue ecosystem (for future Vue projects)
+      vue:
+        patterns:
+          - "vue"
+          - "vue-*"
+          - "@vue/*"
+        update-types:
+          - "minor"
+          - "patch"
+      
+      # Next.js ecosystem (for future Next.js projects)
+      nextjs:
+        patterns:
+          - "next"
+          - "@next/*"
+        update-types:
+          - "minor"
+          - "patch"
+      
+      # Linting and formatting tools
+      linting:
+        patterns:
+          - "eslint"
+          - "eslint-*"
+          - "@eslint*"
+          - "prettier"
+          - "prettier-*"
+          - "@prettier/*"
+        update-types:
+          - "minor"
+          - "patch"
+      
+      # Testing frameworks and utilities
+      testing:
+        patterns:
+          - "jest"
+          - "jest-*"
+          - "@jest/*"
+          - "vitest"
+          - "vitest-*"
+          - "@vitest/*"
+          - "cypress"
+          - "cypress-*"
+          - "playwright"
+          - "playwright-*"
+          - "@playwright/*"
+        update-types:
+          - "minor"
+          - "patch"
+      
+      # Build tools and bundlers
+      build-tools:
+        patterns:
+          - "vite"
+          - "vite-*"
+          - "@vite*"
+          - "webpack"
+          - "webpack-*"
+          - "rollup"
+          - "rollup-*"
+          - "esbuild"
+        update-types:
+          - "minor"
+          - "patch"
+      
+      # Deployment and hosting platforms
+      deployment:
+        patterns:
+          - "@vercel/*"
+          - "vercel"
+          - "@netlify/*"
+          - "netlify-*"
+        update-types:
+          - "minor"
+          - "patch"
+    
+    # Ignore major version updates for critical dependencies to prevent breaking changes
+    ignore:
+      # Astro major versions (manual review required)
+      - dependency-name: "astro"
+        update-types: ["version-update:semver-major"]
+      
+      # Node.js major versions (manual review required)
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      
+      # TypeScript major versions (manual review required)
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      
+      # Tailwind major versions (manual review required)
+      - dependency-name: "tailwindcss"
+        update-types: ["version-update:semver-major"]
+    
+    # Commit message configuration
+    commit-message:
+      prefix: "chore(deps)"
+      prefix-development: "chore(deps-dev)"
+      include: "scope"
+    
+    # Pull request configuration
+    pull-request-branch-name:
+      separator: "/"
+    
+    # Reviewers configuration (optional, can be enabled if needed)
+    reviewers:
+      - "ArenasAgustin"
+    
+    # Allow automatic rebasing of PRs when conflicts arise
+    rebase-strategy: "auto"
+
+  # GitHub Actions dependencies
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "10:00"
+      timezone: "America/Argentina/Cordoba"
+    open-pull-requests-limit: 3
+    assignees:
+      - "ArenasAgustin"
+    labels:
+      - "dependencies"
+      - "github-actions"
+      - "automated"
+    commit-message:
+      prefix: "chore(actions)"
+      include: "scope"
+    groups:
+      # Group all GitHub Actions updates together
+      github-actions:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
