@@ -65,6 +65,18 @@ I'm a programmer and web developer with problem-solving skills, imaginative, and
 - **Backend:** Node.js, Laravel.
 - **Databases:** PostgreSQL, MariaDB, MongoDB.
 
+## Automated Dependency Management
+
+This repository uses **Dependabot** for automatic dependency updates with intelligent grouping and security vulnerability management. The configuration supports:
+
+- 📦 **npm ecosystem** monitoring for JavaScript/TypeScript dependencies
+- 🤖 **GitHub Actions** workflow dependency updates  
+- 🏷️ **Smart grouping** by framework (Astro, React, Vue, TypeScript, Tailwind, etc.)
+- 🔒 **Security-first** approach with major version protection for critical dependencies
+- ⏰ **Weekly updates** scheduled for Monday mornings (Argentina timezone)
+
+For configuration details, see [`.github/DEPENDABOT.md`](.github/DEPENDABOT.md).
+
 ## Contact
 
 - **LinkedIn:** [Arenas Agustin](https://www.linkedin.com/in/agustin-arenas-7b1b3b1b3/)
