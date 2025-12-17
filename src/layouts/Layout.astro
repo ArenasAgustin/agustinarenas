@@ -72,7 +72,29 @@ const {
 
     <meta name="generator" content={Astro.generator} />
 
-    <ClientRouter />
+    <ClientRouter fallback="none" />
+    <script>
+      // Prefetch pages on hover for faster navigation
+      document.addEventListener("astro:page-load", () => {
+        const prefetchableLinks = document.querySelectorAll(
+          'a[data-astro-prefetch="hover"]'
+        );
+        prefetchableLinks.forEach((link) => {
+          link.addEventListener("mouseenter", () => {
+            const href = link.getAttribute("href");
+            if (
+              href &&
+              !document.querySelector(`link[rel="prefetch"][href="${href}"]`)
+            ) {
+              const prefetchLink = document.createElement("link");
+              prefetchLink.rel = "prefetch";
+              prefetchLink.href = href;
+              document.head.appendChild(prefetchLink);
+            }
+          });
+        });
+      });
+    </script>
   </head>
 
   <body

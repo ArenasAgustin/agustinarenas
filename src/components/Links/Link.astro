@@ -6,6 +6,7 @@ interface Props {
   targetBlank?: boolean;
   active?: boolean;
   ariaLabel?: string;
+  prefetch?: boolean;
 }
 
 const {
@@ -15,11 +16,13 @@ const {
   targetBlank = false,
   active = false,
   ariaLabel = "",
+  prefetch = false,
 } = Astro.props;
 ---
 
 <a
   href={href}
+  data-astro-prefetch={prefetch ? "hover" : undefined}
   class:list={[
     `text-xl mx-2 md:mx-6 my-3 ${extraClass}`,
     {
