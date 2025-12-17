@@ -10,17 +10,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/tailwind": "^6.0.0",
-    "@kindspells/astro-shield": "^1.7.1",
-    "@tailwindcss/vite": "^4.0.14",
-    "@vercel/analytics": "^1.5.0",
-    "astro": "^5.5.2",
-    "tailwindcss": "^4.0.14",
-    "typescript": "^5.8.2"
+    "@astrojs/check": "0.9.6",
+    "@astrojs/sitemap": "3.6.0",
+    "@astrojs/tailwind": "6.0.2",
+    "@kindspells/astro-shield": "1.7.1",
+    "@tailwindcss/vite": "4.1.18",
+    "@vercel/analytics": "1.6.1",
+    "astro": "5.16.6",
+    "tailwindcss": "4.1.18",
+    "typescript": "5.9.3"
   },
   "devDependencies": {
-    "@astrojs/vercel": "^8.1.2"
+    "@astrojs/vercel": "9.0.2"
   }
 }

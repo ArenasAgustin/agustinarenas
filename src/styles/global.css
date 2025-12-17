@@ -179,7 +179,7 @@
 }
 
 .text-img {
-  @apply p-3 m-3 rounded-lg bg-mine-shaft-800/70 text-mine-shaft-50/100;
+  @apply p-3 m-3 rounded-lg bg-mine-shaft-800/70 text-mine-shaft-50;
 }
 
 .glow-bg-xl {
@@ -209,13 +209,21 @@
 }
 
 .scrollbar::-webkit-scrollbar-track {
-  @apply bg-mine-shaft-300 dark:bg-mine-shaft-800;
+  @apply bg-mine-shaft-300;
+}
+
+:is(.dark *) .scrollbar::-webkit-scrollbar-track {
+  @apply bg-mine-shaft-800;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-  @apply bg-mine-shaft-400 rounded-full border-2 border-solid border-mine-shaft-300 dark:bg-mine-shaft-600 dark:border-mine-shaft-800;
+  @apply bg-mine-shaft-400 rounded-full border-2 border-solid border-mine-shaft-300;
+}
+
+:is(.dark *) .scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-mine-shaft-600 border-mine-shaft-800;
 }
 
 .scrollbar::-webkit-scrollbar-thumb:hover {
-  @apply bg-mine-shaft-500 dark:bg-mine-shaft-500;
+  @apply bg-mine-shaft-500;
 }
