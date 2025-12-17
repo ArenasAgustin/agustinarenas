@@ -1,6 +1,7 @@
 ---
 import LinkButton from "components/Links/LinkButton.astro";
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import brainGameEs from "@/assets/brain_games_es.webp";
 import waveMusic from "@/assets/wave_music.webp";
 import blackParadox from "@/assets/blackparadox.webp";
@@ -46,7 +47,7 @@ const imageUrl = getImage(id);
 ---
 
 <div
-  class="max-w-sm mx-6 my-4 overflow-hidden shadow-box-inset rounded-lg h-[32rem] relative"
+  class="max-w-sm mx-6 my-4 overflow-hidden shadow-box-inset rounded-lg h-128 relative"
 >
   <Image
     class="w-full h-52 object-cover"

@@ -24,13 +24,13 @@ const {
   href={href}
   data-astro-prefetch={prefetch ? "hover" : undefined}
   class:list={[
-    `text-xl mx-2 md:mx-6 my-3 ${extraClass}`,
+    `text-xl mx-2 md:mx-6 my-3 rounded px-2 py-1 ${extraClass}`,
     {
-      "relative after:absolute after:h-0.5 after:-bottom-0.5 after:left-0 after:bg-mine-shaft-900 dark:after:bg-mine-shaft-50 hover:after:w-full":
+      "relative after:absolute after:h-0.5 after:-bottom-0.5 after:left-0 after:bg-mine-shaft-900 dark:after:bg-mine-shaft-100 hover:after:w-full after:transition-all after:duration-300":
         underlined && !active,
     },
     {
-      "relative after:absolute after:h-0.5 after:-bottom-0.5 after:left-0 after:bg-mine-shaft-900 dark:after:bg-mine-shaft-50 after:w-full":
+      "relative after:absolute after:h-0.5 after:-bottom-0.5 after:left-0 after:bg-mine-shaft-900 dark:after:bg-mine-shaft-100 after:w-full":
         underlined && active,
     },
   ]}
