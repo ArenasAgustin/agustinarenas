@@ -16,19 +16,26 @@ import CvIcon from "components/Icons/CvIcon.astro";
     <p class="text-2xl">Software Developer</p>
 
     <div class="flex-center-center">
-      <LinkIcon ariaLabel="Github">
+      <LinkIcon href="https://github.com/ArenasAgustin" ariaLabel="Github">
         <GithubIcon />
       </LinkIcon>
 
-      <LinkIcon ariaLabel="Linkedin">
+      <LinkIcon
+        href="https://www.linkedin.com/in/agustin-arenas/"
+        ariaLabel="Linkedin"
+      >
         <LinkedinIcon />
       </LinkIcon>
 
-      <LinkIcon ariaLabel="Contact">
+      <LinkIcon
+        href="mailto:arenasagustin7@gmail.com"
+        ariaLabel="Contact"
+        targetBlank={false}
+      >
         <ContactIcon />
       </LinkIcon>
 
-      <LinkIcon ariaLabel="Cv">
+      <LinkIcon href="/curriculum/Curriculum_Agustin_Arenas.pdf" ariaLabel="Cv">
         <CvIcon />
       </LinkIcon>
     </div>
