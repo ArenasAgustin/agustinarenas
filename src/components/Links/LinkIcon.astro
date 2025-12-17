@@ -10,10 +10,10 @@ interface Props {
 const { href, ariaLabel, targetBlank = true } = Astro.props;
 ---
 
-<Link href={href} targetBlank={targetBlank}>
+<Link href={href} targetBlank={targetBlank} ariaLabel={ariaLabel}>
   <div
-    class="p-1 relative transition-all duration-400 place-item-center *:size-10 md:*:size-9 *:stroke-2 *:transition-all *:duration-400 rounded-md hover:text-tradewind-500 hover:bg-mine-shaft-400/30"
-    aria-label={ariaLabel}
+    class="p-1 relative transition-all duration-400 place-item-center *:size-10 md:*:size-9 *:stroke-2 *:transition-all *:duration-400 rounded-md hover:text-tradewind-500 hover:bg-mine-shaft-400/30 hover:rotate-45 hover:*:-rotate-45"
+    role="img"
   >
     <slot />
   </div>

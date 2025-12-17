@@ -10,19 +10,30 @@ import Section from "components/Section/Section.astro";
     <div class="flex flex-col justify-center items-center">
       <div
         class="p-1 relative transition-all duration-400 place-item-center *:size-10 md:*:size-9 *:stroke-2 *:transition-all *:duration-400 rounded-md hover:text-tradewind-500 hover:bg-mine-shaft-400/30"
+        aria-label="Email contact"
+        role="img"
       >
         <ContactIcon />
       </div>
-      <Link href="arenasagustin7@gmail.com">arenasagustin7@gmail.com</Link>
+      <Link
+        href="mailto:arenasagustin7@gmail.com"
+        ariaLabel="Send email to Agustín Arenas">arenasagustin7@gmail.com</Link
+      >
     </div>
 
     <div class="flex-center-center flex-col">
       <div
         class="p-1 relative transition-all duration-400 place-item-center *:size-10 md:*:size-9 *:stroke-2 *:transition-all *:duration-400 rounded-md hover:text-tradewind-500 hover:bg-mine-shaft-400/30"
+        aria-label="WhatsApp contact"
+        role="img"
       >
         <MobileIcon />
       </div>
-      <Link href="https://api.whatsapp.com/send/?phone=5493517738914">
+      <Link
+        href="https://api.whatsapp.com/send/?phone=5493517738914"
+        ariaLabel="Contact via WhatsApp"
+        targetBlank={true}
+      >
         +54 9 351-7738914
       </Link>
     </div>
