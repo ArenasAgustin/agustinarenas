@@ -5,14 +5,15 @@ import Light from "components/Icons/LightIcon.astro";
 
 <div class="text-xl" id="themeToggle">
   <div
-    class="relative place-item-center *:size-7 md:*:size-9 *:stroke-2 after:absolute after:h-0.5 after:-bottom-0.5 after:left-0 after:bg-mine-shaft-900 dark:after:bg-mine-shaft-50 hover:after:w-full"
+    class="relative place-item-center *:size-7 md:*:size-7 *:stroke-2 after:absolute after:h-0.5 after:-bottom-0.5 after:left-0 after:bg-mine-shaft-900 dark:after:bg-mine-shaft-50 hover:after:w-full"
   >
     <Dark />
     <Light />
   </div>
 
-  <script>
-    document.addEventListener("astro:page-load", () => {
+  <script is:inline>
+    // Inicialización del tema (debe ser bloqueante para evitar FOUC)
+    (function () {
       const theme = (() => {
         if (
           typeof window !== "undefined" &&
@@ -33,7 +34,7 @@ import Light from "components/Icons/LightIcon.astro";
           return "dark";
         }
         return "light";
-      })() as string;
+      })();
 
       if (theme === "light") {
         document.documentElement.classList.remove("dark");
@@ -42,7 +43,12 @@ import Light from "components/Icons/LightIcon.astro";
       }
 
       window.localStorage.setItem("theme", theme);
+    })();
+  </script>
 
+  <script>
+    // Event handlers (pueden ser diferidos)
+    document.addEventListener("astro:page-load", () => {
       const handleToggleClick = () => {
         const element = document.documentElement;
         element.classList.toggle("dark");

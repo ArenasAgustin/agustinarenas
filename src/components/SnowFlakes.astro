@@ -170,14 +170,14 @@ const arraySnowflakes = Array(snowflakes).fill(0);
     "a",
   ];
 
-  const keyboardEvent = (): any => {
+  const keyboardEvent = () => {
     let countKeys = 0;
 
-    return (event: any) => {
-      let keyValue = event.key;
+    return (event: KeyboardEvent) => {
+      const keyValue = event.key;
 
       if (keyValue === keys[countKeys] && countKeys < keys.length - 1) {
-        countKeys = countKeys + 1;
+        countKeys++;
       } else if (
         keyValue === keys[countKeys] &&
         countKeys === keys.length - 1
@@ -187,15 +187,12 @@ const arraySnowflakes = Array(snowflakes).fill(0);
       } else {
         countKeys = 0;
       }
-
-      console.log(countKeys);
     };
   };
 
   function toggleSnowflakes() {
-    console.log("toggleSnowflakes");
-    var snowflakes = document.querySelector("#snowflakes");
-    if (snowflakes) snowflakes.classList.toggle("show");
+    const snowflakes = document.querySelector("#snowflakes");
+    snowflakes?.classList.toggle("show");
   }
 
   document.addEventListener("keydown", keyboardEvent());
