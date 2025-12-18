@@ -7,7 +7,18 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   output: "server",
   site: "https://agustinarenas.vercel.app",
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/404'),
+      changefreq: 'weekly',
+      priority: 0.7,
+      customPages: [
+        'https://agustinarenas.vercel.app/',
+        'https://agustinarenas.vercel.app/about',
+        'https://agustinarenas.vercel.app/projects',
+      ],
+    }),
+  ],
   image: {
     service: passthroughImageService(),
   },
