@@ -10,13 +10,51 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  schema?: Record<string, any>;
 }
 
 const {
   title = "Agustín Arenas | Software Developer",
   description = "This is my portfolio. I'm a programmer and web developer with problem-solving skills, imaginative, and curious.",
   image = "/img/meta-home.webp",
+  schema,
 } = Astro.props;
+
+const baseSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Agustín Arenas",
+  url: "https://agustinarenas.vercel.app",
+  image: "https://agustinarenas.vercel.app/img/meta-home.webp",
+  jobTitle: "Software Developer",
+  description:
+    "Full Stack Developer with expertise in web development, problem-solving, and open source contributions",
+  sameAs: [
+    "https://github.com/ArenasAgustin",
+    "https://www.linkedin.com/in/agustin-arenas/",
+  ],
+  knowsAbout: [
+    "JavaScript",
+    "TypeScript",
+    "React",
+    "Node.js",
+    "HTML",
+    "CSS",
+    "Sass",
+    "Tailwind CSS",
+    "MongoDB",
+    "MySQL",
+    "PostgreSQL",
+  ],
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Universidad Nacional de La Matanza",
+  },
+  nationality: {
+    "@type": "Country",
+    name: "Argentina",
+  },
+};
 ---
 
 <!doctype html>
@@ -69,6 +107,11 @@ const {
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="msapplication-config" content="/browserconfig.xml" />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(schema || baseSchema)}
+    />
 
     <meta name="generator" content={Astro.generator} />
 

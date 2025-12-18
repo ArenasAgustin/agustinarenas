@@ -4,9 +4,27 @@ import Hero from "@/sections/about/Hero.astro";
 import Education from "@/sections/about/Education.astro";
 import Works from "@/sections/about/Works.astro";
 import Skills from "@/sections/about/Skills.astro";
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  mainEntity: {
+    "@type": "Person",
+    name: "Agustín Arenas",
+    jobTitle: "Software Developer",
+    description:
+      "Full Stack Developer with experience at Dequo, passionate about web development and open source",
+    url: "https://agustinarenas.vercel.app/about",
+  },
+};
 ---
 
-<Layout title="Agustín Arenas | About me" image="/img/meta-about.webp">
+<Layout
+  title="Agustín Arenas | About me"
+  description="Learn about my work experience at Dequo, education at Universidad Nacional de La Matanza, and technical skills in JavaScript, TypeScript, React, Node.js, and more."
+  image="/img/meta-about.webp"
+  schema={aboutSchema}
+>
   <Hero />
 
   <Works />

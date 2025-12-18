@@ -2,9 +2,27 @@
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/sections/projects/Hero.astro";
 import ProjectsSection from "@/sections/projects/ProjectsSection.astro";
+
+const projectsSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: "Agustín Arenas - Projects",
+  description:
+    "Portfolio of web development projects including Brain Games, Wave Music, and more",
+  url: "https://agustinarenas.vercel.app/projects",
+  author: {
+    "@type": "Person",
+    name: "Agustín Arenas",
+  },
+};
 ---
 
-<Layout title="Agustín Arenas | My projects" image="/img/meta-projects.webp">
+<Layout
+  title="Agustín Arenas | My projects"
+  description="Explore my web development projects built with TypeScript, React, Node.js, MongoDB, and modern web technologies. Including Brain Games, Wave Music, and more."
+  image="/img/meta-projects.webp"
+  schema={projectsSchema}
+>
   <Hero />
 
   <ProjectsSection />
