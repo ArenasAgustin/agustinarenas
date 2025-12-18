@@ -1,0 +1,123 @@
+---
+// Botón flotante para volver arriba
+---
+
+<button
+  id="scroll-to-top"
+  aria-label="Volver arriba"
+  class="fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-tradewind-600 text-white opacity-0 shadow-lg transition-all duration-300 hover:bg-tradewind-500 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-tradewind-500 focus:ring-offset-2 dark:bg-tradewind-500 dark:hover:bg-tradewind-400 pointer-events-none"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-6 w-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+  </svg>
+</button>
+
+<script>
+  // Inicializar el botón scroll-to-top
+  const initScrollToTop = () => {
+    const scrollToTopBtn = document.getElementById("scroll-to-top");
+    const SCROLL_THRESHOLD = 400; // Mostrar después de 400px de scroll
+
+    if (!scrollToTopBtn) return;
+
+    // Función para actualizar visibilidad del botón
+    const updateVisibility = () => {
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+      if (scrollY > SCROLL_THRESHOLD) {
+        scrollToTopBtn.classList.remove("opacity-0", "pointer-events-none");
+        scrollToTopBtn.classList.add("opacity-100", "pointer-events-auto");
+      } else {
+        scrollToTopBtn.classList.remove("opacity-100", "pointer-events-auto");
+        scrollToTopBtn.classList.add("opacity-0", "pointer-events-none");
+      }
+    };
+
+    // Listener de scroll con throttle para mejor performance
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateVisibility();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    // Click handler para scroll suave hacia arriba
+    const scrollToTop = () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    };
+
+    // Limpiar event listeners previos si existen
+    const oldOnScroll = (scrollToTopBtn as any).__onScroll;
+    const oldScrollToTop = (scrollToTopBtn as any).__scrollToTop;
+
+    if (oldOnScroll) {
+      window.removeEventListener("scroll", oldOnScroll);
+    }
+    if (oldScrollToTop) {
+      scrollToTopBtn.removeEventListener("click", oldScrollToTop);
+    }
+
+    // Guardar referencias para poder limpiarlas después
+    (scrollToTopBtn as any).__onScroll = onScroll;
+    (scrollToTopBtn as any).__scrollToTop = scrollToTop;
+
+    // Event listeners
+    window.addEventListener("scroll", onScroll, { passive: true });
+    scrollToTopBtn.addEventListener("click", scrollToTop);
+
+    // Verificar estado inicial
+    updateVisibility();
+  };
+
+  // Ejecutar al cargar la página
+  initScrollToTop();
+
+  // Re-ejecutar después de cada navegación (Astro View Transitions)
+  document.addEventListener("astro:page-load", initScrollToTop);
+</script>
+
+<style>
+  /* Estilos adicionales específicos del componente si se necesitan */
+  #scroll-to-top {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Animación de pulso sutil en hover para indicar interactividad */
+  @media (hover: hover) {
+    #scroll-to-top:hover {
+      animation: subtle-pulse 2s ease-in-out infinite;
+    }
+  }
+
+  @keyframes subtle-pulse {
+    0%,
+    100% {
+      box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    50% {
+      box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05),
+        0 0 0 8px rgba(var(--color-tradewind-500), 0.1);
+    }
+  }
+</style>

@@ -2,6 +2,7 @@
 import Header from "components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import SnowFlakes from "@/components/SnowFlakes.astro";
+import ScrollToTop from "@/components/Buttons/ScrollToTop.astro";
 import { ClientRouter } from "astro:transitions";
 import "@/styles/global.css";
 import "@/styles/stars.css";
@@ -74,13 +75,13 @@ const baseSchema = {
             const urlTheme = urlParams.get("theme");
             if (urlTheme === "light" || urlTheme === "dark") return urlTheme;
           }
-          
+
           // 2. Prioridad a localStorage
           if (typeof localStorage !== "undefined") {
             const stored = localStorage.getItem("theme");
             if (stored === "light" || stored === "dark") return stored;
           }
-          
+
           // 3. Fallback a preferencia del sistema
           if (typeof window !== "undefined" && window.matchMedia) {
             if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -90,20 +91,20 @@ const baseSchema = {
               return "light";
             }
           }
-          
+
           // 4. Fallback final
           return "dark";
         };
 
         const theme = getTheme();
         const root = document.documentElement;
-        
+
         if (theme === "dark") {
           root.classList.add("dark");
         } else {
           root.classList.remove("dark");
         }
-        
+
         // Persistir en localStorage
         try {
           localStorage.setItem("theme", theme);
@@ -218,5 +219,6 @@ const baseSchema = {
     </div>
 
     <SnowFlakes />
+    <ScrollToTop />
   </body>
 </html>
