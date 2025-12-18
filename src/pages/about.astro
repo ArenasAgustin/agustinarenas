@@ -4,6 +4,7 @@ import Hero from "@/sections/about/Hero.astro";
 import Education from "@/sections/about/Education.astro";
 import Works from "@/sections/about/Works.astro";
 import Skills from "@/sections/about/Skills.astro";
+import { CONTACT_INFO } from "@/constants/contact";
 
 const aboutSchema = {
   "@context": "https://schema.org",
@@ -14,7 +15,7 @@ const aboutSchema = {
     jobTitle: "Software Developer",
     description:
       "Full Stack Developer with experience at Dequo, passionate about web development and open source",
-    url: "https://agustinarenas.vercel.app/about",
+    url: `${CONTACT_INFO.site}/about`,
   },
 };
 ---

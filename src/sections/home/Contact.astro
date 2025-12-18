@@ -3,6 +3,7 @@ import ContactIcon from "components/Icons/ContactIcon.astro";
 import MobileIcon from "components/Icons/MobileIcon.astro";
 import Link from "components/Links/Link.astro";
 import Section from "components/Section/Section.astro";
+import { CONTACT_INFO } from "@/constants/contact";
 ---
 
 <Section title="Contact" id="contact">
@@ -16,8 +17,8 @@ import Section from "components/Section/Section.astro";
         <ContactIcon />
       </div>
       <Link
-        href="mailto:arenasagustin7@gmail.com"
-        ariaLabel="Send email to Agustín Arenas">arenasagustin7@gmail.com</Link
+        href={`mailto:${CONTACT_INFO.email}`}
+        ariaLabel="Send email to Agustín Arenas">{CONTACT_INFO.email}</Link
       >
     </div>
 
@@ -30,7 +31,7 @@ import Section from "components/Section/Section.astro";
         <MobileIcon />
       </div>
       <Link
-        href="https://api.whatsapp.com/send/?phone=5493517738914"
+        href={CONTACT_INFO.whatsapp}
         ariaLabel="Contact via WhatsApp"
         targetBlank={true}
       >

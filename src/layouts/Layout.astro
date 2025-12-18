@@ -5,6 +5,7 @@ import SnowFlakes from "@/components/SnowFlakes.astro";
 import { ClientRouter } from "astro:transitions";
 import "@/styles/global.css";
 import "@/styles/stars.css";
+import { CONTACT_INFO } from "@/constants/contact";
 
 interface Props {
   title: string;
@@ -20,22 +21,22 @@ const {
   schema,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://agustinarenas.vercel.app");
-const ogImageURL = new URL(image, Astro.site || "https://agustinarenas.vercel.app");
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || CONTACT_INFO.site
+);
+const ogImageURL = new URL(image, Astro.site || CONTACT_INFO.site);
 
 const baseSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Agustín Arenas",
-  url: "https://agustinarenas.vercel.app",
-  image: "https://agustinarenas.vercel.app/img/meta-home.webp",
+  url: CONTACT_INFO.site,
+  image: `${CONTACT_INFO.site}/img/meta-home.webp`,
   jobTitle: "Software Developer",
   description:
     "Full Stack Developer with expertise in web development, problem-solving, and open source contributions",
-  sameAs: [
-    "https://github.com/ArenasAgustin",
-    "https://www.linkedin.com/in/agustin-arenas/",
-  ],
+  sameAs: [CONTACT_INFO.github, CONTACT_INFO.linkedin],
   knowsAbout: [
     "JavaScript",
     "TypeScript",

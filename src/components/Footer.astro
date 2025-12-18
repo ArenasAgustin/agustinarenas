@@ -4,35 +4,33 @@ import LinkedinIcon from "components/Icons/LinkedinIcon.astro";
 import GithubIcon from "components/Icons/GithubIcon.astro";
 import ContactIcon from "components/Icons/ContactIcon.astro";
 import CvIcon from "components/Icons/CvIcon.astro";
+import { CONTACT_INFO } from "@/constants/contact";
 ---
 
 <footer class="w-full p-4 flex justify-center items-center flex-col">
   <div class="flex-center-center">
-    <LinkIcon href="https://github.com/ArenasAgustin" ariaLabel="Github">
+    <LinkIcon href={CONTACT_INFO.github} ariaLabel="Github">
       <GithubIcon />
     </LinkIcon>
 
-    <LinkIcon
-      href="https://www.linkedin.com/in/agustin-arenas/"
-      ariaLabel="Linkedin"
-    >
+    <LinkIcon href={CONTACT_INFO.linkedin} ariaLabel="Linkedin">
       <LinkedinIcon />
     </LinkIcon>
 
     <LinkIcon
-      href="mailto:arenasagustin7@gmail.com"
+      href={`mailto:${CONTACT_INFO.email}`}
       ariaLabel="Contact"
       targetBlank={false}
     >
       <ContactIcon />
     </LinkIcon>
 
-    <LinkIcon href="/curriculum/Curriculum_Agustin_Arenas.pdf" ariaLabel="Cv">
+    <LinkIcon href={CONTACT_INFO.cv} ariaLabel="Cv">
       <CvIcon />
     </LinkIcon>
   </div>
 
   <hr class="w-5/6 md:w-3/5 max-w-(--breakpoint-xl) my-2 text-bunker-800" />
 
-  <p class="text-center text-xs text-white">© 2024 Agustín Arenas</p>
+  <p class="text-center text-xs text-white">© 2024-2025 Agustín Arenas</p>
 </footer>

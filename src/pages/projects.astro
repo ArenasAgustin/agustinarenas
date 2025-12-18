@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/sections/projects/Hero.astro";
 import ProjectsSection from "@/sections/projects/ProjectsSection.astro";
+import { CONTACT_INFO } from "@/constants/contact";
 
 const projectsSchema = {
   "@context": "https://schema.org",
@@ -9,7 +10,7 @@ const projectsSchema = {
   name: "Agustín Arenas - Projects",
   description:
     "Portfolio of web development projects including Brain Games, Wave Music, and more",
-  url: "https://agustinarenas.vercel.app/projects",
+  url: `${CONTACT_INFO.site}/projects`,
   author: {
     "@type": "Person",
     name: "Agustín Arenas",
