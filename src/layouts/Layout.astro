@@ -20,6 +20,9 @@ const {
   schema,
 } = Astro.props;
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://agustinarenas.vercel.app");
+const ogImageURL = new URL(image, Astro.site || "https://agustinarenas.vercel.app");
+
 const baseSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -73,21 +76,28 @@ const baseSchema = {
     <meta name="title" content={title} />
     <meta name="description" content={description} />
 
+    <link rel="canonical" href={canonicalURL} />
+
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://agustinarenas.vercel.app/" />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta name="og:site_name" content="Agustín Arenas Portfolio" />
     <meta name="og:locale" content="en_US" />
-    <meta property="og:image" content={new URL(image, Astro.url)} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:alt" content={title} />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="" />
     <meta name="twitter:creator" content="" />
-    <meta property="twitter:url" content="https://agustinarenas.vercel.app/" />
+    <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+    <meta property="twitter:image" content={ogImageURL} />
+    <meta property="twitter:image:alt" content={title} />
 
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#262626" />
