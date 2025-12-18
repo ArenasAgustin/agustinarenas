@@ -13,41 +13,6 @@ import Light from "components/Icons/LightIcon.astro";
     <Light />
   </button>
 
-  <script is:inline>
-    // Inicialización del tema (debe ser bloqueante para evitar FOUC)
-    (function () {
-      const theme = (() => {
-        if (
-          typeof window !== "undefined" &&
-          window.location.href.includes("theme=light")
-        ) {
-          return "light";
-        } else if (
-          typeof window !== "undefined" &&
-          window.location.href.includes("theme=dark")
-        ) {
-          return "dark";
-        } else if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem("theme")
-        ) {
-          return localStorage.getItem("theme");
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
-        return "light";
-      })();
-
-      if (theme === "light") {
-        document.documentElement.classList.remove("dark");
-      } else {
-        document.documentElement.classList.add("dark");
-      }
-
-      window.localStorage.setItem("theme", theme);
-    })();
-  </script>
-
   <script>
     // Event handlers (pueden ser diferidos)
     document.addEventListener("astro:page-load", () => {
