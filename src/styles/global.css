@@ -28,11 +28,17 @@
   --color-mine-shaft-900: #333333;
   --color-mine-shaft-950: #262626;
 
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+
   --font-*: initial;
   --font-junction: Junction, sans-serif;
 
   --animate-*: initial;
   --animate-scroll: scroll 1s ease-in-out infinite;
+  --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-spin: spin 1s linear infinite;
 
   @keyframes scroll {
     0% {
@@ -42,6 +48,24 @@
     100% {
       transform: translate(-50%, 300%);
       opacity: 0.1;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 }
@@ -199,6 +223,52 @@ select:focus-visible {
 :is(.dark *) textarea:focus-visible,
 :is(.dark *) select:focus-visible {
   @apply ring-offset-mine-shaft-900;
+}
+
+/* Estados de hover consistentes */
+.hover-scale {
+  @apply transition-transform duration-300 hover:scale-105;
+}
+
+.hover-lift {
+  @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+}
+
+.hover-glow {
+  @apply transition-all duration-300 hover:text-tradewind-500;
+}
+
+.hover-bg {
+  @apply transition-colors duration-300 hover:bg-mine-shaft-300/40 dark:hover:bg-mine-shaft-700/40;
+}
+
+/* Loading states */
+.skeleton {
+  @apply bg-mine-shaft-300 dark:bg-mine-shaft-700 rounded;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.spinner {
+  @apply inline-block size-8 border-4 border-mine-shaft-300 border-t-tradewind-500 rounded-full;
+  animation: spin 1s linear infinite;
+}
+
+/* Empty states */
+.empty-state {
+  @apply flex flex-col items-center justify-center p-8 text-center text-mine-shaft-500 dark:text-mine-shaft-400;
+}
+
+.empty-state-icon {
+  @apply size-16 mb-4 opacity-50;
+}
+
+/* Error boundaries */
+.error-boundary {
+  @apply border-2 border-red-500/50 bg-red-500/10 rounded-lg p-6 my-4;
+}
+
+.error-message {
+  @apply text-red-600 dark:text-red-400 font-semibold;
 }
 
 .flex-center-center {
