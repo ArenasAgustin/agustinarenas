@@ -22,5 +22,12 @@
   },
   "devDependencies": {
     "@astrojs/vercel": "9.0.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "cross-spawn": "7.0.5",
+      "mdast-util-to-hast": "13.2.1",
+      "brace-expansion": "2.0.2"
+    }
   }
 }
