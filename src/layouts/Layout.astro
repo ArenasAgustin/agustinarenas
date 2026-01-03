@@ -170,6 +170,7 @@ const baseSchema = {
     <meta name="msapplication-config" content="/browserconfig.xml" />
 
     <script
+      is:inline
       type="application/ld+json"
       set:html={JSON.stringify(schema || baseSchema)}
     />
