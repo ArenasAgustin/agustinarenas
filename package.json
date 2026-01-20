@@ -29,7 +29,8 @@
       "mdast-util-to-hast": "13.2.1",
       "brace-expansion": "2.0.2",
       "path-to-regexp": "6.3.0",
-      "h3": "1.15.5"
+      "h3": "1.15.5",
+      "tar": "7.5.3"
     }
   }
 }
