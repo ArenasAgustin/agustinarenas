@@ -30,7 +30,7 @@
       "brace-expansion": "2.0.2",
       "path-to-regexp": "6.3.0",
       "h3": "1.15.5",
-      "tar": "7.5.3",
+      "tar": "7.5.4",
       "devalue": "5.6.2",
       "diff": "8.0.3"
     }
