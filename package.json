@@ -35,7 +35,8 @@
       "devalue": "5.6.3",
       "diff": "8.0.3",
       "lodash": "4.17.23",
-      "minimatch": "10.2.1"
+      "minimatch": "10.2.1",
+      "rollup": "4.59.0"
     }
   }
 }
