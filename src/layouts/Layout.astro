@@ -24,7 +24,7 @@ const {
 
 const canonicalURL = new URL(
   Astro.url.pathname,
-  Astro.site || CONTACT_INFO.site
+  Astro.site || CONTACT_INFO.site,
 );
 const ogImageURL = new URL(image, Astro.site || CONTACT_INFO.site);
 
@@ -190,12 +190,17 @@ const baseSchema = {
 
     <meta name="generator" content={Astro.generator} />
 
+    <meta
+      name="google-site-verification"
+      content="t_1n_26BmkF-2xZ7g3j_xYF-eaDDOxWk8g_EBzW5tuw"
+    />
+
     <ClientRouter fallback="none" />
     <script>
       // Prefetch pages on hover for faster navigation
       document.addEventListener("astro:page-load", () => {
         const prefetchableLinks = document.querySelectorAll(
-          'a[data-astro-prefetch="hover"]'
+          'a[data-astro-prefetch="hover"]',
         );
         prefetchableLinks.forEach((link) => {
           link.addEventListener("mouseenter", () => {
