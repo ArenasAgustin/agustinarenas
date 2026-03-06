@@ -5,25 +5,70 @@ interface Props {
   description?: string;
   time?: string;
   id?: string;
+  summary?: string;
+  responsibilities?: string[];
+  stack?: string[];
+  businessContext?: string;
 }
 
-const { title, subtitle, description, time, id } = Astro.props;
+const {
+  title,
+  subtitle,
+  description,
+  time,
+  id,
+  summary,
+  responsibilities,
+  stack,
+  businessContext,
+} = Astro.props;
+
+const introText = summary || description;
 ---
 
 <div
-  class="flex justify-between gap-8 rounded-lg px-5 py-4 my-1 md:-mx-4 md:p-4 w-full shadow-box-inset"
+  class="flex justify-between gap-6 rounded-lg px-4 py-3 my-1 md:-mx-4 md:p-4 w-full shadow-box-inset"
   id={id}
 >
   <div class="">
     {time && <p class="text-overline text-sm">{time}</p>}
 
-    {title && <h3 class="subtitle balance text-3xl font-bold">{title}</h3>}
+    {
+      title && (
+        <h3 class="subtitle balance text-2xl md:text-3xl font-bold">{title}</h3>
+      )
+    }
 
-    {subtitle && <p class="balance line-clamp-3 text-xl py-1">{subtitle}</p>}
+    {subtitle && <p class="balance line-clamp-3 text-lg py-0.5">{subtitle}</p>}
+
+    {introText && <p class="mt-2 text-sm leading-relaxed">{introText}</p>}
 
     {
-      description && (
-        <p class="mt-2 py-0.5 text-sm tracking-widest">{description}</p>
+      businessContext && (
+        <p class="mt-2 text-sm leading-relaxed">
+          <strong>Business context:</strong> {businessContext}
+        </p>
+      )
+    }
+
+    {
+      responsibilities && responsibilities.length > 0 && (
+        <div class="mt-2">
+          <p class="text-sm font-semibold">Key responsibilities</p>
+          <ul class="list-disc pl-5 mt-1 space-y-0.5 text-sm leading-relaxed">
+            {responsibilities.map((item: string) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
+
+    {
+      stack && stack.length > 0 && (
+        <p class="mt-2 text-sm leading-relaxed">
+          <strong>Stack:</strong> {stack.join(", ")}
+        </p>
       )
     }
   </div>

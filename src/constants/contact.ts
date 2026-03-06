@@ -12,12 +12,12 @@ export const SOCIAL_LINKS = [
   {
     name: "GitHub",
     url: CONTACT_INFO.github,
-    ariaLabel: "Github",
+    ariaLabel: "GitHub",
   },
   {
     name: "LinkedIn",
     url: CONTACT_INFO.linkedin,
-    ariaLabel: "Linkedin",
+    ariaLabel: "LinkedIn",
   },
   {
     name: "Email",
@@ -27,6 +27,6 @@ export const SOCIAL_LINKS = [
   {
     name: "CV",
     url: CONTACT_INFO.cv,
-    ariaLabel: "Cv",
+    ariaLabel: "CV",
   },
 ] as const;

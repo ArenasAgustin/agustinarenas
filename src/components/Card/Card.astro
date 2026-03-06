@@ -44,9 +44,11 @@ const { name, description, tecnologies, repositoryUrl, deployedUrl, id } =
   Astro.props;
 
 const imageUrl = getImage(id);
+const headingId = `${id || name.toLowerCase().replace(/\s+/g, "-")}-title`;
 ---
 
-<div
+<article
+  aria-labelledby={headingId}
   class="max-w-sm mx-6 my-4 overflow-hidden shadow-box-inset rounded-lg h-128 relative hover-lift"
 >
   <Image
@@ -59,7 +61,7 @@ const imageUrl = getImage(id);
   />
 
   <div class="px-6 py-4">
-    <div class="font-bold text-xl mb-2">{name}</div>
+    <h3 id={headingId} class="font-bold text-xl mb-2">{name}</h3>
 
     <p class="text-base overflow-hidden text-ellipsis display line-clamp-4">
       {description}
@@ -67,7 +69,7 @@ const imageUrl = getImage(id);
 
     <div class="mt-4">
       <p class="text-base">
-        Tecnologies: {tecnologies.join(", ")}
+        Technologies: {tecnologies.join(", ")}
       </p>
     </div>
   </div>
@@ -80,7 +82,7 @@ const imageUrl = getImage(id);
           targetBlank={true}
           extraClass="w-2/5 flex-center-center"
         >
-          Repo
+          Source code
         </LinkButton>
       )
     }
@@ -92,9 +94,9 @@ const imageUrl = getImage(id);
           targetBlank={true}
           extraClass="w-2/5 flex-center-center"
         >
-          Deploy
+          Live demo
         </LinkButton>
       )
     }
   </div>
-</div>
+</article>

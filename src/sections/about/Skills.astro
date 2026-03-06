@@ -4,7 +4,7 @@ import SkillCard from "components/Card/SkillCard.astro";
 import { skills } from "@/constants/skills";
 ---
 
-<Section id="skils" title="Skils">
+<Section id="skills" title="Skills">
   <div class="flex-center-center w-full md:w-3/5 flex-wrap mx-12">
     {skills.map((skill: string) => <SkillCard nameProp={skill} />)}
   </div>

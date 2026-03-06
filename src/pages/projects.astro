@@ -3,18 +3,56 @@ import Layout from "@/layouts/Layout.astro";
 import Hero from "@/sections/projects/Hero.astro";
 import ProjectsSection from "@/sections/projects/ProjectsSection.astro";
 import { CONTACT_INFO } from "@/constants/contact";
+import { projects } from "@/constants/projects";
 
 const projectsSchema = {
   "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: "Agustín Arenas - Projects",
-  description:
-    "Portfolio of web development projects including Brain Games, Wave Music, and more",
-  url: `${CONTACT_INFO.site}/projects`,
-  author: {
-    "@type": "Person",
-    name: "Agustín Arenas",
-  },
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": `${CONTACT_INFO.site}/projects#collection`,
+      name: "Agustín Arenas - Projects",
+      description:
+        "Portfolio of web development projects including Brain Games, Wave Music, and more",
+      url: `${CONTACT_INFO.site}/projects`,
+      isPartOf: {
+        "@id": `${CONTACT_INFO.site}#website`,
+      },
+      author: {
+        "@type": "Person",
+        name: "Agustín Arenas",
+      },
+      mainEntity: {
+        "@id": `${CONTACT_INFO.site}/projects#itemlist`,
+      },
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${CONTACT_INFO.site}/projects#itemlist`,
+      name: "Software projects",
+      itemListElement: projects.map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: project.deployedUrl || project.repositoryUrl,
+        item: {
+          "@id": `${CONTACT_INFO.site}/projects#${project.id}`,
+        },
+      })),
+    },
+    ...projects.map((project) => ({
+      "@type": "CreativeWork",
+      "@id": `${CONTACT_INFO.site}/projects#${project.id}`,
+      name: project.name,
+      description: project.description,
+      url: project.deployedUrl || project.repositoryUrl,
+      creator: {
+        "@type": "Person",
+        name: "Agustín Arenas",
+      },
+      keywords: project.tecnologies.join(", "),
+      codeRepository: project.repositoryUrl,
+    })),
+  ],
 };
 ---
 

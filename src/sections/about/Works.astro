@@ -10,6 +10,10 @@ import { works, type Work } from "@/constants/works";
     <h2 class="text-4xl text-center md:text-5xl font-bold m-8">
       Work experience
     </h2>
+    <p class="text-center text-lg md:text-xl px-6 pb-8 max-w-4xl mx-auto leading-relaxed">
+      I currently work as a Full-Stack Developer, focused on building and
+      maintaining web products across frontend and backend.
+    </p>
   </GlowCard>
 
   <div slot="slot2" class="flex-center-center flex-col w-full p-5">
@@ -20,6 +24,10 @@ import { works, type Work } from "@/constants/works";
           subtitle={work.subtitle}
           description={work.description}
           time={work.time}
+          summary={work.summary}
+          responsibilities={work.responsibilities}
+          stack={work.stack}
+          businessContext={work.businessContext}
         />
       ))
     }

@@ -17,7 +17,7 @@ interface Props {
 
 const {
   title = "Agustín Arenas | Software Developer",
-  description = "This is my portfolio. I'm a programmer and web developer with problem-solving skills, imaginative, and curious.",
+  description = "Personal portfolio of Agustín Arenas, a Full-Stack Developer focused on building fast, reliable, and maintainable web products.",
   image = "/img/meta-home.webp",
   schema,
 } = Astro.props;
@@ -30,35 +30,50 @@ const ogImageURL = new URL(image, Astro.site || CONTACT_INFO.site);
 
 const baseSchema = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Agustín Arenas",
-  url: CONTACT_INFO.site,
-  image: `${CONTACT_INFO.site}/img/meta-home.webp`,
-  jobTitle: "Software Developer",
-  description:
-    "Full Stack Developer with expertise in web development, problem-solving, and open source contributions",
-  sameAs: [CONTACT_INFO.github, CONTACT_INFO.linkedin],
-  knowsAbout: [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Node.js",
-    "HTML",
-    "CSS",
-    "Sass",
-    "Tailwind CSS",
-    "MongoDB",
-    "MySQL",
-    "PostgreSQL",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${CONTACT_INFO.site}#person`,
+      name: "Agustín Arenas",
+      url: CONTACT_INFO.site,
+      image: `${CONTACT_INFO.site}/img/meta-home.webp`,
+      jobTitle: "Software Developer",
+      description:
+        "Full-Stack Developer with expertise in web development, problem-solving, and open-source contributions",
+      sameAs: [CONTACT_INFO.github, CONTACT_INFO.linkedin],
+      knowsAbout: [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Node.js",
+        "HTML",
+        "CSS",
+        "Sass",
+        "Tailwind CSS",
+        "MongoDB",
+        "MySQL",
+        "PostgreSQL",
+      ],
+      alumniOf: {
+        "@type": "EducationalOrganization",
+        name: "Universidad Nacional de La Matanza",
+      },
+      nationality: {
+        "@type": "Country",
+        name: "Argentina",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${CONTACT_INFO.site}#website`,
+      name: "Agustín Arenas Portfolio",
+      url: CONTACT_INFO.site,
+      inLanguage: "en",
+      publisher: {
+        "@id": `${CONTACT_INFO.site}#person`,
+      },
+    },
   ],
-  alumniOf: {
-    "@type": "EducationalOrganization",
-    name: "Universidad Nacional de La Matanza",
-  },
-  nationality: {
-    "@type": "Country",
-    name: "Argentina",
-  },
 };
 ---
 
@@ -66,23 +81,23 @@ const baseSchema = {
 <html lang="en" class="w-full" style="scroll-behavior: smooth;">
   <head>
     <script is:inline>
-      // Inicialización del tema (DEBE ejecutarse antes del render para evitar FOUC)
+      // Theme initialization (must run before render to avoid FOUC)
       (function () {
         const getTheme = () => {
-          // 1. Prioridad a parámetro URL
+          // 1. URL query param has highest priority
           if (typeof window !== "undefined") {
             const urlParams = new URLSearchParams(window.location.search);
             const urlTheme = urlParams.get("theme");
             if (urlTheme === "light" || urlTheme === "dark") return urlTheme;
           }
 
-          // 2. Prioridad a localStorage
+          // 2. Then localStorage
           if (typeof localStorage !== "undefined") {
             const stored = localStorage.getItem("theme");
             if (stored === "light" || stored === "dark") return stored;
           }
 
-          // 3. Fallback a preferencia del sistema
+          // 3. Fallback to system preference
           if (typeof window !== "undefined" && window.matchMedia) {
             if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
               return "dark";
@@ -92,7 +107,7 @@ const baseSchema = {
             }
           }
 
-          // 4. Fallback final
+          // 4. Final fallback
           return "dark";
         };
 
@@ -105,11 +120,11 @@ const baseSchema = {
           root.classList.remove("dark");
         }
 
-        // Persistir en localStorage
+        // Persist selected theme in localStorage
         try {
           localStorage.setItem("theme", theme);
         } catch (e) {
-          // Ignorar errores de localStorage (modo privado, etc.)
+          // Ignore localStorage errors (private mode, etc.)
         }
       })();
     </script>
@@ -142,8 +157,6 @@ const baseSchema = {
     <meta property="og:image:alt" content={title} />
 
     <meta property="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="" />
-    <meta name="twitter:creator" content="" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
@@ -155,7 +168,7 @@ const baseSchema = {
 
     <meta
       name="keywords"
-      content="portfolio, full stack, frontend, front-end, web, develop, programmer, agustin areanas"
+      content="portfolio, full-stack, frontend, backend, web, developer, programmer, agustin arenas"
     />
 
     <meta name="robots" content="index, follow" />

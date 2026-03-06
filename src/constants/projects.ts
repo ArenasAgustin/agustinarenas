@@ -68,7 +68,7 @@ const allProjects: Project[] = [
     id: projectsIds.brain_games_es,
     name: "Brain Games",
     description:
-      "I present to you a project that I call Brain Games Es, it is a game that consists of 16 levels to decipher an encrypted word, score and clues.",
+      "Word puzzle game with 16 levels where players decode encrypted words using clues, scoring, and progressive difficulty.",
     tecnologies: [TYPESCRIPT, SASS, REACT, NODE, MONGODB],
     repositoryUrl: "https://github.com/ArenasAgustin/brain-games",
     deployedUrl: "https://brain-games.vercel.app/",
@@ -85,7 +85,7 @@ const allProjects: Project[] = [
     id: projectsIds.wave_music,
     name: "Wave Music",
     description:
-      "In this project it was used to understand the GitHub flow, the scrum methodology and the responsibilities of teamwork. In the deploy Mongo Atlas was used for the database, Heroku for the server and Firebase for the front.",
+      "Collaborative music platform developed with agile teamwork practices, using MongoDB Atlas, Heroku, and Firebase for deployment.",
     tecnologies: [JAVASCRIPT, CSS, REACT, NODE, MONGODB],
     repositoryUrl: "https://github.com/ArenasAgustin/Repo-para-PG",
   },
@@ -93,7 +93,7 @@ const allProjects: Project[] = [
     id: projectsIds.blackparadox,
     name: "Blackparadox Portfolio",
     description:
-      "Project made from a course on Udemy to improve technologies like HTML, Scss, JQuery, Ajax and learn a little about Php and Prepros.",
+      "Portfolio project built to strengthen practical skills in HTML, Sass, jQuery, Ajax, and PHP tooling.",
     tecnologies: [PHP, HTML, SASS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/blackparadox",
   },
@@ -110,7 +110,7 @@ const allProjects: Project[] = [
     id: projectsIds.morse_decoder,
     name: "Morse Decoder",
     description:
-      "Morse decoder is a web application that allows you to decode messages in morse code.",
+      "Web application that translates and decodes Morse code messages through a simple and responsive interface.",
     tecnologies: [JAVASCRIPT, REACT, TAILWIND],
     repositoryUrl: "https://github.com/ArenasAgustin/morse",
     deployedUrl: "https://morsetranslator.vercel.app/",
@@ -119,7 +119,7 @@ const allProjects: Project[] = [
     id: projectsIds.url_shortener,
     name: "Url Shortener",
     description:
-      "Project carried out to practice and improve technologies such as TypeScript, Tailwind CSS, Next.js, React, PostgreSQL and Prisma ORM.",
+      "URL shortener built to practice TypeScript, React, Next.js, Tailwind CSS, PostgreSQL, and Prisma ORM.",
     tecnologies: [JAVASCRIPT, REACT, TAILWIND, POSTGRESQL, NEXT],
     repositoryUrl: "https://github.com/ArenasAgustin/url-shortener",
   },
@@ -127,7 +127,7 @@ const allProjects: Project[] = [
     id: projectsIds.cinema,
     name: "Cinema",
     description:
-      "Project to learn to use Php and Laravel. In it you can see a list of movies, see the details of each one, add movies, edit them and delete them. You can also add, edit and delete both genders and users.",
+      "Cinema management app built with PHP and Laravel, including CRUD flows for movies, genres, and users.",
     tecnologies: [PHP, LARAVEL, BOOTSTRAP, JAVASCRIPT, MYSQL],
     repositoryUrl: "https://github.com/ArenasAgustin/cinema-app",
   },
