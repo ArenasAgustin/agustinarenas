@@ -1,6 +1,6 @@
 ---
-import Dark from "components/Icons/DarkIcon.astro";
-import Light from "components/Icons/LightIcon.astro";
+import Dark from "@/components/Icons/DarkIcon.astro";
+import Light from "@/components/Icons/LightIcon.astro";
 ---
 
 <div class="text-xl" id="themeToggle">
@@ -50,7 +50,7 @@ import Light from "components/Icons/LightIcon.astro";
     });
 
     document.addEventListener("astro:after-swap", () => {
-      localStorage.theme === "dark"
+      localStorage.getItem("theme") === "dark"
         ? document.documentElement.classList.add("dark")
         : document.documentElement.classList.remove("dark");
     });

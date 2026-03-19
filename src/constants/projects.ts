@@ -17,7 +17,7 @@ import {
   SOLIDITY,
   TAILWIND,
   TYPESCRIPT,
-} from "./Tecnologies";
+} from "./technologies";
 
 export interface Project {
   id: string;
