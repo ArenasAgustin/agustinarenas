@@ -1,15 +1,15 @@
 ---
 import Section from "@/components/Section/Section.astro";
 import ProjectCard from "@/components/Card/ProjectCard.astro";
-import { projects, type Project } from "@/constants/projects.ts";
+import { projects, FEATURED_PROJECTS_COUNT, type Project } from "@/constants/projects.ts";
 
-const treeProjects = projects.slice(0, 3);
+const featuredProjects = projects.slice(0, FEATURED_PROJECTS_COUNT);
 ---
 
 <Section title="Projects" id="projects">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
     {
-      treeProjects.map((project: Project) => (
+      featuredProjects.map((project: Project) => (
         <ProjectCard
           name={project.name}
           description={project.description}

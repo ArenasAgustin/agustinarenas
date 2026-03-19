@@ -309,5 +309,7 @@ const allProjects: Project[] = [
   },
 ];
 
+export const FEATURED_PROJECTS_COUNT = 3;
+
 export const projects = allProjects.filter((project) => project.featured);
 export const allProjectsList = allProjects;
