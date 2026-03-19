@@ -35,7 +35,9 @@ const projectsSchema = {
       itemListElement: projects.map((project, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: project.deployedUrl ?? project.repositoryUrl ?? null,
+        ...(project.deployedUrl || project.repositoryUrl
+          ? { url: project.deployedUrl ?? project.repositoryUrl }
+          : {}),
         item: {
           "@id": `${CONTACT_INFO.site}/projects#${project.id}`,
         },
@@ -46,13 +48,17 @@ const projectsSchema = {
       "@id": `${CONTACT_INFO.site}/projects#${project.id}`,
       name: project.name,
       description: project.description,
-      url: project.deployedUrl ?? project.repositoryUrl ?? null,
+      ...(project.deployedUrl || project.repositoryUrl
+        ? { url: project.deployedUrl ?? project.repositoryUrl }
+        : {}),
       creator: {
         "@type": "Person",
         name: "Agustín Arenas",
       },
       keywords: project.technologies.join(", "),
-      codeRepository: project.repositoryUrl ?? null,
+      ...(project.repositoryUrl
+        ? { codeRepository: project.repositoryUrl }
+        : {}),
     })),
   ],
 };
