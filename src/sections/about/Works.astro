@@ -1,6 +1,6 @@
 ---
 import SectionMiddle from "@/components/Section/SectionMiddle.astro";
-import SmallCard from "@/components/Card/SmallCard.astro";
+import ExperienceCard from "@/components/Card/ExperienceCard.astro";
 import GlowCard from "@/components/Card/GlowCard.astro";
 import { works, type Work } from "@/constants/works";
 ---
@@ -19,7 +19,7 @@ import { works, type Work } from "@/constants/works";
   <div slot="slot2" class="flex-center-center flex-col w-full p-5">
     {
       works.map((work: Work) => (
-        <SmallCard
+        <ExperienceCard
           title={work.title}
           subtitle={work.subtitle}
           description={work.description}

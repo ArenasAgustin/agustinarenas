@@ -1,6 +1,6 @@
 ---
 import SectionMiddle from "@/components/Section/SectionMiddle.astro";
-import SmallCard from "@/components/Card/SmallCard.astro";
+import ExperienceCard from "@/components/Card/ExperienceCard.astro";
 import GlowCard from "@/components/Card/GlowCard.astro";
 import { educations, type Education } from "@/constants/educations";
 ---
@@ -16,7 +16,7 @@ import { educations, type Education } from "@/constants/educations";
   >
     {
       educations.map((education: Education) => (
-        <SmallCard
+        <ExperienceCard
           title={education.title}
           subtitle={education.subtitle}
           time={education.time}
