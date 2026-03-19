@@ -34,13 +34,13 @@ function getImage(id: string | undefined): ImageMetadata {
 interface Props {
   name: string;
   description: string;
-  tecnologies: string[];
+  technologies: string[];
   repositoryUrl?: string;
   deployedUrl?: string;
   id?: string;
 }
 
-const { name, description, tecnologies, repositoryUrl, deployedUrl, id } =
+const { name, description, technologies, repositoryUrl, deployedUrl, id } =
   Astro.props;
 
 const imageUrl = getImage(id);
@@ -69,7 +69,7 @@ const headingId = `${id || name.toLowerCase().replace(/\s+/g, "-")}-title`;
 
     <div class="mt-4">
       <p class="text-base">
-        Technologies: {tecnologies.join(", ")}
+        Technologies: {technologies.join(", ")}
       </p>
     </div>
   </div>

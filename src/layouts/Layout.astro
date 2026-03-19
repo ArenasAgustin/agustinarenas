@@ -12,7 +12,7 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
-  schema?: Record<string, any>;
+  schema?: Record<string, unknown>;
 }
 
 const {
@@ -86,7 +86,7 @@ const baseSchema = {
 
     <link
       rel="preload"
-      href="font/junction-regular.woff"
+      href="/font/junction-regular.woff"
       as="font"
       type="font/woff"
       crossorigin
