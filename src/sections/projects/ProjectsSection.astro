@@ -2,21 +2,85 @@
 import Section from "@/components/Section/Section.astro";
 import ProjectCard from "@/components/Card/ProjectCard.astro";
 import { projects, type Project } from "@/constants/projects.ts";
+
+const allTechs = [...new Set(projects.flatMap((p) => p.technologies))].sort();
 ---
 
 <Section id="portfolio">
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+  <div class="flex flex-wrap justify-center gap-2 mb-6" id="tech-filters" role="group" aria-label="Filter projects by technology">
+    <button
+      class="filter-btn active px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 bg-tradewind-600 text-white"
+      data-tech="all"
+    >
+      All
+    </button>
     {
-      projects.map((project: Project) => (
-        <ProjectCard
-          name={project.name}
-          description={project.description}
-          id={project.id}
-          technologies={project.technologies}
-          repositoryUrl={project.repositoryUrl}
-          deployedUrl={project.deployedUrl}
-        />
+      allTechs.map((tech) => (
+        <button
+          class="filter-btn px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 bg-mine-shaft-300 dark:bg-mine-shaft-700 hover:bg-tradewind-600 hover:text-white"
+          data-tech={tech}
+        >
+          {tech}
+        </button>
       ))
     }
   </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5" id="projects-grid">
+    {
+      projects.map((project: Project) => (
+        <div data-technologies={project.technologies.join(",")}>
+          <ProjectCard
+            name={project.name}
+            description={project.description}
+            id={project.id}
+            technologies={project.technologies}
+            repositoryUrl={project.repositoryUrl}
+            deployedUrl={project.deployedUrl}
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <p id="no-results" class="hidden text-center text-lg mt-8 opacity-60">
+    No projects found for this technology.
+  </p>
 </Section>
+
+<script>
+  const initFilters = () => {
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+    const cards = document.querySelectorAll<HTMLElement>("#projects-grid [data-technologies]");
+    const noResults = document.getElementById("no-results");
+
+    if (!buttons.length || !cards.length) return;
+
+    const setActive = (selected: string) => {
+      buttons.forEach((btn) => {
+        const isActive = btn.dataset.tech === selected;
+        btn.classList.toggle("active", isActive);
+        btn.classList.toggle("bg-tradewind-600", isActive);
+        btn.classList.toggle("text-white", isActive);
+        btn.classList.toggle("bg-mine-shaft-300", !isActive);
+        btn.classList.toggle("dark:bg-mine-shaft-700", !isActive);
+      });
+
+      let visible = 0;
+      cards.forEach((card) => {
+        const techs = card.dataset.technologies?.split(",") ?? [];
+        const show = selected === "all" || techs.includes(selected);
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+
+      noResults?.classList.toggle("hidden", visible > 0);
+    };
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => setActive(btn.dataset.tech ?? "all"));
+    });
+  };
+
+  document.addEventListener("astro:page-load", initFilters);
+</script>
