@@ -1,0 +1,30 @@
+---
+import LinkIcon from "@/components/Links/LinkIcon.astro";
+import LinkedinIcon from "@/components/Icons/LinkedinIcon.astro";
+import GithubIcon from "@/components/Icons/GithubIcon.astro";
+import ContactIcon from "@/components/Icons/ContactIcon.astro";
+import CvIcon from "@/components/Icons/CvIcon.astro";
+import { CONTACT_INFO } from "@/constants/contact";
+---
+
+<div class="flex-center-center">
+  <LinkIcon href={CONTACT_INFO.github} ariaLabel="GitHub">
+    <GithubIcon />
+  </LinkIcon>
+
+  <LinkIcon href={CONTACT_INFO.linkedin} ariaLabel="LinkedIn">
+    <LinkedinIcon />
+  </LinkIcon>
+
+  <LinkIcon
+    href={`mailto:${CONTACT_INFO.email}`}
+    ariaLabel="Contact"
+    targetBlank={false}
+  >
+    <ContactIcon />
+  </LinkIcon>
+
+  <LinkIcon href={CONTACT_INFO.cv} ariaLabel="CV">
+    <CvIcon />
+  </LinkIcon>
+</div>

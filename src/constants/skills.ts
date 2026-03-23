@@ -19,7 +19,7 @@ import {
   SEQUELIZE,
   TAILWIND,
   TYPESCRIPT,
-} from "./Tecnologies";
+} from "./technologies";
 
 export const skills: string[] = [
   HTML,

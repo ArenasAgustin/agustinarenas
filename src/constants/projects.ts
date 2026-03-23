@@ -17,15 +17,16 @@ import {
   SOLIDITY,
   TAILWIND,
   TYPESCRIPT,
-} from "./Tecnologies";
+} from "./technologies";
 
 export interface Project {
   id: string;
   name: string;
   description: string;
-  tecnologies: string[];
+  technologies: string[];
   repositoryUrl?: string;
   deployedUrl?: string;
+  featured?: boolean;
 }
 
 const projectsIds = {
@@ -69,16 +70,17 @@ const allProjects: Project[] = [
     name: "Brain Games",
     description:
       "Word puzzle game with 16 levels where players decode encrypted words using clues, scoring, and progressive difficulty.",
-    tecnologies: [TYPESCRIPT, SASS, REACT, NODE, MONGODB],
+    technologies: [TYPESCRIPT, SASS, REACT, NODE, MONGODB],
     repositoryUrl: "https://github.com/ArenasAgustin/brain-games",
     deployedUrl: "https://brain-games.vercel.app/",
+    featured: true,
   },
   {
     id: projectsIds.brain_games_es_api,
     name: "Brain Games API",
     description:
       "API for the Brain Games project, it is a game that consists of 16 levels to decipher an encrypted word, score and clues.",
-    tecnologies: [JAVASCRIPT, MONGODB, EXPRESS],
+    technologies: [JAVASCRIPT, MONGODB, EXPRESS],
     repositoryUrl: "https://github.com/ArenasAgustin/brain-games-es-api",
   },
   {
@@ -86,231 +88,228 @@ const allProjects: Project[] = [
     name: "Wave Music",
     description:
       "Collaborative music platform developed with agile teamwork practices, using MongoDB Atlas, Heroku, and Firebase for deployment.",
-    tecnologies: [JAVASCRIPT, CSS, REACT, NODE, MONGODB],
+    technologies: [JAVASCRIPT, CSS, REACT, NODE, MONGODB],
     repositoryUrl: "https://github.com/ArenasAgustin/Repo-para-PG",
+    featured: true,
   },
   {
     id: projectsIds.blackparadox,
     name: "Blackparadox Portfolio",
     description:
       "Portfolio project built to strengthen practical skills in HTML, Sass, jQuery, Ajax, and PHP tooling.",
-    tecnologies: [PHP, HTML, SASS, JAVASCRIPT],
+    technologies: [PHP, HTML, SASS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/blackparadox",
+    featured: true,
   },
   {
     id: projectsIds.js_benchmark,
     name: "JS Benchmark Tool",
     description:
       "A benchmark to compare the performance of different JavaScript code snippets. This project is built with pure HTML, CSS, and JavaScript.",
-    tecnologies: [JAVASCRIPT, HTML, CSS],
+    technologies: [JAVASCRIPT, HTML, CSS],
     repositoryUrl: "https://github.com/ArenasAgustin/benchmarck",
     deployedUrl: "https://arenasagustin.github.io/benchmarck/",
+    featured: true,
   },
   {
     id: projectsIds.morse_decoder,
     name: "Morse Decoder",
     description:
       "Web application that translates and decodes Morse code messages through a simple and responsive interface.",
-    tecnologies: [JAVASCRIPT, REACT, TAILWIND],
+    technologies: [JAVASCRIPT, REACT, TAILWIND],
     repositoryUrl: "https://github.com/ArenasAgustin/morse",
     deployedUrl: "https://morsetranslator.vercel.app/",
+    featured: true,
   },
   {
     id: projectsIds.url_shortener,
     name: "Url Shortener",
     description:
       "URL shortener built to practice TypeScript, React, Next.js, Tailwind CSS, PostgreSQL, and Prisma ORM.",
-    tecnologies: [JAVASCRIPT, REACT, TAILWIND, POSTGRESQL, NEXT],
+    technologies: [JAVASCRIPT, REACT, TAILWIND, POSTGRESQL, NEXT],
     repositoryUrl: "https://github.com/ArenasAgustin/url-shortener",
+    featured: true,
   },
   {
     id: projectsIds.cinema,
     name: "Cinema",
     description:
       "Cinema management app built with PHP and Laravel, including CRUD flows for movies, genres, and users.",
-    tecnologies: [PHP, LARAVEL, BOOTSTRAP, JAVASCRIPT, MYSQL],
+    technologies: [PHP, LARAVEL, BOOTSTRAP, JAVASCRIPT, MYSQL],
     repositoryUrl: "https://github.com/ArenasAgustin/cinema-app",
+    featured: true,
   },
   {
     id: projectsIds.old_portfolio,
     name: "Portfolio old version",
     description: "Old version of my portfolio.",
-    tecnologies: [NEXT, SASS, JAVASCRIPT],
+    technologies: [NEXT, SASS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/Portfolio",
   },
   {
     id: projectsIds.cv_2,
     name: "CV 2",
     description: "Curriculum vitae made with HTML, CSS and TypeScript.",
-    tecnologies: [NEXT, CSS, TYPESCRIPT],
+    technologies: [NEXT, CSS, TYPESCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/Cv2.0",
   },
   {
     id: projectsIds.boxcustodia_test,
     name: "Boxcustodia Test",
     description: "Test for a job application.",
-    tecnologies: [HTML, CSS, JAVASCRIPT],
+    technologies: [HTML, CSS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/boxcustodia-test",
   },
   {
     id: projectsIds.bego_test,
     name: "Bego Test",
     description: "Test for a job application.",
-    tecnologies: [HTML, CSS, JAVASCRIPT],
+    technologies: [HTML, CSS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/bego-test",
   },
   {
     id: projectsIds.valienta_test,
     name: "Valienta Test",
     description: "Test for a job application.",
-    tecnologies: [SASS, JAVASCRIPT, REACT, NODE, MONGODB, EXPRESS],
+    technologies: [SASS, JAVASCRIPT, REACT, NODE, MONGODB, EXPRESS],
     repositoryUrl: "https://github.com/ArenasAgustin/valienta-front-test",
   },
   {
     id: projectsIds.extrimian_test,
     name: "Extrimian Test",
     description: "Test for a job application.",
-    tecnologies: [SASS, JAVASCRIPT, REACT, NODE, SOLIDITY],
+    technologies: [SASS, JAVASCRIPT, REACT, NODE, SOLIDITY],
     repositoryUrl: "https://github.com/ArenasAgustin/extrimian-dapp",
   },
   {
     id: projectsIds.juego_html,
     name: "Juego HTML",
     description: "Games made with HTML, CSS and JavaScript.",
-    tecnologies: [HTML, CSS, JAVASCRIPT],
+    technologies: [HTML, CSS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/Juegos-HTML",
   },
   {
     id: projectsIds.todo_app_typescript,
     name: "Todo App TypeScript",
     description: "Todo app made with HTML, CSS and TypeScript.",
-    tecnologies: [HTML, CSS, TYPESCRIPT],
+    technologies: [HTML, CSS, TYPESCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/ToDoApp2.0",
   },
   {
     id: projectsIds.todo_app_2,
     name: "Todo App 2",
     description: "Todo app made with HTML, CSS and JavaScript.",
-    tecnologies: [HTML, CSS, JAVASCRIPT],
+    technologies: [HTML, CSS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/ToDoApp2.0",
   },
   {
     id: projectsIds.todo_app,
     name: "Todo App",
     description: "Todo app made with HTML, CSS and JavaScript.",
-    tecnologies: [HTML, CSS, JAVASCRIPT],
+    technologies: [HTML, CSS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/ToDoApp",
   },
   {
     id: projectsIds.pikemons,
     name: "Pikemons",
     description: "Pokedex",
-    tecnologies: [REACT, CSS, JAVASCRIPT, NODE, EXPRESS, POSTGRESQL],
+    technologies: [REACT, CSS, JAVASCRIPT, NODE, EXPRESS, POSTGRESQL],
     repositoryUrl: "https://github.com/ArenasAgustin/Pikemons",
   },
   {
     id: projectsIds.agus_weather,
     name: "Agus Weather",
     description: "Weather app made with HTML, CSS and JavaScript.",
-    tecnologies: [HTML, CSS, JAVASCRIPT],
+    technologies: [HTML, CSS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/AgusWeather",
   },
   {
     id: projectsIds.friends_page,
     name: "Friends Page",
     description: "Friends page made with HTML, CSS and JavaScript.",
-    tecnologies: [HTML, CSS, JAVASCRIPT],
+    technologies: [HTML, CSS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/FriendsPage",
   },
   {
     id: projectsIds.responsive_web,
     name: "Responsive Web",
     description: "Responsive web made with HTML and LESS.",
-    tecnologies: [HTML, LESS],
+    technologies: [HTML, LESS],
     repositoryUrl: "https://github.com/ArenasAgustin/ResponsiveWeb",
   },
   {
     id: projectsIds.pixel_art,
     name: "Pixel Art",
     description: "Pixel art made with HTML, SASS and JavaScript.",
-    tecnologies: [HTML, SASS, JAVASCRIPT],
+    technologies: [HTML, SASS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/pixelart-logo",
   },
   {
     id: projectsIds.cubo_rubik,
     name: "Rubik's Cube",
     description: "Rubik's cube made with HTML, CSS and JavaScript.",
-    tecnologies: [HTML, CSS],
+    technologies: [HTML, CSS],
     repositoryUrl: "https://github.com/ArenasAgustin/cubo-rubik",
   },
   {
     id: projectsIds.celular_css,
     name: "Celphone CSS",
     description: "Celphone made with CSS.",
-    tecnologies: [HTML, CSS],
+    technologies: [HTML, CSS],
     repositoryUrl: "https://github.com/ArenasAgustin/celular-css",
   },
   {
     id: projectsIds.pokeball_css,
     name: "Pokeball CSS",
     description: "Pokeball made with CSS.",
-    tecnologies: [HTML, CSS],
+    technologies: [HTML, CSS],
     repositoryUrl: "https://github.com/ArenasAgustin/pokeball-css",
   },
   {
     id: projectsIds.haunter,
     name: "Haunter",
     description: "Haunter made with CSS",
-    tecnologies: [HTML, CSS, JAVASCRIPT],
+    technologies: [HTML, CSS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/haunter-page",
   },
   {
     id: projectsIds.gastly,
     name: "Gastly",
     description: "Gastly made with CSS",
-    tecnologies: [HTML, CSS, JAVASCRIPT],
+    technologies: [HTML, CSS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/gastly-page",
   },
   {
     id: projectsIds.merry_christmas_2,
     name: "Merry Christmas 2",
     description: "Merry Christmas card made with HTML, SASS and JavaScript.",
-    tecnologies: [HTML, SASS, JAVASCRIPT],
+    technologies: [HTML, SASS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/merry-christmas2.0",
   },
   {
     id: projectsIds.merry_christmas,
     name: "Merry Christmas",
     description: "Merry Christmas card made with HTML, SASS and JavaScript.",
-    tecnologies: [HTML, SASS, JAVASCRIPT],
+    technologies: [HTML, SASS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/merry-christmas",
   },
   {
     id: projectsIds.promises,
     name: "promises",
     description: "Promises made with JavaScript.",
-    tecnologies: [JAVASCRIPT, NODE],
+    technologies: [JAVASCRIPT, NODE],
     repositoryUrl: "https://github.com/ArenasAgustin/MyPromises",
   },
   {
     id: projectsIds.groot_bash,
     name: "Groot Bash",
     description: "Bash made with JavaScript.",
-    tecnologies: [JAVASCRIPT, NODE],
+    technologies: [JAVASCRIPT, NODE],
     repositoryUrl: "https://github.com/ArenasAgustin/GrootBash",
   },
 ];
 
-const proyectsActves = [
-  projectsIds.brain_games_es,
-  projectsIds.wave_music,
-  projectsIds.blackparadox,
-  projectsIds.js_benchmark,
-  projectsIds.morse_decoder,
-  projectsIds.url_shortener,
-  projectsIds.cinema,
-];
+export const FEATURED_PROJECTS_COUNT = 3;
 
-export const projects = allProjects.filter((project) =>
-  proyectsActves.includes(project.id)
-);
+export const projects = allProjects.filter((project) => project.featured);
+export const allProjectsList = allProjects;

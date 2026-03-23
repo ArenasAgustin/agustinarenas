@@ -15,6 +15,8 @@ const projectsSchema = {
       description:
         "Portfolio of web development projects including Brain Games, Wave Music, and more",
       url: `${CONTACT_INFO.site}/projects`,
+      datePublished: "2024-04-22",
+      dateModified: new Date().toISOString().split("T")[0],
       isPartOf: {
         "@id": `${CONTACT_INFO.site}#website`,
       },
@@ -33,7 +35,9 @@ const projectsSchema = {
       itemListElement: projects.map((project, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: project.deployedUrl || project.repositoryUrl,
+        ...(project.deployedUrl || project.repositoryUrl
+          ? { url: project.deployedUrl ?? project.repositoryUrl }
+          : {}),
         item: {
           "@id": `${CONTACT_INFO.site}/projects#${project.id}`,
         },
@@ -44,13 +48,17 @@ const projectsSchema = {
       "@id": `${CONTACT_INFO.site}/projects#${project.id}`,
       name: project.name,
       description: project.description,
-      url: project.deployedUrl || project.repositoryUrl,
+      ...(project.deployedUrl || project.repositoryUrl
+        ? { url: project.deployedUrl ?? project.repositoryUrl }
+        : {}),
       creator: {
         "@type": "Person",
         name: "Agustín Arenas",
       },
-      keywords: project.tecnologies.join(", "),
-      codeRepository: project.repositoryUrl,
+      keywords: project.technologies.join(", "),
+      ...(project.repositoryUrl
+        ? { codeRepository: project.repositoryUrl }
+        : {}),
     })),
   ],
 };

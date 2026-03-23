@@ -23,14 +23,15 @@
 </button>
 
 <script>
-  // Inicializar el botón scroll-to-top
+  let activeOnScroll: (() => void) | null = null;
+  let activeScrollToTop: (() => void) | null = null;
+
   const initScrollToTop = () => {
     const scrollToTopBtn = document.getElementById("scroll-to-top");
-    const SCROLL_THRESHOLD = 400; // Mostrar después de 400px de scroll
+    const SCROLL_THRESHOLD = 400;
 
     if (!scrollToTopBtn) return;
 
-    // Función para actualizar visibilidad del botón
     const updateVisibility = () => {
       const scrollY = window.scrollY || document.documentElement.scrollTop;
 
@@ -43,7 +44,6 @@
       }
     };
 
-    // Listener de scroll con throttle para mejor performance
     let ticking = false;
     const onScroll = () => {
       if (!ticking) {
@@ -55,41 +55,22 @@
       }
     };
 
-    // Click handler para scroll suave hacia arriba
     const scrollToTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-    // Limpiar event listeners previos si existen
-    const oldOnScroll = (scrollToTopBtn as any).__onScroll;
-    const oldScrollToTop = (scrollToTopBtn as any).__scrollToTop;
+    if (activeOnScroll) window.removeEventListener("scroll", activeOnScroll);
+    if (activeScrollToTop) scrollToTopBtn.removeEventListener("click", activeScrollToTop);
 
-    if (oldOnScroll) {
-      window.removeEventListener("scroll", oldOnScroll);
-    }
-    if (oldScrollToTop) {
-      scrollToTopBtn.removeEventListener("click", oldScrollToTop);
-    }
+    activeOnScroll = onScroll;
+    activeScrollToTop = scrollToTop;
 
-    // Guardar referencias para poder limpiarlas después
-    (scrollToTopBtn as any).__onScroll = onScroll;
-    (scrollToTopBtn as any).__scrollToTop = scrollToTop;
-
-    // Event listeners
     window.addEventListener("scroll", onScroll, { passive: true });
     scrollToTopBtn.addEventListener("click", scrollToTop);
 
-    // Verificar estado inicial
     updateVisibility();
   };
 
-  // Ejecutar al cargar la página
-  initScrollToTop();
-
-  // Re-ejecutar después de cada navegación (Astro View Transitions)
   document.addEventListener("astro:page-load", initScrollToTop);
 </script>
 

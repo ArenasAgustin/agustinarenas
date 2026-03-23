@@ -1,4 +1,6 @@
 ---
+import Link from "./Link.astro";
+
 interface Props {
   href: string;
   targetBlank?: boolean;
@@ -8,12 +10,10 @@ interface Props {
 const { href, targetBlank = false, extraClass = "" } = Astro.props;
 ---
 
-<a
-  class={`bg-tradewind-600 px-4 py-2 rounded-3xl cursor-pointer font-semibold transition-all duration-400 hover:-translate-y-px hover:bg-tradewind-500 ${extraClass}`}
-  style="color: #ffffff;"
+<Link
   href={href}
-  target={targetBlank ? "_blank" : undefined}
-  rel={targetBlank ? "noopener noreferrer" : undefined}
+  targetBlank={targetBlank}
+  extraClass={`bg-tradewind-600 px-4 py-2 rounded-3xl cursor-pointer font-semibold text-white transition-all duration-400 hover:-translate-y-px hover:bg-tradewind-500 mx-0 my-0 ${extraClass}`}
 >
   <slot />
-</a>
+</Link>

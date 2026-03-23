@@ -1,5 +1,5 @@
 ---
-import LinkButton from "components/Links/LinkButton.astro";
+import LinkButton from "@/components/Links/LinkButton.astro";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import brainGameEs from "@/assets/brain_games_es.webp";
@@ -34,13 +34,13 @@ function getImage(id: string | undefined): ImageMetadata {
 interface Props {
   name: string;
   description: string;
-  tecnologies: string[];
+  technologies: string[];
   repositoryUrl?: string;
   deployedUrl?: string;
   id?: string;
 }
 
-const { name, description, tecnologies, repositoryUrl, deployedUrl, id } =
+const { name, description, technologies, repositoryUrl, deployedUrl, id } =
   Astro.props;
 
 const imageUrl = getImage(id);
@@ -69,18 +69,18 @@ const headingId = `${id || name.toLowerCase().replace(/\s+/g, "-")}-title`;
 
     <div class="mt-4">
       <p class="text-base">
-        Technologies: {tecnologies.join(", ")}
+        Technologies: {technologies.join(", ")}
       </p>
     </div>
   </div>
 
-  <div class="w-full px-6 py-4 flex justify-between gap-5 absolute bottom-0">
+  <div class="w-full px-6 py-4 flex justify-center gap-4 absolute bottom-0">
     {
       repositoryUrl && (
         <LinkButton
           href={repositoryUrl}
           targetBlank={true}
-          extraClass="w-2/5 flex-center-center"
+          extraClass="flex-1 text-center whitespace-nowrap"
         >
           Source code
         </LinkButton>
@@ -92,7 +92,7 @@ const headingId = `${id || name.toLowerCase().replace(/\s+/g, "-")}-title`;
         <LinkButton
           href={deployedUrl}
           targetBlank={true}
-          extraClass="w-2/5 flex-center-center"
+          extraClass="flex-1 text-center whitespace-nowrap"
         >
           Live demo
         </LinkButton>

@@ -35,8 +35,8 @@ function getIcon(name: string) {
 ---
 
 <div
-  class="size-32 flex-center-center flex-col p-5 m-2 shadow-box-inset rounded-lg color-skill transition-all"
+  class="size-24 md:size-32 flex-center-center flex-col p-3 md:p-5 m-1 md:m-2 shadow-box-inset rounded-lg color-skill transition-all"
 >
-  <span class="size-16" set:html={getIcon(name)} />
+  <span class="size-10 md:size-16" set:html={getIcon(name)} />
   <p>{nameProp}</p>
 </div>

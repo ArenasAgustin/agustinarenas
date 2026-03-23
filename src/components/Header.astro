@@ -1,6 +1,6 @@
 ---
-import Link from "components/Links/Link.astro";
-import ToggleTheme from "components/Buttons/ToggleTheme.astro";
+import Link from "@/components/Links/Link.astro";
+import ToggleTheme from "@/components/Buttons/ToggleTheme.astro";
 
 const { pathname } = Astro.url;
 
@@ -16,7 +16,7 @@ const pages = [
 ];
 ---
 
-<header class="flex justify-center align-middle fixed w-full z-30 glow-bg-xl">
+<header class="flex justify-center items-center fixed w-full z-30 glow-bg-xl py-1 md:py-0">
   {
     pages.map(({ page, href, ariaLabel }) => (
       <Link

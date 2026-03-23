@@ -131,6 +131,15 @@ const arraySnowflakes = Array(snowflakes).fill(0);
     left: 65%;
     animation-delay: 2.5s;
   }
+  @media (prefers-reduced-motion: reduce) {
+    .snowflake,
+    .snowflake .inner {
+      animation: none !important;
+    }
+    .show .snowflake {
+      opacity: 0 !important;
+    }
+  }
 </style>
 
 <div id="snowflakes" class="snowflakes" aria-hidden="true">
@@ -170,30 +179,23 @@ const arraySnowflakes = Array(snowflakes).fill(0);
     "a",
   ];
 
-  const keyboardEvent = () => {
-    let countKeys = 0;
+  let countKeys = 0;
 
-    return (event: KeyboardEvent) => {
-      const keyValue = event.key;
+  const handleKeydown = (event: KeyboardEvent) => {
+    const keyValue = event.key;
 
-      if (keyValue === keys[countKeys] && countKeys < keys.length - 1) {
-        countKeys++;
-      } else if (
-        keyValue === keys[countKeys] &&
-        countKeys === keys.length - 1
-      ) {
-        countKeys = 0;
-        toggleSnowflakes();
-      } else {
-        countKeys = 0;
+    if (keyValue === keys[countKeys] && countKeys < keys.length - 1) {
+      countKeys++;
+    } else if (keyValue === keys[countKeys] && countKeys === keys.length - 1) {
+      countKeys = 0;
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!prefersReduced) {
+        document.querySelector("#snowflakes")?.classList.toggle("show");
       }
-    };
+    } else {
+      countKeys = 0;
+    }
   };
 
-  function toggleSnowflakes() {
-    const snowflakes = document.querySelector("#snowflakes");
-    snowflakes?.classList.toggle("show");
-  }
-
-  document.addEventListener("keydown", keyboardEvent());
+  document.addEventListener("keydown", handleKeydown);
 </script>
