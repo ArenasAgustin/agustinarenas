@@ -14,6 +14,7 @@
     width: 1px;
     height: 1px;
     background: transparent;
+    will-change: transform;
     box-shadow: 1602px 661px var(--color), 1779px 795px var(--color),
       1154px 812px var(--color), 1328px 800px var(--color),
       1262px 1251px var(--color), 1976px 432px var(--color),
@@ -730,6 +731,7 @@
     width: 2px;
     height: 2px;
     background: transparent;
+    will-change: transform;
     box-shadow: 743px 879px var(--color), 1145px 1260px var(--color),
       1412px 672px var(--color), 507px 1211px var(--color),
       52px 89px var(--color), 1045px 256px var(--color),
@@ -946,6 +948,7 @@
     width: 3px;
     height: 3px;
     background: transparent;
+    will-change: transform;
     box-shadow: 1703px 1208px var(--color), 381px 207px var(--color),
       1516px 1990px var(--color), 1960px 982px var(--color),
       922px 1278px var(--color), 689px 1766px var(--color),
