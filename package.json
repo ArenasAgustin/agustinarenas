@@ -28,7 +28,7 @@
     "overrides": {
       "cross-spawn": "7.0.5",
       "mdast-util-to-hast": "13.2.1",
-      "brace-expansion": "2.0.2",
+      "brace-expansion": "2.0.3",
       "path-to-regexp": "6.3.0",
       "h3": "1.15.9",
       "tar": "7.5.11",
@@ -38,7 +38,8 @@
       "lodash": "4.17.23",
       "minimatch": "10.2.3",
       "rollup": "4.59.0",
-      "svgo": "4.0.1"
+      "svgo": "4.0.1",
+      "yaml": "2.8.3"
     }
   }
 }
