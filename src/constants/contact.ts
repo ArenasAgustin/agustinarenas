@@ -1,6 +1,5 @@
 export const CONTACT_INFO = {
   email: "arenasagustin7@gmail.com",
-  phone: "+5493517738914",
   whatsapp: "https://api.whatsapp.com/send/?phone=5493517738914",
   github: "https://github.com/ArenasAgustin",
   linkedin: "https://www.linkedin.com/in/agustin-arenas/",

@@ -234,10 +234,12 @@ select:focus-visible {
 /* Estados de hover consistentes */
 .hover-scale {
   @apply transition-transform duration-300 hover:scale-105;
+  will-change: transform;
 }
 
 .hover-lift {
   @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  will-change: transform;
 }
 
 .hover-glow {
@@ -290,11 +292,23 @@ select:focus-visible {
 }
 
 .glow-bg-xl {
-  @apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-mine-shaft-200/60 dark:bg-mine-shaft-950/60 border-none;
+  background-color: rgba(231, 231, 231, 0.6);
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .glow-bg-xl {
+    @apply bg-clip-padding backdrop-filter backdrop-blur-xl bg-mine-shaft-200/60 dark:bg-mine-shaft-950/60 border-none;
+  }
 }
 
 .glow-bg-md {
-  @apply bg-clip-padding backdrop-filter backdrop-blur-md bg-mine-shaft-200/60 dark:bg-mine-shaft-950/60 border-none;
+  background-color: rgba(231, 231, 231, 0.6);
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .glow-bg-md {
+    @apply bg-clip-padding backdrop-filter backdrop-blur-md bg-mine-shaft-200/60 dark:bg-mine-shaft-950/60 border-none;
+  }
 }
 
 .glow-after {
