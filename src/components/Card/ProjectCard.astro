@@ -9,6 +9,7 @@ import js_benchmark from "@/assets/js_benchmark.webp";
 import morseDecoder from "@/assets/morse_decoder.webp";
 import urlShortener from "@/assets/url_shortener.webp";
 import cinema from "@/assets/cinema.webp";
+import defaultImage from "@/assets/profile.webp";
 
 function getImage(id: string | undefined): ImageMetadata {
   switch (id) {
@@ -27,7 +28,7 @@ function getImage(id: string | undefined): ImageMetadata {
     case "cinema":
       return cinema;
     default:
-      return brainGameEs;
+      return defaultImage;
   }
 }
 
