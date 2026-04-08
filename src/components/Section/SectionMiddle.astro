@@ -25,7 +25,7 @@ const { id, title, extraClass, slotFirst } = Astro.props;
   </div>
 
   <div
-    class={`flex-center-center flex-col w-full relative ${slotFirst === "slot2" ? "mb-4 md:mb-0 order-first md:order-last md:w-5/12" : "md:w-7/12"}`}
+    class={`flex-center-center flex-col w-full relative ${slotFirst === "slot2" ? "mb-4 md:mb-0 md:order-last md:w-5/12" : "md:w-7/12"}`}
   >
     <slot name="slot2" />
   </div>
