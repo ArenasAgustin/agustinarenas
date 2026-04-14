@@ -20,8 +20,11 @@ const glowType = GLOW_CLASSES[type];
 ---
 
 <div
-  class={`relative z-10 glow-after glow-before ${glowType} `}
-  transition:name={name ? name : ""}
+  class:list={[
+    "relative z-10 glow-after glow-before",
+    glowType,
+  ]}
+  {...(name ? { "transition:name": name } : {})}
 >
   <div
     class="rounded-lg flex-center-center flex-col glow-bg-md p-4 md:p-8 m-2 md:m-5 text-mine-shaft-900 dark:text-mine-shaft-100"

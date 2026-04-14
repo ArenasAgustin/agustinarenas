@@ -28,6 +28,7 @@ function getImage(id: string | undefined): ImageMetadata {
     case "cinema":
       return cinema;
     default:
+      if (id) console.warn(`[ProjectCard] No image mapping for project id "${id}", using default.`);
       return defaultImage;
   }
 }
@@ -55,13 +56,14 @@ const headingId = `${id || name.toLowerCase().replace(/\s+/g, "-")}-title`;
   <Image
     class="w-full h-52 object-cover"
     src={imageUrl}
-    alt={name}
+    alt=""
+    role="presentation"
     loading="lazy"
     widths={[240, 540, 720, imageUrl.width]}
-    sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${imageUrl.width}px`}
+    sizes={`(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw`}
   />
 
-  <div class="px-6 py-4">
+  <div class="px-6 py-4 pb-20">
     <h3 id={headingId} class="font-bold text-xl mb-2">{name}</h3>
 
     <p class="text-base overflow-hidden text-ellipsis display line-clamp-4">

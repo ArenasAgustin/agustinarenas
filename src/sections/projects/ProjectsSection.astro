@@ -9,6 +9,7 @@ const allTechs = [...new Set(projects.flatMap((p) => p.technologies))].sort();
 <Section id="portfolio">
   <div class="flex flex-wrap justify-center gap-2 mb-6" id="tech-filters" role="group" aria-label="Filter projects by technology">
     <button
+      type="button"
       class="filter-btn active px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 bg-tradewind-600 text-white"
       data-tech="all"
     >
@@ -17,6 +18,7 @@ const allTechs = [...new Set(projects.flatMap((p) => p.technologies))].sort();
     {
       allTechs.map((tech) => (
         <button
+          type="button"
           class="filter-btn px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 bg-mine-shaft-300 dark:bg-mine-shaft-700 hover:bg-tradewind-600 hover:text-white"
           data-tech={tech}
         >
@@ -70,8 +72,16 @@ const allTechs = [...new Set(projects.flatMap((p) => p.technologies))].sort();
       cards.forEach((card) => {
         const techs = card.dataset.technologies?.split(",") ?? [];
         const show = selected === "all" || techs.includes(selected);
-        card.style.display = show ? "" : "none";
-        if (show) visible++;
+        if (show) {
+          card.style.display = "";
+          card.removeAttribute("aria-hidden");
+          card.removeAttribute("inert");
+          visible++;
+        } else {
+          card.style.display = "none";
+          card.setAttribute("aria-hidden", "true");
+          card.setAttribute("inert", "");
+        }
       });
 
       noResults?.classList.toggle("hidden", visible > 0);
@@ -79,6 +89,12 @@ const allTechs = [...new Set(projects.flatMap((p) => p.technologies))].sort();
 
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => setActive(btn.dataset.tech ?? "all"));
+      btn.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          setActive(btn.dataset.tech ?? "all");
+        }
+      });
     });
   };
 

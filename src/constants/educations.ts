@@ -34,12 +34,4 @@ const allEducations: Education[] = [
   },
 ];
 
-const educationsActives = [
-  educationsIds.soy_henry,
-  educationsIds.facultad_de_ciencias_exactas_fisicas_y_naturales,
-  educationsIds.instituto_de_ensenanza_domingo_f_sarmiento,
-];
-
-export const educations = allEducations.filter((education) =>
-  educationsActives.includes(education.id)
-);
+export const educations = allEducations;

@@ -8,7 +8,7 @@ export default defineConfig({
   site: "https://agustinarenas.vercel.app",
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404'),
+      filter: (page) => !page.endsWith('/404'),
       changefreq: 'weekly',
       priority: 0.7,
     }),

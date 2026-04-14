@@ -68,7 +68,6 @@ const baseSchema = {
       url: CONTACT_INFO.site,
       inLanguage: "en",
       datePublished: "2024-04-22",
-      dateModified: new Date().toISOString().split("T")[0],
       publisher: {
         "@id": `${CONTACT_INFO.site}#person`,
       },
@@ -117,8 +116,9 @@ const baseSchema = {
     <meta property="twitter:image" content={ogImageURL} />
     <meta property="twitter:image:alt" content={title} />
 
-    <meta name="viewport" content="width=device-width" />
-    <meta name="theme-color" content="#262626" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#e7e7e7" media="(prefers-color-scheme: light)" />
 
     <meta
       name="keywords"
