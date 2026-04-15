@@ -22,7 +22,7 @@ const {
   schema,
 } = Astro.props;
 
-const baseURL = Astro.site || CONTACT_INFO.site || "https://agustinarenas.vercel.app";
+const baseURL = Astro.site ?? CONTACT_INFO.site ?? "https://agustinarenas.vercel.app";
 const canonicalURL = new URL(Astro.url.pathname, baseURL);
 const ogImageURL = new URL(image, baseURL);
 
@@ -31,10 +31,10 @@ const baseSchema = {
   "@graph": [
     {
       "@type": "Person",
-      "@id": `${CONTACT_INFO.site}#person`,
+      "@id": `${baseURL}#person`,
       name: "Agustín Arenas",
-      url: CONTACT_INFO.site,
-      image: `${CONTACT_INFO.site}/img/meta-home.webp`,
+      url: baseURL,
+      image: `${baseURL}/img/meta-home.webp`,
       jobTitle: "Software Developer",
       description:
         "Full-Stack Developer with expertise in web development, problem-solving, and open-source contributions",
@@ -63,13 +63,13 @@ const baseSchema = {
     },
     {
       "@type": "WebSite",
-      "@id": `${CONTACT_INFO.site}#website`,
+      "@id": `${baseURL}#website`,
       name: "Agustín Arenas Portfolio",
-      url: CONTACT_INFO.site,
+      url: baseURL,
       inLanguage: "en",
       datePublished: "2024-04-22",
       publisher: {
-        "@id": `${CONTACT_INFO.site}#person`,
+        "@id": `${baseURL}#person`,
       },
     },
   ],
@@ -77,9 +77,26 @@ const baseSchema = {
 ---
 
 <!doctype html>
-<html lang="en" class="w-full scroll-smooth">
+<html lang="en" class="w-full scroll-smooth" id="site-html">
   <head>
     <script is:inline src="/theme-init.js"></script>
+    <script is:inline>
+      (function () {
+        // Preserve theme class across ViewTransitions swaps — guard prevents stacking N listeners
+        if (!window.__themeSwapListenerAdded) {
+          window.__themeSwapListenerAdded = true;
+          document.addEventListener("astro:before-swap", function (event) {
+            var currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "";
+            var newHtml = event.newDocument.documentElement;
+            if (currentTheme) {
+              newHtml.classList.add("dark");
+            } else {
+              newHtml.classList.remove("dark");
+            }
+          });
+        }
+      })();
+    </script>
 
     <link
       rel="preload"
@@ -139,15 +156,17 @@ const baseSchema = {
     <script
       is:inline
       type="application/ld+json"
-      set:html={JSON.stringify(schema || baseSchema)}
+      set:html={JSON.stringify(schema ?? baseSchema).replace(/<\/script>/gi, "<\\/script>")}
     />
 
     <meta name="generator" content={Astro.generator} />
 
-    <meta
-      name="google-site-verification"
-      content="t_1n_26BmkF-2xZ7g3j_xYF-eaDDOxWk8g_EBzW5tuw"
-    />
+    {import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION && (
+      <meta
+        name="google-site-verification"
+        content={import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION}
+      />
+    )}
 
     <ClientRouter fallback="none" />
   </head>
@@ -158,7 +177,7 @@ const baseSchema = {
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-mine-shaft-900 focus:text-mine-shaft-100 focus:px-4 focus:py-2 focus:rounded">Skip to main content</a>
     <Header />
 
-    <main id="main-content" class="flex-center-center flex-col w-full">
+    <main id="main-content" tabindex="-1" class="flex-center-center flex-col w-full">
       <slot />
     </main>
 

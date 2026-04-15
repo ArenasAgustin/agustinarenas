@@ -12,6 +12,7 @@ const allTechs = [...new Set(projects.flatMap((p) => p.technologies))].sort();
       type="button"
       class="filter-btn active px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 bg-tradewind-600 text-white"
       data-tech="all"
+      aria-pressed="true"
     >
       All
     </button>
@@ -19,8 +20,9 @@ const allTechs = [...new Set(projects.flatMap((p) => p.technologies))].sort();
       allTechs.map((tech) => (
         <button
           type="button"
-          class="filter-btn px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 bg-mine-shaft-300 dark:bg-mine-shaft-700 hover:bg-tradewind-600 hover:text-white"
+          class="filter-btn px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 hover:bg-tradewind-600 hover:text-white"
           data-tech={tech}
+          aria-pressed="false"
         >
           {tech}
         </button>
@@ -50,8 +52,31 @@ const allTechs = [...new Set(projects.flatMap((p) => p.technologies))].sort();
   </p>
 </Section>
 
+<style>
+  /* Inactive filter button dark mode styling — managed via CSS, not JS classList.
+     Using CSS variables directly to avoid @reference requirement in Tailwind v4 component styles. */
+  .filter-btn:not(.active) {
+    background-color: var(--color-mine-shaft-300);
+  }
+
+  :is(.dark *) .filter-btn:not(.active) {
+    background-color: var(--color-mine-shaft-700);
+  }
+</style>
+
 <script>
+  const FILTER_KEY = "portfolio-active-filter";
+  let filterController: AbortController | null = null;
+
+  // Abort previous listeners before each swap to prevent stacking across navigations.
+  document.addEventListener("astro:before-swap", () => {
+    filterController?.abort();
+  });
+
   const initFilters = () => {
+    filterController = new AbortController();
+    const { signal } = filterController;
+
     const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
     const cards = document.querySelectorAll<HTMLElement>("#projects-grid [data-technologies]");
     const noResults = document.getElementById("no-results");
@@ -59,13 +84,16 @@ const allTechs = [...new Set(projects.flatMap((p) => p.technologies))].sort();
     if (!buttons.length || !cards.length) return;
 
     const setActive = (selected: string) => {
+      // Persist the selected filter across View Transitions navigations
+      sessionStorage.setItem(FILTER_KEY, selected);
+
       buttons.forEach((btn) => {
         const isActive = btn.dataset.tech === selected;
         btn.classList.toggle("active", isActive);
         btn.classList.toggle("bg-tradewind-600", isActive);
         btn.classList.toggle("text-white", isActive);
-        btn.classList.toggle("bg-mine-shaft-300", !isActive);
-        btn.classList.toggle("dark:bg-mine-shaft-700", !isActive);
+        // Inactive dark-mode background is handled by the .filter-btn:not(.active) CSS rule
+        btn.setAttribute("aria-pressed", String(isActive));
       });
 
       let visible = 0;
@@ -73,28 +101,25 @@ const allTechs = [...new Set(projects.flatMap((p) => p.technologies))].sort();
         const techs = card.dataset.technologies?.split(",") ?? [];
         const show = selected === "all" || techs.includes(selected);
         if (show) {
-          card.style.display = "";
-          card.removeAttribute("aria-hidden");
-          card.removeAttribute("inert");
+          card.classList.remove("hidden");
           visible++;
         } else {
-          card.style.display = "none";
-          card.setAttribute("aria-hidden", "true");
-          card.setAttribute("inert", "");
+          card.classList.add("hidden");
         }
       });
 
       noResults?.classList.toggle("hidden", visible > 0);
     };
 
+    // Restore persisted filter (survives View Transitions re-init)
+    const validTechs = new Set<string>(["all", ...Array.from(buttons).map((b) => b.dataset.tech ?? "").filter(Boolean)]);
+    const rawStored = sessionStorage.getItem(FILTER_KEY) ?? "all";
+    const stored = validTechs.has(rawStored) ? rawStored : "all";
+    setActive(stored);
+
     buttons.forEach((btn) => {
-      btn.addEventListener("click", () => setActive(btn.dataset.tech ?? "all"));
-      btn.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          setActive(btn.dataset.tech ?? "all");
-        }
-      });
+      // Native <button> already fires click on Enter/Space — no keydown handler needed
+      btn.addEventListener("click", () => setActive(btn.dataset.tech ?? "all"), { signal });
     });
   };
 

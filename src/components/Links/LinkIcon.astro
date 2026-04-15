@@ -3,7 +3,7 @@ import Link from "./Link.astro";
 
 interface Props {
   href: string;
-  ariaLabel?: string;
+  ariaLabel: string;
   targetBlank?: boolean;
 }
 
@@ -11,6 +11,10 @@ const { href, ariaLabel, targetBlank = true } = Astro.props;
 ---
 
 <Link href={href} targetBlank={targetBlank} ariaLabel={ariaLabel}>
+  <!-- aria-hidden="true" hides this wrapper (and its SVG children) from the
+       accessibility tree. The parent <a> carries the aria-label for AT.
+       If slotted SVGs contain <title> elements, add aria-hidden="true" on
+       each <svg> as well to prevent some AT from reading the title anyway. -->
   <div
     class="p-1 md:p-2 relative transition-all duration-400 place-items-center *:size-7 md:*:size-9 *:stroke-2 *:transition-all *:duration-400 rounded-md hover:text-tradewind-500 hover:bg-mine-shaft-300/40 dark:hover:bg-mine-shaft-700/40 min-h-7 min-w-7 md:min-h-9 md:min-w-9"
     aria-hidden="true"

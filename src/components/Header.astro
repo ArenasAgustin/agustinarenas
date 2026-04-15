@@ -16,22 +16,22 @@ const pages = [
 ---
 
 <header
-  class="flex justify-center items-center fixed w-full z-30 glow-bg-xl py-1 md:py-0"
+  class="flex justify-between items-center fixed w-full z-30 glow-bg-xl py-1 md:py-0 px-4"
 >
-  {
-    pages.map(({ page, href, ariaLabel }) => (
-      <Link
-        href={href}
-        underlined={true}
-        active={pathname === href}
-        ariaLabel={ariaLabel}
-        prefetch={true}
-      >
-        {page}
-      </Link>
-    ))
-  }
-</header>
-<div class="absolute right-4 top-1/2 -translate-y-1/2">
+  <nav aria-label="Main navigation" class="flex justify-center flex-1">
+    {
+      pages.map(({ page, href, ariaLabel }) => (
+        <Link
+          href={href}
+          underlined={true}
+          active={href === "/" ? pathname === href : pathname === href || pathname.startsWith(href + "/")}
+          ariaLabel={ariaLabel}
+          prefetch={true}
+        >
+          {page}
+        </Link>
+      ))
+    }
+  </nav>
   <ToggleTheme />
-</div>
+</header>
