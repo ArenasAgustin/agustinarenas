@@ -37,7 +37,7 @@ import Light from "@/components/Icons/LightIcon.astro";
         "#themeToggle button",
       );
 
-      const handleToggleClick = (button: HTMLButtonElement) => {
+      const handleToggleClick = () => {
         const element = document.documentElement;
         element.classList.toggle("dark");
 
@@ -56,7 +56,7 @@ import Light from "@/components/Icons/LightIcon.astro";
       };
 
       buttons.forEach((button) => {
-        button.addEventListener("click", () => handleToggleClick(button), {
+        button.addEventListener("click", handleToggleClick, {
           signal,
         });
 
