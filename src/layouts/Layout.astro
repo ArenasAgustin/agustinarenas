@@ -80,23 +80,6 @@ const baseSchema = {
 <html lang="en" class="w-full scroll-smooth" id="site-html">
   <head>
     <script is:inline src="/theme-init.js"></script>
-    <script is:inline>
-      (function () {
-        // Preserve theme class across ViewTransitions swaps — guard prevents stacking N listeners
-        if (!window.__themeSwapListenerAdded) {
-          window.__themeSwapListenerAdded = true;
-          document.addEventListener("astro:before-swap", function (event) {
-            var currentTheme = document.documentElement.classList.contains("dark") ? "dark" : "";
-            var newHtml = event.newDocument.documentElement;
-            if (currentTheme) {
-              newHtml.classList.add("dark");
-            } else {
-              newHtml.classList.remove("dark");
-            }
-          });
-        }
-      })();
-    </script>
 
     <link
       rel="preload"

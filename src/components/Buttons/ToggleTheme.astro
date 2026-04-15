@@ -20,13 +20,11 @@ import Light from "@/components/Icons/LightIcon.astro";
   <script>
     let controller: AbortController | null = null;
 
-    // Guard: register astro:before-swap only once to avoid stacking across navigations.
-    if (!(window as any).__themeToggleSwapListenerAdded) {
-      document.addEventListener("astro:before-swap", () => {
-        controller?.abort();
-      });
-      (window as any).__themeToggleSwapListenerAdded = true;
-    }
+    // astro:before-swap: abort controller to clean up click listeners before next navigation.
+    // Theme class preservation is handled by theme-init.js (external script, no CSP hash needed).
+    document.addEventListener("astro:before-swap", () => {
+      controller?.abort();
+    });
 
     document.addEventListener("astro:page-load", () => {
       controller = new AbortController();

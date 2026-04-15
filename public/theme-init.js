@@ -29,4 +29,19 @@
   try {
     localStorage.setItem("theme", theme);
   } catch (e) {}
+
+  // Preserve theme class across ViewTransitions swaps.
+  // Guard prevents stacking N listeners across navigations.
+  if (!window.__themeSwapListenerAdded) {
+    window.__themeSwapListenerAdded = true;
+    document.addEventListener("astro:before-swap", function (event) {
+      var isDark = document.documentElement.classList.contains("dark");
+      var newHtml = event.newDocument.documentElement;
+      if (isDark) {
+        newHtml.classList.add("dark");
+      } else {
+        newHtml.classList.remove("dark");
+      }
+    });
+  }
 })();
