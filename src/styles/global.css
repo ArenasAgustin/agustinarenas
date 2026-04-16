@@ -284,7 +284,7 @@ select:focus-visible {
 }
 
 .shadow-box-inset {
-  @apply relative before:absolute before:inset-0 before:rounded-lg before:opacity-0 before:shadow-inset before:transition-opacity before:duration-500 hover:before:opacity-100;
+  @apply relative before:absolute before:inset-0 before:rounded-lg before:opacity-0 before:shadow-inset before:transition-opacity before:duration-500 before:pointer-events-none hover:before:opacity-100;
 }
 
 .text-img {

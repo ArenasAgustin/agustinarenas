@@ -1,3 +1,22 @@
+import {
+  BOOTSTRAP,
+  EXPRESS,
+  JAVASCRIPT,
+  JQUERY,
+  LARAVEL,
+  LESS,
+  MARIADB,
+  MYSQL,
+  NEXT,
+  NODE,
+  PHP,
+  REACT,
+  SASS,
+  SEQUELIZE,
+  WEB3,
+  type Technology,
+} from "./technologies";
+
 export interface Work {
   id: string;
   title: string;
@@ -6,7 +25,7 @@ export interface Work {
   time: string;
   summary?: string;
   responsibilities?: string[];
-  stack?: string[];
+  stack?: Technology[];
   businessContext?: string;
 }
 
@@ -34,15 +53,7 @@ const allWorks: Work[] = [
       "Refactor legacy code to improve readability and maintainability.",
       "Collaborate on UI improvements aligned with product needs.",
     ],
-    stack: [
-      "JavaScript",
-      "React",
-      "PHP",
-      "Laravel",
-      "MariaDB",
-      "Bootstrap",
-      "LESS",
-    ],
+    stack: [JAVASCRIPT, REACT, PHP, LARAVEL, MARIADB, BOOTSTRAP, LESS],
     businessContext:
       "E-commerce product (Tiendaquick) used by businesses to manage and improve their online sales operations.",
   },
@@ -61,14 +72,7 @@ const allWorks: Work[] = [
       "Develop supporting scripts for Tiendanube integrations.",
       "Support iterative delivery of new sections and enhancements.",
     ],
-    stack: [
-      "JavaScript",
-      "React",
-      "Next.js",
-      "Sass",
-      "jQuery",
-      "Bootstrap",
-    ],
+    stack: [JAVASCRIPT, REACT, NEXT, SASS, JQUERY, BOOTSTRAP],
     businessContext:
       "Digital presence and web growth for commercial brands, including website expansion and frontend optimization.",
   },
@@ -88,15 +92,15 @@ const allWorks: Work[] = [
       "Develop and maintain the API and persistence layer.",
     ],
     stack: [
-      "JavaScript",
-      "React",
-      "Web3.js",
-      "Node.js",
-      "Express",
-      "Sequelize",
-      "MySQL",
-      "Sass",
-      "Bootstrap",
+      JAVASCRIPT,
+      REACT,
+      WEB3,
+      NODE,
+      EXPRESS,
+      SEQUELIZE,
+      MYSQL,
+      SASS,
+      BOOTSTRAP,
     ],
     businessContext:
       "Web3 marketplace focused on NFT card products and digital commerce flows.",
@@ -121,7 +125,8 @@ const allWorks: Work[] = [
   },
 ];
 
-const worksActives = [
+// WARNING: entries added to allWorks must also be added here to appear in the UI.
+const worksActives: Array<(typeof worksIds)[keyof typeof worksIds]> = [
   worksIds.dequo,
   worksIds.sellers_latam,
   worksIds.last_horde,

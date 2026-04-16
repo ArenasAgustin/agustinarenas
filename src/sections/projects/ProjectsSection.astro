@@ -7,121 +7,143 @@ const allTechs = [...new Set(projects.flatMap((p) => p.technologies))].sort();
 ---
 
 <Section id="portfolio">
-  <div class="flex flex-wrap justify-center gap-2 mb-6" id="tech-filters" role="group" aria-label="Filter projects by technology">
-    <button
-      type="button"
-      class="filter-btn active px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 bg-tradewind-600 text-white"
-      data-tech="all"
-      aria-pressed="true"
+    <div
+        class="flex flex-wrap justify-center gap-2 mb-6"
+        id="tech-filters"
+        role="group"
+        aria-label="Filter projects by technology"
     >
-      All
-    </button>
-    {
-      allTechs.map((tech) => (
         <button
-          type="button"
-          class="filter-btn px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 hover:bg-tradewind-600 hover:text-white"
-          data-tech={tech}
-          aria-pressed="false"
+            type="button"
+            class="filter-btn active px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 bg-tradewind-600 text-mine-shaft-100 cursor-pointer"
+            data-tech="all"
+            aria-pressed="true"
         >
-          {tech}
+            All
         </button>
-      ))
-    }
-  </div>
+        {
+            allTechs.map((tech) => (
+                <button
+                    type="button"
+                    class="filter-btn px-3 py-1 rounded-full text-sm font-semibold transition-all duration-200 text-mine-shaft-100 cursor-pointer"
+                    data-tech={tech}
+                    aria-pressed="false"
+                >
+                    {tech}
+                </button>
+            ))
+        }
+    </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5" id="projects-grid">
-    {
-      projects.map((project: Project) => (
-        <div data-technologies={project.technologies.join(",")}>
-          <ProjectCard
-            name={project.name}
-            description={project.description}
-            id={project.id}
-            technologies={project.technologies}
-            repositoryUrl={project.repositoryUrl}
-            deployedUrl={project.deployedUrl}
-          />
-        </div>
-      ))
-    }
-  </div>
+    <div
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-5"
+        id="projects-grid"
+    >
+        {
+            projects.map((project: Project) => (
+                <div data-technologies={project.technologies.join(",")}>
+                    <ProjectCard
+                        name={project.name}
+                        description={project.description}
+                        id={project.id}
+                        technologies={project.technologies}
+                        repositoryUrl={project.repositoryUrl}
+                        deployedUrl={project.deployedUrl}
+                    />
+                </div>
+            ))
+        }
+    </div>
 
-  <p id="no-results" class="hidden text-center text-lg mt-8 opacity-60">
-    No projects found for this technology.
-  </p>
+    <p id="no-results" class="hidden text-center text-lg mt-8 opacity-60">
+        No projects found for this technology.
+    </p>
 </Section>
 
 <style>
-  /* Inactive filter button dark mode styling — managed via CSS, not JS classList.
+    /* Inactive filter button dark mode styling — managed via CSS, not JS classList.
      Using CSS variables directly to avoid @reference requirement in Tailwind v4 component styles. */
-  .filter-btn:not(.active) {
-    background-color: var(--color-mine-shaft-300);
-  }
+    .filter-btn:not(.active) {
+        background-color: var(--color-mine-shaft-300);
+        color: var(--color-mine-shaft-900);
+    }
 
-  :is(.dark *) .filter-btn:not(.active) {
-    background-color: var(--color-mine-shaft-700);
-  }
+    :is(.dark *) .filter-btn:not(.active) {
+        background-color: var(--color-mine-shaft-700);
+        color: var(--color-mine-shaft-100);
+    }
 </style>
 
 <script>
-  const FILTER_KEY = "portfolio-active-filter";
-  let filterController: AbortController | null = null;
+    const FILTER_KEY = "portfolio-active-filter";
+    let filterController: AbortController | null = null;
 
-  // Abort previous listeners before each swap to prevent stacking across navigations.
-  document.addEventListener("astro:before-swap", () => {
-    filterController?.abort();
-  });
+    // Abort previous listeners before each swap to prevent stacking across navigations.
+    document.addEventListener("astro:before-swap", () => {
+        filterController?.abort();
+    });
 
-  const initFilters = () => {
-    filterController = new AbortController();
-    const { signal } = filterController;
+    const initFilters = () => {
+        filterController = new AbortController();
+        const { signal } = filterController;
 
-    const buttons = document.querySelectorAll<HTMLButtonElement>(".filter-btn");
-    const cards = document.querySelectorAll<HTMLElement>("#projects-grid [data-technologies]");
-    const noResults = document.getElementById("no-results");
+        const buttons =
+            document.querySelectorAll<HTMLButtonElement>(".filter-btn");
+        const cards = document.querySelectorAll<HTMLElement>(
+            "#projects-grid [data-technologies]",
+        );
+        const noResults = document.getElementById("no-results");
 
-    if (!buttons.length || !cards.length) return;
+        if (!buttons.length || !cards.length) return;
 
-    const setActive = (selected: string) => {
-      // Persist the selected filter across View Transitions navigations
-      sessionStorage.setItem(FILTER_KEY, selected);
+        const setActive = (selected: string) => {
+            // Persist the selected filter across View Transitions navigations
+            sessionStorage.setItem(FILTER_KEY, selected);
 
-      buttons.forEach((btn) => {
-        const isActive = btn.dataset.tech === selected;
-        btn.classList.toggle("active", isActive);
-        btn.classList.toggle("bg-tradewind-600", isActive);
-        btn.classList.toggle("text-white", isActive);
-        // Inactive dark-mode background is handled by the .filter-btn:not(.active) CSS rule
-        btn.setAttribute("aria-pressed", String(isActive));
-      });
+            buttons.forEach((btn) => {
+                const isActive = btn.dataset.tech === selected;
+                btn.classList.toggle("active", isActive);
+                btn.classList.toggle("bg-tradewind-600", isActive);
+                btn.classList.toggle("text-white", isActive);
+                // Inactive dark-mode background is handled by the .filter-btn:not(.active) CSS rule
+                btn.setAttribute("aria-pressed", String(isActive));
+            });
 
-      let visible = 0;
-      cards.forEach((card) => {
-        const techs = card.dataset.technologies?.split(",") ?? [];
-        const show = selected === "all" || techs.includes(selected);
-        if (show) {
-          card.classList.remove("hidden");
-          visible++;
-        } else {
-          card.classList.add("hidden");
-        }
-      });
+            let visible = 0;
+            cards.forEach((card) => {
+                const techs = card.dataset.technologies?.split(",") ?? [];
+                const show = selected === "all" || techs.includes(selected);
+                if (show) {
+                    card.classList.remove("hidden");
+                    visible++;
+                } else {
+                    card.classList.add("hidden");
+                }
+            });
 
-      noResults?.classList.toggle("hidden", visible > 0);
+            noResults?.classList.toggle("hidden", visible > 0);
+        };
+
+        // Restore persisted filter (survives View Transitions re-init)
+        const validTechs = new Set<string>([
+            "all",
+            ...Array.from(buttons)
+                .map((b) => b.dataset.tech ?? "")
+                .filter(Boolean),
+        ]);
+        const rawStored = sessionStorage.getItem(FILTER_KEY) ?? "all";
+        const stored = validTechs.has(rawStored) ? rawStored : "all";
+        setActive(stored);
+
+        buttons.forEach((btn) => {
+            // Native <button> already fires click on Enter/Space — no keydown handler needed
+            btn.addEventListener(
+                "click",
+                () => setActive(btn.dataset.tech ?? "all"),
+                { signal },
+            );
+        });
     };
 
-    // Restore persisted filter (survives View Transitions re-init)
-    const validTechs = new Set<string>(["all", ...Array.from(buttons).map((b) => b.dataset.tech ?? "").filter(Boolean)]);
-    const rawStored = sessionStorage.getItem(FILTER_KEY) ?? "all";
-    const stored = validTechs.has(rawStored) ? rawStored : "all";
-    setActive(stored);
-
-    buttons.forEach((btn) => {
-      // Native <button> already fires click on Enter/Space — no keydown handler needed
-      btn.addEventListener("click", () => setActive(btn.dataset.tech ?? "all"), { signal });
-    });
-  };
-
-  document.addEventListener("astro:page-load", initFilters);
+    document.addEventListener("astro:page-load", initFilters);
 </script>

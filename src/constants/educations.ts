@@ -34,4 +34,4 @@ const allEducations: Education[] = [
   },
 ];
 
-export const educations = allEducations;
+export const educations: readonly Education[] = allEducations;

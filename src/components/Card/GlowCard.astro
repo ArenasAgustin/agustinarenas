@@ -10,13 +10,13 @@ const GLOW_CLASSES: Record<GlowType, string> = {
   1: "after:skew-x-0 md:after:skew-x-12 after:from-tradewind-200 after:to-tradewind-800 before:skew-x-0 md:before:skew-x-12 before:from-tradewind-200 before:to-tradewind-800",
   2: "after:skew-x-0 md:after:skew-x-12 after:from-tradewind-300 after:to-tradewind-900 before:skew-x-0 md:before:skew-x-12 before:from-tradewind-300 before:to-tradewind-900",
   3: "after:skew-x-0 md:after:skew-x-12 after:from-tradewind-400 after:to-tradewind-900 before:skew-x-0 md:before:skew-x-12 before:from-tradewind-400 before:to-tradewind-900",
-  4: "after:-skew-x-0 md:after:-skew-x-12 after:from-tradewind-200 after:to-tradewind-800 before:-skew-x-0 md:before:-skew-x-12 before:from-tradewind-200 before:to-tradewind-800",
-  5: "after:-skew-x-0 md:after:-skew-x-12 after:from-tradewind-300 after:to-tradewind-900 before:-skew-x-0 md:before:-skew-x-12 before:from-tradewind-300 before:to-tradewind-900",
-  6: "after:-skew-x-0 md:after:-skew-x-12 after:from-tradewind-400 after:to-tradewind-900 before:-skew-x-0 md:before:-skew-x-12 before:from-tradewind-400 before:to-tradewind-900",
+  4: "after:skew-x-0 md:after:-skew-x-12 after:from-tradewind-200 after:to-tradewind-800 before:skew-x-0 md:before:-skew-x-12 before:from-tradewind-200 before:to-tradewind-800",
+  5: "after:skew-x-0 md:after:-skew-x-12 after:from-tradewind-300 after:to-tradewind-900 before:skew-x-0 md:before:-skew-x-12 before:from-tradewind-300 before:to-tradewind-900",
+  6: "after:skew-x-0 md:after:-skew-x-12 after:from-tradewind-400 after:to-tradewind-900 before:skew-x-0 md:before:-skew-x-12 before:from-tradewind-400 before:to-tradewind-900",
 };
 
 const { type = 1, name } = Astro.props;
-const glowType = GLOW_CLASSES[type];
+const glowType = GLOW_CLASSES[type] ?? GLOW_CLASSES[1];
 ---
 
 <div

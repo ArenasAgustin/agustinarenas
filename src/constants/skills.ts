@@ -19,9 +19,10 @@ import {
   SEQUELIZE,
   TAILWIND,
   TYPESCRIPT,
+  type Technology,
 } from "./technologies";
 
-export const skills: string[] = [
+export const skills: Technology[] = [
   HTML,
   CSS,
   SASS,

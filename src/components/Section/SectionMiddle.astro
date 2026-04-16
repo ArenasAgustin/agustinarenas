@@ -5,7 +5,7 @@ interface Props {
   title?: string;
   id: string;
   extraClass?: string;
-  slotFirst?: string;
+  slotFirst?: "slot1" | "slot2";
 }
 
 const { id, title, extraClass, slotFirst } = Astro.props;

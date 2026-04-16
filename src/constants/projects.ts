@@ -17,13 +17,14 @@ import {
   SOLIDITY,
   TAILWIND,
   TYPESCRIPT,
+  type Technology,
 } from "./technologies";
 
 export interface Project {
   id: string;
   name: string;
   description: string;
-  technologies: string[];
+  technologies: Technology[];
   repositoryUrl?: string;
   deployedUrl?: string;
   featured?: boolean;
@@ -62,9 +63,20 @@ const projectsIds = {
   merry_christmas: "merry_christmas",
   promises: "promises",
   groot_bash: "groot_bash",
+  webdev_tools: "webdev_tools",
 };
 
 const allProjects: Project[] = [
+  {
+    id: projectsIds.webdev_tools,
+    name: "Webdev Tools",
+    description:
+      "A collection of useful tools for web developers, built with React 19, TypeScript, Vite, and Tailwind CSS.",
+    technologies: [TYPESCRIPT, REACT, TAILWIND],
+    repositoryUrl: "https://github.com/ArenasAgustin/webdev.tools",
+    deployedUrl: "https://arenas-webtools.vercel.app/",
+    featured: true,
+  },
   {
     id: projectsIds.brain_games_es,
     name: "Brain Games",
@@ -126,7 +138,7 @@ const allProjects: Project[] = [
     name: "Url Shortener",
     description:
       "URL shortener built to practice TypeScript, React, Next.js, Tailwind CSS, PostgreSQL, and Prisma ORM.",
-    technologies: [JAVASCRIPT, REACT, TAILWIND, POSTGRESQL, NEXT],
+    technologies: [TYPESCRIPT, REACT, TAILWIND, POSTGRESQL, NEXT],
     repositoryUrl: "https://github.com/ArenasAgustin/url-shortener",
     featured: true,
   },
@@ -248,13 +260,13 @@ const allProjects: Project[] = [
     id: projectsIds.cubo_rubik,
     name: "Rubik's Cube",
     description: "Rubik's cube made with HTML, CSS and JavaScript.",
-    technologies: [HTML, CSS],
+    technologies: [HTML, CSS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/cubo-rubik",
   },
   {
     id: projectsIds.celular_css,
-    name: "Celphone CSS",
-    description: "Celphone made with CSS.",
+    name: "Cellphone CSS",
+    description: "Cellphone made with CSS.",
     technologies: [HTML, CSS],
     repositoryUrl: "https://github.com/ArenasAgustin/celular-css",
   },
@@ -295,7 +307,7 @@ const allProjects: Project[] = [
   },
   {
     id: projectsIds.promises,
-    name: "promises",
+    name: "Promises",
     description: "Promises made with JavaScript.",
     technologies: [JAVASCRIPT, NODE],
     repositoryUrl: "https://github.com/ArenasAgustin/MyPromises",
@@ -309,7 +321,7 @@ const allProjects: Project[] = [
   },
 ];
 
-export const FEATURED_PROJECTS_COUNT = 3;
-
 export const projects = allProjects.filter((project) => project.featured === true);
+
+export const FEATURED_PROJECTS_COUNT = projects.length;
 export const allProjectsList = allProjects;

@@ -11,21 +11,21 @@ export const SOCIAL_LINKS = [
   {
     name: "GitHub",
     url: CONTACT_INFO.github,
-    ariaLabel: "GitHub",
+    ariaLabel: "Visit Agustín's GitHub profile",
   },
   {
     name: "LinkedIn",
     url: CONTACT_INFO.linkedin,
-    ariaLabel: "LinkedIn",
+    ariaLabel: "Visit Agustín's LinkedIn profile",
   },
   {
     name: "Email",
     url: `mailto:${CONTACT_INFO.email}`,
-    ariaLabel: "Contact",
+    ariaLabel: "Send email to Agustín Arenas",
   },
   {
     name: "CV",
     url: CONTACT_INFO.cv,
-    ariaLabel: "CV",
+    ariaLabel: "Download Agustín's curriculum vitae",
   },
 ] as const;

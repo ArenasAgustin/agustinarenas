@@ -3,7 +3,7 @@ interface Props {
   nameProp: string;
 }
 
-const { nameProp = "" } = Astro.props;
+const { nameProp } = Astro.props;
 const name = nameProp.toLowerCase() || "";
 
 const icons: Record<string, string> = {

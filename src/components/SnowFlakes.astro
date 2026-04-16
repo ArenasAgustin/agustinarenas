@@ -184,23 +184,34 @@ const arraySnowflakes = Array(snowflakes).fill(0);
     "a",
   ];
 
-  let countKeys = 0;
+  let controller: AbortController | null = null;
 
-  const handleKeydown = (event: KeyboardEvent) => {
-    const keyValue = event.key;
+  document.addEventListener("astro:before-swap", () => {
+    controller?.abort();
+  });
 
-    if (keyValue === keys[countKeys] && countKeys < keys.length - 1) {
-      countKeys++;
-    } else if (keyValue === keys[countKeys] && countKeys === keys.length - 1) {
-      countKeys = 0;
-      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (!prefersReduced) {
-        document.querySelector("#snowflakes")?.classList.toggle("show");
+  document.addEventListener("astro:page-load", () => {
+    controller = new AbortController();
+    const { signal } = controller;
+
+    let countKeys = 0;
+
+    const handleKeydown = (event: KeyboardEvent) => {
+      const keyValue = event.key;
+
+      if (keyValue === keys[countKeys] && countKeys < keys.length - 1) {
+        countKeys++;
+      } else if (keyValue === keys[countKeys] && countKeys === keys.length - 1) {
+        countKeys = 0;
+        const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!prefersReduced) {
+          document.querySelector("#snowflakes")?.classList.toggle("show");
+        }
+      } else {
+        countKeys = 0;
       }
-    } else {
-      countKeys = 0;
-    }
-  };
+    };
 
-  document.addEventListener("keydown", handleKeydown);
+    document.addEventListener("keydown", handleKeydown, { signal });
+  });
 </script>
