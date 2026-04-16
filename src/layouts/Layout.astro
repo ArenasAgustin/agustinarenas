@@ -12,14 +12,18 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
   schema?: Record<string, unknown>;
+  robots?: string;
 }
 
 const {
   title = "Agustín Arenas | Software Developer",
   description = "Personal portfolio of Agustín Arenas, a Full-Stack Developer focused on building fast, reliable, and maintainable web products.",
   image = "/img/meta-home.webp",
+  imageAlt = "Agustín Arenas — Full-Stack Developer portfolio preview",
   schema,
+  robots = "index, follow",
 } = Astro.props;
 
 const baseURL = Astro.site ?? CONTACT_INFO.site ?? "https://agustinarenas.vercel.app";
@@ -106,14 +110,14 @@ const baseSchema = {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/webp" />
-    <meta property="og:image:alt" content={title} />
+    <meta property="og:image:alt" content={imageAlt} />
 
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImageURL} />
-    <meta property="twitter:image:alt" content={title} />
+    <meta property="twitter:image:alt" content={imageAlt} />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)" />
@@ -124,9 +128,9 @@ const baseSchema = {
       content="portfolio, full-stack, frontend, backend, web, developer, programmer, agustin arenas"
     />
 
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="bingbot" content="index, follow" />
+    <meta name="robots" content={robots} />
+    <meta name="googlebot" content={robots} />
+    <meta name="bingbot" content={robots} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
@@ -138,7 +142,18 @@ const baseSchema = {
     <script
       is:inline
       type="application/ld+json"
-      set:html={JSON.stringify(schema ?? baseSchema)
+      set:html={JSON.stringify((() => {
+        const mergedSchema = schema
+          ? {
+              "@context": "https://schema.org",
+              "@graph": [
+                ...(baseSchema["@graph"] as unknown[]),
+                ...((schema["@graph"] as unknown[]) ?? [schema]),
+              ],
+            }
+          : baseSchema;
+        return mergedSchema;
+      })())
         .replace(/</g, '\\u003c')
         .replace(/>/g, '\\u003e')
         .replace(/&/g, '\\u0026')}
@@ -154,6 +169,15 @@ const baseSchema = {
     )}
 
     <ClientRouter fallback="none" />
+
+    <script is:inline>
+      document.addEventListener('astro:after-swap', () => {
+        if (document.activeElement === document.body || document.activeElement === document.documentElement) {
+          const main = document.getElementById('main-content');
+          if (main) main.focus();
+        }
+      });
+    </script>
   </head>
 
   <body

@@ -7,21 +7,20 @@ import Skills from "@/sections/about/Skills.astro";
 import { CONTACT_INFO } from "@/constants/contact";
 
 const aboutSchema = {
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  mainEntity: {
-    "@type": "Person",
-    name: "Agustín Arenas",
-    jobTitle: "Software Developer",
-    description:
-      "Full-Stack Developer with experience at Dequo, passionate about web development and open-source work",
-    url: `${CONTACT_INFO.site}/about`,
-  },
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": `${CONTACT_INFO.site}/about#page`,
+      "url": `${CONTACT_INFO.site}/about`,
+      "isPartOf": { "@id": `${CONTACT_INFO.site}#website` },
+      "mainEntity": { "@id": `${CONTACT_INFO.site}#person` },
+    },
+  ],
 };
 ---
 
 <Layout
-  title="Agustín Arenas | About me"
+  title="About Agustín Arenas | Full-Stack Developer"
   description="Learn about my work experience at Dequo, education at Universidad Nacional de La Matanza, and technical skills in JavaScript, TypeScript, React, Node.js, and more."
   image="/img/meta-about.webp"
   schema={aboutSchema}
