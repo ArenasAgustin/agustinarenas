@@ -5,6 +5,9 @@ dist/
 # generated types
 .astro/
 
+# astro-shield generated hashes
+src/generated/
+
 # dependencies
 node_modules/
 

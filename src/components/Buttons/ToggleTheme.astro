@@ -65,8 +65,5 @@ import Light from "@/components/Icons/LightIcon.astro";
                 );
             });
         });
-        // astro:after-swap intentionally removed — Layout.astro's astro:before-swap
-        // already preserves the dark class on the incoming document, so re-deriving
-        // theme here would race and could flip the class incorrectly.
     </script>
 </div>
