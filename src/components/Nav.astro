@@ -194,9 +194,17 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
         }
       }, { signal });
 
-      // Close when a nav link is clicked — delay so browser processes anchor scroll first
-      navList.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => setTimeout(closeMenu, 150), { signal });
+      // Handle anchor nav links — prevent ClientRouter from intercepting hash navigation
+      navList.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          closeMenu();
+          const id = link.getAttribute('href')!.slice(1);
+          const target = document.getElementById(id);
+          if (!target) return;
+          const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+        }, { signal });
       });
 
       // Close on outside click
