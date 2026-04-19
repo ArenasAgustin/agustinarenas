@@ -1,0 +1,217 @@
+---
+import ToggleTheme from './Buttons/ToggleTheme.astro';
+---
+
+<nav id="navbar" aria-label="Main navigation">
+  <a class="nav-logo" href="/">AA.dev</a>
+  <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links-list">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="nav-links-list">
+    <li><a href="#about-section">about</a></li>
+    <li><a href="#experience-section">experience</a></li>
+    <li><a href="#skills-section">skills</a></li>
+    <li><a href="#projects-section">projects</a></li>
+    <li><a href="#contact-section">contact</a></li>
+    <li><ToggleTheme /></li>
+  </ul>
+</nav>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s, backdrop-filter 0.3s;
+  }
+  nav.scrolled {
+    border-color: var(--border);
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    backdrop-filter: blur(16px);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* Hamburger button — hidden on desktop */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0;
+    color: var(--fg2);
+  }
+  .menu-toggle span {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    transform-origin: center;
+  }
+  /* X state */
+  .menu-toggle.open span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .menu-toggle.open span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .menu-toggle { display: flex; }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      display: block;
+      width: 100%;
+      padding: 8px 0;
+      font-size: 13px;
+    }
+  }
+</style>
+
+<script>
+  let _ctrl: AbortController | null = null;
+
+  function initNav() {
+    if (_ctrl) _ctrl.abort();
+    _ctrl = new AbortController();
+    const { signal } = _ctrl;
+
+    const navbar = document.getElementById('navbar');
+    const toggle = document.getElementById('menu-toggle') as HTMLButtonElement | null;
+    const navList = document.getElementById('nav-links-list');
+    if (!navbar) return;
+    const nav = navbar;
+
+    function onScroll() {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { signal, passive: true });
+
+    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+    function closeMenu() {
+      toggle?.classList.remove('open');
+      navList?.classList.remove('open');
+      if (isMobile()) navList?.setAttribute('aria-hidden', 'true');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+      }
+    }
+
+    // Set correct initial aria-hidden state (hides on mobile, no attribute on desktop)
+    closeMenu();
+
+    window.addEventListener('resize', () => {
+      if (!isMobile()) {
+        navList?.removeAttribute('aria-hidden');
+      } else if (!navList?.classList.contains('open')) {
+        navList?.setAttribute('aria-hidden', 'true');
+      }
+    }, { signal, passive: true });
+
+    if (toggle && navList) {
+      toggle.addEventListener('click', () => {
+        const isOpen = navList.classList.contains('open');
+        if (isOpen) {
+          closeMenu();
+        } else {
+          toggle.classList.add('open');
+          navList.classList.add('open');
+          if (isMobile()) navList.removeAttribute('aria-hidden');
+          toggle.setAttribute('aria-expanded', 'true');
+          toggle.setAttribute('aria-label', 'Close menu');
+        }
+      }, { signal });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navList.classList.contains('open')) {
+          closeMenu();
+          toggle.focus();
+        }
+      }, { signal });
+
+      // Close when a nav link is clicked — delay so browser processes anchor scroll first
+      navList.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => setTimeout(closeMenu, 150), { signal });
+      });
+
+      // Close on outside click
+      document.addEventListener('click', (e) => {
+        if (e.target && !nav.contains(e.target as Node)) {
+          closeMenu();
+        }
+      }, { signal });
+    }
+
+    document.addEventListener('astro:before-swap', () => {
+      closeMenu();
+      _ctrl?.abort();
+    }, { once: true, signal });
+  }
+
+  document.addEventListener('astro:page-load', initNav);
+</script>

@@ -1,10 +1,12 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Hero from "@/sections/home/Hero.astro";
-import About from "@/sections/home/About.astro";
-import Portfolio from "@/sections/home/Portfolio.astro";
-import Contact from "@/sections/home/Contact.astro";
-import { CONTACT_INFO } from "@/constants/contact";
+import Layout from '../layouts/Layout.astro';
+import Hero from '../sections/index/Hero.astro';
+import About from '../sections/index/About.astro';
+import Experience from '../sections/index/Experience.astro';
+import Skills from '../sections/index/Skills.astro';
+import Projects from '../sections/index/Projects.astro';
+import Contact from '../sections/index/Contact.astro';
+import { CONTACT_INFO } from '../constants/contact';
 
 const homeSchema = {
   "@context": "https://schema.org",
@@ -23,16 +25,17 @@ const homeSchema = {
 ---
 
 <Layout
-  title="Agustín Arenas | Software Developer"
-  description="Full-Stack Developer from Argentina. Experienced in JavaScript, TypeScript, React, Node.js, and modern web technologies. View my portfolio and projects."
+  title="Agustín Arenas — Software Developer"
+  description="Full-Stack Developer based in Argentina. Building scalable web products with TypeScript, React, Node.js, and more."
   image="/img/meta-home.webp"
   schema={homeSchema}
 >
-  <Hero />
-
-  <About />
-
-  <Portfolio />
-
-  <Contact />
+  <main id="main-content" tabindex="-1">
+    <Hero />
+    <About />
+    <Experience />
+    <Skills />
+    <Projects />
+    <Contact />
+  </main>
 </Layout>

@@ -1,11 +1,45 @@
 ---
-import SocialLinks from "@/components/Links/SocialLinks.astro";
+import { CONTACT_INFO } from '@/constants/contact';
+
+const year = new Date().getFullYear();
 ---
 
-<footer class="w-full p-4 flex justify-center items-center flex-col">
-  <SocialLinks />
-
-  <hr class="w-5/6 md:w-3/5 max-w-7xl my-2 border-mine-shaft-700" />
-
-  <p class="text-center text-xs text-mine-shaft-900 dark:text-mine-shaft-100">© {new Date().getFullYear()} Agustín Arenas</p>
+<footer>
+  <span class="footer-copy">© {year} Agustín Arenas</span>
+  <div class="footer-links">
+    <a href={CONTACT_INFO.github} target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in new tab)</span></a>
+    <a href={`mailto:${CONTACT_INFO.email}`}>Email</a>
+  </div>
 </footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg2);
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+  .footer-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg2);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--accent); }
+
+  @media (max-width: 640px) {
+    footer { padding: 20px; }
+  }
+</style>

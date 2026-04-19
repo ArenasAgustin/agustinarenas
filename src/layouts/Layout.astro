@@ -1,11 +1,8 @@
 ---
-import Header from "@/components/Header.astro";
+import Nav from "@/components/Nav.astro";
 import Footer from "@/components/Footer.astro";
-import SnowFlakes from "@/components/SnowFlakes.astro";
-import ScrollToTop from "@/components/Buttons/ScrollToTop.astro";
 import { ClientRouter } from "astro:transitions";
 import "@/styles/global.css";
-import "@/styles/stars.css";
 import { CONTACT_INFO } from "@/constants/contact";
 
 interface Props {
@@ -18,7 +15,7 @@ interface Props {
 }
 
 const {
-  title = "Agustín Arenas | Software Developer",
+  title = "Agustín Arenas — Software Developer",
   description = "Personal portfolio of Agustín Arenas, a Full-Stack Developer focused on building fast, reliable, and maintainable web products.",
   image = "/img/meta-home.webp",
   imageAlt = "Agustín Arenas — Full-Stack Developer portfolio preview",
@@ -26,7 +23,7 @@ const {
   robots = "index, follow",
 } = Astro.props;
 
-const baseURL = Astro.site ?? CONTACT_INFO.site ?? "https://agustinarenas.vercel.app";
+const baseURL = Astro.site ?? CONTACT_INFO.site;
 const canonicalURL = new URL(Astro.url.pathname, baseURL);
 const ogImageURL = new URL(image, baseURL);
 
@@ -81,19 +78,40 @@ const baseSchema = {
 ---
 
 <!doctype html>
-<html lang="en" class="w-full scroll-smooth" id="site-html">
+<html lang="en" id="site-html">
   <head>
-    <script is:inline src="/theme-init.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="theme-color" content="#08080e" id="theme-color-meta" />
+    <script is:inline>(function () {
+  try {
+    var root = document.documentElement;
+    var stored = localStorage.getItem('theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var isDark = stored ? stored === 'dark' : prefersDark;
+    if (!isDark) {
+      root.dataset.theme = 'light';
+    }
+    var meta = document.getElementById('theme-color-meta');
+    if (meta) meta.setAttribute('content', !isDark ? '#f5f4fa' : '#08080e');
+    var btn = document.getElementById('theme-toggle');
+    if (btn) btn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+  } catch (e) {}
+})();</script>
 
     <link
-      rel="preload"
-      href="/font/junction-regular.woff2"
-      as="font"
-      type="font/woff2"
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
       crossorigin
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-    <meta charset="UTF-8" />
     <title>{title}</title>
     <meta name="author" content="Agustín Arenas" />
     <meta name="description" content={description} />
@@ -112,21 +130,14 @@ const baseSchema = {
     <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:alt" content={imageAlt} />
 
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={ogImageURL} />
-    <meta property="twitter:image:alt" content={imageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#262626" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#e7e7e7" media="(prefers-color-scheme: light)" />
-
-    <meta
-      name="keywords"
-      content="portfolio, full-stack, frontend, backend, web, developer, programmer, agustin arenas"
-    />
 
     <meta name="robots" content={robots} />
     <meta name="googlebot" content={robots} />
@@ -168,37 +179,38 @@ const baseSchema = {
       />
     )}
 
-    <ClientRouter fallback="none" />
+    <ClientRouter />
 
     <script>
       document.addEventListener('astro:after-swap', () => {
-        if (document.activeElement === document.body || document.activeElement === document.documentElement) {
-          const main = document.getElementById('main-content');
-          if (main) main.focus();
-        }
+        const main = document.getElementById('main-content');
+        if (main) main.focus();
       });
     </script>
   </head>
 
-  <body
-    class="relative flex flex-col w-full min-h-screen overflow-x-hidden background-image bg-mine-shaft-100 text-mine-shaft-900 dark:bg-mine-shaft-900 dark:text-mine-shaft-100 font-junction scrollbar transition-colors duration-300"
-  >
-    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-mine-shaft-900 focus:text-mine-shaft-100 focus:px-4 focus:py-2 focus:rounded">Skip to main content</a>
-    <Header />
+  <body>
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    <Nav />
 
-    <main id="main-content" tabindex="-1" class="flex-1 flex-center-center flex-col w-full">
-      <slot />
-    </main>
-
+    <slot />
     <Footer />
 
-    <div class="starsContainer">
-      <div class="stars"></div>
-      <div class="stars2"></div>
-      <div class="stars3"></div>
-    </div>
-
-    <SnowFlakes />
-    <ScrollToTop />
+    <script>
+      function initReveal() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(el => {
+            if (el.isIntersecting) {
+              el.target.classList.add('visible');
+              observer.unobserve(el.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.addEventListener('astro:before-swap', () => observer.disconnect(), { once: true });
+      }
+      document.addEventListener('astro:page-load', initReveal);
+    </script>
   </body>
 </html>

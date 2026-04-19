@@ -29,9 +29,13 @@ export default defineConfig({
             "base-uri": "'self'",
             "form-action": "'self'",
             "object-src": "'none'",
-            "img-src": "'self'",
-            "font-src": "'self'",
+            "img-src": "'self' https://vitals.vercel-insights.com data:",
+            "style-src": "'self' https://fonts.googleapis.com",
+            "font-src": "'self' https://fonts.gstatic.com",
             "connect-src": "'self' https://vitals.vercel-insights.com",
+            // script-src is intentionally omitted here — @kindspells/astro-shield
+            // automatically injects per-page script hashes at build time, producing
+            // a strict script-src with only the required nonces/hashes per page.
           },
         },
       },

@@ -1,0 +1,264 @@
+---
+import { getImage } from 'astro:assets';
+import { projects } from '../../constants/projects';
+
+import webtoolsImg    from '../../assets/webtools.webp';
+import brainGamesImg  from '../../assets/brain_games_es.webp';
+import waveMusicImg   from '../../assets/wave_music.webp';
+import blackparadoxImg from '../../assets/blackparadox.webp';
+import jsBenchmarkImg from '../../assets/js_benchmark.webp';
+import morseDecoderImg from '../../assets/morse_decoder.webp';
+import urlShortenerImg from '../../assets/url_shortener.webp';
+import cinemaImg      from '../../assets/cinema.webp';
+
+const imageMap: Record<string, ImageMetadata> = {
+  webdev_tools:   webtoolsImg,
+  brain_games_es: brainGamesImg,
+  wave_music:     waveMusicImg,
+  blackparadox:   blackparadoxImg,
+  js_benchmark:   jsBenchmarkImg,
+  morse_decoder:  morseDecoderImg,
+  url_shortener:  urlShortenerImg,
+  cinema:         cinemaImg,
+};
+
+const previewSrcs: Record<string, string> = {};
+for (const [id, img] of Object.entries(imageMap)) {
+  const optimized = await getImage({ src: img, width: 280, height: 170, format: 'webp' });
+  previewSrcs[id] = optimized.src;
+}
+---
+
+<section id="projects-section">
+  <div class="section">
+    <div class="section-header reveal">
+      <span class="section-num">[ 04 ]</span>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="project-list">
+      {projects.map((project, index) => (
+        <div
+          class={`project-row reveal${index % 4 === 1 ? ' reveal-delay-1' : index % 4 === 2 ? ' reveal-delay-2' : index % 4 === 3 ? ' reveal-delay-3' : ''}`}
+          data-preview-src={previewSrcs[project.id] ?? ''}
+          data-preview-name={project.name}
+        >
+          <div class="proj-num">{String(index + 1).padStart(2, '0')}</div>
+          <div class="proj-info">
+            <div class="proj-name">{project.name}</div>
+            <div class="proj-desc">{project.description}</div>
+          </div>
+          <div class="proj-tags">
+            {project.technologies?.map((tech) => (
+              <span class="proj-tag">{tech}</span>
+            ))}
+          </div>
+          <div class="proj-links">
+            {project.repositoryUrl && (
+              <a class="proj-link" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} on GitHub`}>GitHub</a>
+            )}
+            {project.deployedUrl && (
+              <a class="proj-link demo" href={project.deployedUrl} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} live demo`}>Live ↗</a>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <!-- Floating preview — position: fixed, last child so it doesn't affect layout -->
+  <div id="proj-preview" aria-hidden="true">
+    <img id="proj-preview-img" src="" alt="" width="280" height="170" loading="lazy" />
+    <div class="preview-label" id="proj-preview-label"></div>
+  </div>
+</section>
+
+<style>
+  /* ── PREVIEW ── */
+  #proj-preview {
+    position: fixed;
+    pointer-events: none;
+    z-index: 500;
+    width: 280px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border2);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    opacity: 0;
+    transform: scale(0.94) translateY(6px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    background: var(--surface);
+  }
+  #proj-preview.visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  #proj-preview img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.15s ease;
+  }
+  #proj-preview .preview-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--fg2);
+    padding: 8px 12px;
+    letter-spacing: 0.06em;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── ROWS ── */
+  .project-list { display: flex; flex-direction: column; }
+  .project-row {
+    display: grid;
+    grid-template-columns: 48px 1fr auto auto;
+    gap: 24px;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s, padding 0.15s, border-radius 0.15s, margin 0.15s;
+    cursor: default;
+  }
+  .project-row:hover {
+    background: var(--surface);
+    margin: 0 -24px;
+    padding: 20px 24px;
+    border-radius: 8px;
+    border-color: transparent;
+  }
+  .proj-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg2);
+    letter-spacing: 0.08em;
+  }
+  .proj-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 4px;
+  }
+  .proj-desc {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--fg2);
+    line-height: 1.5;
+  }
+  .proj-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .proj-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 2px 8px;
+    border: 1px solid var(--border2);
+    border-radius: 4px;
+    color: var(--fg2);
+    white-space: nowrap;
+  }
+  .proj-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .proj-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--fg2);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+  .proj-link:hover { border-color: var(--accent); color: var(--accent); }
+  .proj-link.demo {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  .proj-link.demo:hover { background: var(--accent2); border-color: var(--accent2); }
+
+  @media (max-width: 900px) {
+    #proj-preview { display: none; }
+    .section { padding: 60px 20px; }
+    .project-row {
+      grid-template-columns: 32px 1fr;
+      grid-template-rows: auto auto;
+    }
+    .proj-tags { justify-content: flex-start; grid-column: 2; }
+    .proj-links { grid-column: 2; }
+    .project-row:hover { margin: 0 -10px; padding: 16px 10px; }
+  }
+</style>
+
+<script>
+  let _ctrl: AbortController | null = null;
+  let isHovering = false;
+
+  function initPreviews() {
+    isHovering = false;
+    if (_ctrl) _ctrl.abort();
+    _ctrl = new AbortController();
+    const { signal } = _ctrl;
+
+    const preview = document.getElementById('proj-preview');
+    const previewImg = document.getElementById('proj-preview-img') as HTMLImageElement | null;
+    const previewLabel = document.getElementById('proj-preview-label');
+    if (!preview || !previewImg || !previewLabel) return;
+
+    // Follow cursor — only active when hovering a project row
+    let cachedPreviewHeight = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isHovering) return;
+      if (!cachedPreviewHeight) cachedPreviewHeight = preview.offsetHeight;
+      const pw = 280, ph = cachedPreviewHeight, pad = 24;
+      const vw = window.innerWidth, vh = window.innerHeight;
+      let left = e.clientX + pad;
+      let top  = e.clientY - ph / 2;
+      if (left + pw > vw - 8) left = e.clientX - pw - pad;
+      if (top < 8) top = 8;
+      if (top + ph > vh - 8) top = vh - ph - 8;
+      preview.style.left = left + 'px';
+      preview.style.top  = top + 'px';
+    }, { passive: true, signal });
+
+    window.addEventListener('scroll', () => {
+      preview.classList.remove('visible');
+    }, { signal, passive: true });
+
+    document.querySelectorAll<HTMLElement>('.project-row[data-preview-src]').forEach(row => {
+      row.addEventListener('mouseenter', () => {
+        const src = row.dataset.previewSrc ?? '';
+        if (!src) return;
+        isHovering = true;
+        previewImg.style.opacity = '0';
+        previewImg.src = src;
+        const name = row.querySelector('.proj-name')?.textContent ?? 'Project preview';
+        previewImg.setAttribute('alt', `Preview of ${name}`);
+        previewLabel.textContent = row.dataset.previewName ?? '';
+        preview.classList.add('visible');
+        cachedPreviewHeight = preview.offsetHeight;
+        previewImg.addEventListener('load', () => { previewImg.style.opacity = '1'; }, { once: true, signal });
+        if (previewImg.complete) previewImg.style.opacity = '1';
+      }, { signal });
+
+      row.addEventListener('mouseleave', () => {
+        isHovering = false;
+        preview.classList.remove('visible');
+        previewImg.alt = '';
+      }, { signal });
+    });
+
+    document.addEventListener('astro:before-swap', () => _ctrl?.abort(), { once: true, signal });
+  }
+
+  document.addEventListener('astro:page-load', initPreviews);
+</script>
