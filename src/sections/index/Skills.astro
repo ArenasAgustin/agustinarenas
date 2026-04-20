@@ -19,7 +19,7 @@ const sizeMap: Partial<Record<Technology, string>> = {
 };
 
 function sizeClass(skill: string): string {
-  return sizeMap[skill] ?? 'sc-sm';
+  return sizeMap[skill as Technology] ?? 'sc-sm';
 }
 ---
 

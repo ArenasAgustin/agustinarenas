@@ -53,7 +53,7 @@
       const isLight = document.documentElement.dataset.theme === 'light';
       (moon as HTMLElement).style.display = isLight ? 'none' : '';
       (sun as HTMLElement).style.display = isLight ? '' : 'none';
-      btn.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+      (btn as HTMLElement).setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
     }
 
     btn.addEventListener('click', () => {
