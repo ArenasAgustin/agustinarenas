@@ -67,7 +67,7 @@ for (const [id, img] of Object.entries(imageMap)) {
   </div>
   <!-- Floating preview — position: fixed, last child so it doesn't affect layout -->
   <div id="proj-preview" aria-hidden="true">
-    <img id="proj-preview-img" src="" alt="" width="280" height="170" loading="lazy" />
+    <img id="proj-preview-img" alt="" width="280" height="170" loading="lazy" />
     <div class="preview-label" id="proj-preview-label"></div>
   </div>
 </section>
@@ -117,16 +117,23 @@ for (const [id, img] of Object.entries(imageMap)) {
     align-items: center;
     padding: 20px 0;
     border-bottom: 1px solid var(--border);
-    transition: background 0.15s, padding 0.15s, border-radius 0.15s, margin 0.15s;
+    position: relative;
+    transition: border-color 0.15s;
     cursor: default;
   }
-  .project-row:hover {
+  .project-row::before {
+    content: '';
+    position: absolute;
+    inset: 0 -24px;
     background: var(--surface);
-    margin: 0 -24px;
-    padding: 20px 24px;
     border-radius: 8px;
-    border-color: transparent;
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+    z-index: -1;
   }
+  .project-row:hover::before { opacity: 1; }
+  .project-row:hover { border-color: transparent; }
   .proj-num {
     font-family: var(--mono);
     font-size: 11px;
@@ -194,7 +201,8 @@ for (const [id, img] of Object.entries(imageMap)) {
     }
     .proj-tags { justify-content: flex-start; grid-column: 2; }
     .proj-links { grid-column: 2; }
-    .project-row:hover { margin: 0 -10px; padding: 16px 10px; }
+    .project-row::before { inset: 0 -10px; }
+    .project-row:hover { padding: 20px 0; }
   }
 </style>
 
@@ -215,23 +223,34 @@ for (const [id, img] of Object.entries(imageMap)) {
 
     // Follow cursor — only active when hovering a project row
     let cachedPreviewHeight = 0;
+    let rafId = 0;
+    let loadHandler: (() => void) | null = null;
 
     document.addEventListener('mousemove', (e) => {
       if (!isHovering) return;
-      if (!cachedPreviewHeight) cachedPreviewHeight = preview.offsetHeight;
-      const pw = 280, ph = cachedPreviewHeight, pad = 24;
-      const vw = window.innerWidth, vh = window.innerHeight;
-      let left = e.clientX + pad;
-      let top  = e.clientY - ph / 2;
-      if (left + pw > vw - 8) left = e.clientX - pw - pad;
-      if (top < 8) top = 8;
-      if (top + ph > vh - 8) top = vh - ph - 8;
-      preview.style.left = left + 'px';
-      preview.style.top  = top + 'px';
+      if (rafId) return; // already queued
+      rafId = requestAnimationFrame(() => {
+        rafId = 0;
+        if (!cachedPreviewHeight) cachedPreviewHeight = preview.offsetHeight;
+        const pw = 280, ph = cachedPreviewHeight, pad = 24;
+        const vw = window.innerWidth, vh = window.innerHeight;
+        let left = e.clientX + pad;
+        let top  = e.clientY - ph / 2;
+        if (left + pw > vw - 8) left = e.clientX - pw - pad;
+        if (top < 8) top = 8;
+        if (top + ph > vh - 8) top = vh - ph - 8;
+        preview.style.left = left + 'px';
+        preview.style.top  = top + 'px';
+      });
     }, { passive: true, signal });
+
+    window.addEventListener('resize', () => {
+      cachedPreviewHeight = 0;
+    }, { signal, passive: true });
 
     window.addEventListener('scroll', () => {
       preview.classList.remove('visible');
+      isHovering = false;
     }, { signal, passive: true });
 
     document.querySelectorAll<HTMLElement>('.project-row[data-preview-src]').forEach(row => {
@@ -246,7 +265,11 @@ for (const [id, img] of Object.entries(imageMap)) {
         previewLabel.textContent = row.dataset.previewName ?? '';
         preview.classList.add('visible');
         cachedPreviewHeight = preview.offsetHeight;
-        previewImg.addEventListener('load', () => { previewImg.style.opacity = '1'; }, { once: true, signal });
+        if (loadHandler) {
+          previewImg.removeEventListener('load', loadHandler);
+        }
+        loadHandler = () => { if (isHovering) previewImg.style.opacity = '1'; };
+        previewImg.addEventListener('load', loadHandler, { once: true });
         if (previewImg.complete) previewImg.style.opacity = '1';
       }, { signal });
 

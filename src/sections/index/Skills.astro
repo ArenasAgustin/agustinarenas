@@ -1,8 +1,9 @@
 ---
 import { skills } from '../../constants/skills';
+import type { Technology } from '../../constants/technologies';
 
 // Size weights — xl=most used, sm=least
-const sizeMap: Record<string, string> = {
+const sizeMap: Partial<Record<Technology, string>> = {
   'JavaScript':  'sc-xl',
   'React':       'sc-xl',
   'TypeScript':  'sc-lg',

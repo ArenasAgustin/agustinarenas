@@ -67,8 +67,8 @@
         localStorage.setItem('theme', 'light');
       }
       // Update theme-color meta tag to reflect the new theme
-      const newThemeColor = isLight ? '#08080e' : '#f5f4fa';
-      document.getElementById('theme-color-meta')?.setAttribute('content', newThemeColor);
+      const metaThemeColor = document.getElementById('theme-color-meta');
+      if (metaThemeColor) metaThemeColor.setAttribute('content', isLight ? '#08080e' : '#f5f4fa');
       update();
     }, { signal });
 

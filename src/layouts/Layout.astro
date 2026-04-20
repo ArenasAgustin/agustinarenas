@@ -23,7 +23,7 @@ const {
   robots = "index, follow",
 } = Astro.props;
 
-const baseURL = Astro.site ?? CONTACT_INFO.site;
+const baseURL = Astro.site ?? new URL('https://agustinarenas.vercel.app');
 const canonicalURL = new URL(Astro.url.pathname, baseURL);
 const ogImageURL = new URL(image, baseURL);
 
@@ -81,7 +81,7 @@ const baseSchema = {
 <html lang="en" id="site-html">
   <head>
     <meta charset="UTF-8" />
-    <meta name="theme-color" content="#08080e" id="theme-color-meta" />
+    <meta name="theme-color" id="theme-color-meta" content="#08080e">
     <script is:inline>(function () {
   try {
     var root = document.documentElement;
@@ -91,10 +91,8 @@ const baseSchema = {
     if (!isDark) {
       root.dataset.theme = 'light';
     }
-    var meta = document.getElementById('theme-color-meta');
-    if (meta) meta.setAttribute('content', !isDark ? '#f5f4fa' : '#08080e');
-    var btn = document.getElementById('theme-toggle');
-    if (btn) btn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+    var metaThemeColor = document.getElementById('theme-color-meta');
+    if (metaThemeColor) metaThemeColor.setAttribute('content', isDark ? '#08080e' : '#f5f4fa');
   } catch (e) {}
 })();</script>
 
@@ -183,6 +181,10 @@ const baseSchema = {
 
     <script>
       document.addEventListener('astro:after-swap', () => {
+        const meta = document.getElementById('theme-color-meta');
+        if (meta) meta.setAttribute('content', document.documentElement.dataset.theme === 'light' ? '#f5f4fa' : '#08080e');
+      });
+      document.addEventListener('astro:page-load', () => {
         const main = document.getElementById('main-content');
         if (main) main.focus();
       });

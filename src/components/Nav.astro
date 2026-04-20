@@ -155,21 +155,21 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
     function closeMenu() {
       toggle?.classList.remove('open');
       navList?.classList.remove('open');
-      if (isMobile()) navList?.setAttribute('aria-hidden', 'true');
+      if (isMobile()) navList?.setAttribute('inert', '');
       if (toggle) {
         toggle.setAttribute('aria-expanded', 'false');
         toggle.setAttribute('aria-label', 'Open menu');
       }
     }
 
-    // Set correct initial aria-hidden state (hides on mobile, no attribute on desktop)
+    // Set correct initial inert state (hides on mobile, no attribute on desktop)
     closeMenu();
 
     window.addEventListener('resize', () => {
       if (!isMobile()) {
-        navList?.removeAttribute('aria-hidden');
+        navList?.removeAttribute('inert');
       } else if (!navList?.classList.contains('open')) {
-        navList?.setAttribute('aria-hidden', 'true');
+        navList?.setAttribute('inert', '');
       }
     }, { signal, passive: true });
 
@@ -181,7 +181,7 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
         } else {
           toggle.classList.add('open');
           navList.classList.add('open');
-          if (isMobile()) navList.removeAttribute('aria-hidden');
+          if (isMobile()) navList.removeAttribute('inert');
           toggle.setAttribute('aria-expanded', 'true');
           toggle.setAttribute('aria-label', 'Close menu');
         }
@@ -218,7 +218,7 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
     document.addEventListener('astro:before-swap', () => {
       closeMenu();
       _ctrl?.abort();
-    }, { once: true, signal });
+    }, { once: true });
   }
 
   document.addEventListener('astro:page-load', initNav);

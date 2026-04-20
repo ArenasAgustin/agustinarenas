@@ -213,6 +213,7 @@ const allProjects: Project[] = [
     description: "Todo app made with HTML, CSS and JavaScript.",
     technologies: [HTML, CSS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/ToDoApp2.0",
+    featured: false,
   },
   {
     id: projectsIds.todo_app,

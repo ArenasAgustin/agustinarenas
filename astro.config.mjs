@@ -1,10 +1,11 @@
 import { resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { shield } from "@kindspells/astro-shield";
 
-const rootDir = new URL(".", import.meta.url).pathname;
+const rootDir = fileURLToPath(new URL(".", import.meta.url));
 const modulePath = resolve(rootDir, "src", "generated", "sriHashes.mjs");
 
 // https://astro.build/config
@@ -29,7 +30,7 @@ export default defineConfig({
             "base-uri": "'self'",
             "form-action": "'self'",
             "object-src": "'none'",
-            "img-src": "'self' https://vitals.vercel-insights.com data:",
+            "img-src": "'self' https://vitals.vercel-insights.com",
             "style-src": "'self' https://fonts.googleapis.com",
             "font-src": "'self' https://fonts.gstatic.com",
             "connect-src": "'self' https://vitals.vercel-insights.com",

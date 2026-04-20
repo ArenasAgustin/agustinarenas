@@ -59,7 +59,10 @@ body {
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 64px 64px;
-  transition: background 0.4s, color 0.4s;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body { transition: background 0.4s, color 0.4s; }
 }
 
 /* ── FOCUS ── */
@@ -69,19 +72,21 @@ button:focus-visible {
   outline-offset: 3px;
   border-radius: 4px;
 }
-/* Suppress outline on programmatic focus of skip-link target */
-main:focus { outline: none; }
+/* Suppress outline on programmatic focus of skip-link target, preserve for keyboard users */
+main:focus:not(:focus-visible) { outline: none; }
 
 /* ── REVEAL ANIMATIONS ── */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
 }
-.reveal.visible { opacity: 1; transform: none; }
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
 
 /* ── CURSOR ── */
 .cursor {
@@ -101,9 +106,13 @@ main:focus { outline: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal { opacity: 1; transform: none; transition: none; }
   .cursor { display: none; }
-  * { transition: none !important; animation: none !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ── SHARED SECTION STYLES ── */
