@@ -23,6 +23,11 @@ overrides:
   vite: 6.4.2
   defu: 6.1.5
 
+patchedDependencies:
+  '@kindspells/astro-shield@1.7.1':
+    hash: ckbzhyntoxxm6rtasigrukpgeq
+    path: patches/@kindspells__astro-shield@1.7.1.patch
+
 importers:
 
   .:
@@ -38,7 +43,7 @@ importers:
         version: 6.0.2(astro@5.18.1(@vercel/functions@3.4.3)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.59.0)(typescript@5.9.3)(yaml@2.8.3))(tailwindcss@4.1.18)
       '@kindspells/astro-shield':
         specifier: 1.7.1
-        version: 1.7.1(astro@5.18.1(@vercel/functions@3.4.3)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.59.0)(typescript@5.9.3)(yaml@2.8.3))
+        version: 1.7.1(patch_hash=ckbzhyntoxxm6rtasigrukpgeq)(astro@5.18.1(@vercel/functions@3.4.3)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.59.0)(typescript@5.9.3)(yaml@2.8.3))
       '@tailwindcss/vite':
         specifier: 4.1.18
         version: 4.1.18(vite@6.4.2(jiti@2.6.1)(lightningcss@1.30.2)(yaml@2.8.3))
@@ -2941,7 +2946,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@kindspells/astro-shield@1.7.1(astro@5.18.1(@vercel/functions@3.4.3)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.59.0)(typescript@5.9.3)(yaml@2.8.3))':
+  '@kindspells/astro-shield@1.7.1(patch_hash=ckbzhyntoxxm6rtasigrukpgeq)(astro@5.18.1(@vercel/functions@3.4.3)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.59.0)(typescript@5.9.3)(yaml@2.8.3))':
     dependencies:
       astro: 5.18.1(@vercel/functions@3.4.3)(jiti@2.6.1)(lightningcss@1.30.2)(rollup@4.59.0)(typescript@5.9.3)(yaml@2.8.3)
 

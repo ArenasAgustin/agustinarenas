@@ -1,0 +1,20 @@
+diff --git a/dist/core.mjs b/dist/core.mjs
+index aaa09ea3297b8cf4b9d65109bfc805f87fc2e23b..93f90692707d1419604b9f2be4add61681f6f765 100644
+--- a/dist/core.mjs
++++ b/dist/core.mjs
+@@ -384,7 +384,7 @@ const C = /* @__PURE__ */ u((t) => {
+                 { method: "GET" }
+               )).arrayBuffer();
+             else if (w.startsWith("/")) {
+-              const G = o?.config.base ?? "", he = w.startsWith(G) ? w.replace(G, "") : w, de = O(e, `.${he}`);
++              const G = o?.config.base ?? "", he = w.startsWith(G) ? w.replace(G, "") : w, de = O(e, he.startsWith("/") ? he.slice(1) : he);
+               I = await M(de);
+             } else {
+               t.warn(`Unable to process external resource: "${w}"`);
+@@ -598,7 +598,7 @@ async function L(t, e, s, i) {
+   if (await A(s)) {
+     const h = await import(
+       /* @vite-ignore */
+-      s
++      process.platform === "win32" && /^[A-Za-z]:/.test(s) ? `file:///${s.replace(/\\/g, "/")}` : s
+     );
