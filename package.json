@@ -5,9 +5,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "node scripts/patch-astro-shield.mjs",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "postinstall": "node scripts/patch-astro-shield.mjs"
   },
   "dependencies": {
     "@astrojs/check": "0.9.6",
@@ -43,9 +45,6 @@
       "picomatch": "4.0.4",
       "vite": "6.4.2",
       "defu": "6.1.5"
-    },
-    "patchedDependencies": {
-      "@kindspells/astro-shield@1.7.1": "patches/@kindspells__astro-shield@1.7.1.patch"
     }
   }
 }
