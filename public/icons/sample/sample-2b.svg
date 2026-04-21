@@ -1,0 +1,10 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'>
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;display=swap');@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');</style></defs>
+  <rect width='512' height='512' rx='96' fill='#08080e'/>
+  <text x='256' y='240' text-anchor='middle' dominant-baseline='central'
+    font-family="'JetBrains Mono', monospace" font-size='148' font-weight='400'>
+    <tspan fill='#7c5cbf'>&lt;A</tspan><tspan fill='#e8e6f0'>/</tspan><tspan fill='#7c5cbf'>&gt;</tspan>
+  </text>
+  <text x='256' y='360' text-anchor='middle' dominant-baseline='central'
+    font-family="'JetBrains Mono', monospace" font-size='56' font-weight='400' fill='#7c5cbf' opacity='0.45' letter-spacing='0.12em'>ARENAS</text>
+</svg>
