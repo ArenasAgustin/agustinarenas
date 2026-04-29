@@ -2,6 +2,7 @@ import {
   BOOTSTRAP,
   CSS,
   EXPRESS,
+  GIT,
   HTML,
   JAVASCRIPT,
   JQUERY,
@@ -43,4 +44,5 @@ export const skills: Technology[] = [
   MARIADB,
   MYSQL,
   POSTGRESQL,
+  GIT,
 ];

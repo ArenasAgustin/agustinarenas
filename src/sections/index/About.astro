@@ -64,7 +64,11 @@
   .stat-cell {
     padding: 28px 24px;
     background: var(--bg);
-    transition: background 0.2s;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .stat-cell {
+      transition: background 0.2s;
+    }
   }
   .stat-cell:hover { background: var(--surface); }
   .stat-num {

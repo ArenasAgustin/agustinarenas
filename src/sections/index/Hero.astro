@@ -32,13 +32,15 @@ import { CONTACT_INFO } from '../../constants/contact';
     <div class="hero-right">
       <div class="photo-wrapper">
         <div class="photo-frame">
-          <Image
-            src={profileImg}
-            alt="Agustín Arenas — Full-Stack Developer"
-            width={520}
-            height={640}
-            loading="eager"
-          />    
+           <Image
+             src={profileImg}
+             alt="Agustín Arenas — Full-Stack Developer"
+             width={520}
+             height={640}
+             loading="eager"
+             decoding="async"
+             format="webp"
+           />
           <div class="corner corner-tl"></div>
           <div class="corner corner-br"></div>
         </div>
@@ -136,8 +138,12 @@ import { CONTACT_INFO } from '../../constants/contact';
     letter-spacing: 0.1em;
     text-transform: uppercase;
     text-decoration: none;
-    transition: all 0.2s;
     cursor: pointer;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn {
+      transition: all 0.2s;
+    }
   }
   .btn-primary {
     background: var(--accent);
@@ -181,7 +187,11 @@ import { CONTACT_INFO } from '../../constants/contact';
     object-position: top center;
     display: block;
     filter: grayscale(20%) contrast(1.05);
-    transition: filter 0.4s;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .photo-frame img {
+      transition: filter 0.4s;
+    }
   }
   .photo-frame:hover img { filter: grayscale(0%) contrast(1); }
   .photo-frame::after {

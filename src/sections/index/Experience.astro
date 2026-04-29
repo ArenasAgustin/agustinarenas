@@ -18,7 +18,7 @@ import { works } from '../../constants/works';
           </div>
           <div class="exp-content">
             <div class="exp-role">{work.title}</div>
-            <p class="exp-desc">{work.summary ?? work.description}</p>
+            <p class="exp-desc">{work.summary ?? work.description ?? ''}</p>
             {work.stack && work.stack.length > 0 && (
               <div class="tags">
                 {work.stack.map(tech => <span class="tag">{tech}</span>)}
@@ -47,7 +47,11 @@ import { works } from '../../constants/works';
     gap: 40px;
     padding: 36px 40px;
     background: var(--bg);
-    transition: background 0.2s;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .exp-row {
+      transition: background 0.2s;
+    }
   }
   .exp-row:hover { background: var(--surface); }
   .exp-meta { padding-top: 4px; }

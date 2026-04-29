@@ -115,8 +115,13 @@ import { CONTACT_INFO } from '../../constants/contact';
     border-radius: 8px;
     text-decoration: none;
     color: var(--fg);
-    transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    transition: border-color 0.2s;
     background: var(--bg2);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .contact-link {
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
   }
   .contact-link:hover {
     border-color: var(--accent);

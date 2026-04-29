@@ -18,6 +18,8 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
     }),
+    // CSP is managed entirely by astro-shield below (generates per-page hashes + vercel headers).
+    // Do NOT add a Content-Security-Policy entry in vercel.json — single source of truth here.
     shield({
       sri: {
         hashesModule: modulePath,
@@ -31,8 +33,10 @@ export default defineConfig({
             "form-action": "'self'",
             "object-src": "'none'",
             "img-src": "'self' https://vitals.vercel-insights.com",
-            "style-src": "'self' https://fonts.googleapis.com 'unsafe-inline'",
+            "style-src": "'self' https://fonts.googleapis.com",
             "font-src": "'self' https://fonts.gstatic.com",
+            // CSP hashes are automatically added by astro-shield for inline scripts
+            "script-src": "'self'",
             "connect-src": "'self' https://vitals.vercel-insights.com",
           },
         },

@@ -19,14 +19,35 @@ const homeSchema = {
       "description": "Full-Stack Developer from Argentina. Experienced in JavaScript, TypeScript, React, Node.js, and modern web technologies.",
       "isPartOf": { "@id": `${CONTACT_INFO.site}#website` },
       "about": { "@id": `${CONTACT_INFO.site}#person` },
+      "hasPart": [
+        { "@id": `${CONTACT_INFO.site}#about` },
+        { "@id": `${CONTACT_INFO.site}#experience` },
+        { "@id": `${CONTACT_INFO.site}#skills` },
+        { "@id": `${CONTACT_INFO.site}#projects` },
+        { "@id": `${CONTACT_INFO.site}#contact` }
+      ]
     },
+    {
+      "@type": "ItemList",
+      "@id": `${CONTACT_INFO.site}#experience`,
+      "name": "Work Experience",
+      "description": "Professional experience of Agustín Arenas as a Software Developer.",
+      "itemListElement": [] // Se puede poblar dinámicamente con datos reales
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${CONTACT_INFO.site}#projects`,
+      "name": "Projects",
+      "description": "Open-source and professional projects developed by Agustín Arenas.",
+      "itemListElement": [] // Se puede poblar dinámicamente con datos reales
+    }
   ],
 };
 ---
 
 <Layout
-  title="Agustín Arenas — Software Developer"
-  description="Full-Stack Developer based in Argentina. Building scalable web products with TypeScript, React, Node.js, and more."
+  title="Agustín Arenas — Full-Stack Developer | My Portfolio"
+  description="Full-Stack Developer from Argentina. TypeScript, React, Node.js. Projects, work experience, and open-source contributions. Available for new opportunities."
   image="/img/meta-home.webp"
   schema={homeSchema}
 >
