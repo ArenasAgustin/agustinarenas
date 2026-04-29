@@ -1,0 +1,37 @@
+---
+const key = Astro.props.key || 'default';
+---
+
+<script is:inline>
+  const controllerMap = new Map();
+
+  function getController(key) {
+    let controller = controllerMap.get(key);
+    if (!controller) {
+      controller = new AbortController();
+      controllerMap.set(key, controller);
+    }
+    return controller;
+  }
+
+  function abortController(key) {
+    const controller = controllerMap.get(key);
+    if (controller) {
+      controller.abort();
+      controllerMap.delete(key);
+    }
+  }
+
+  // Initialize controller for this component
+  const controller = getController('{key}');
+
+  // Expose getController to window for global access
+  window.getController = getController;
+
+  // Cleanup on page unload
+  document.addEventListener('astro:before-swap', () => {
+    abortController('{key}');
+  });
+</script>
+
+<slot />

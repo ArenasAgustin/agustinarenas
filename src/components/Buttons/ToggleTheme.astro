@@ -2,6 +2,7 @@
   id="theme-toggle"
   class="theme-toggle"
   aria-label="Switch to light theme"
+  aria-pressed="false"
 >
   <svg id="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -21,8 +22,8 @@
 
 <style>
   .theme-toggle {
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
     border: 1px solid var(--border2);
     border-radius: 8px;
     background: transparent;
@@ -37,24 +38,23 @@
 </style>
 
 <script>
-  let _ctrl: AbortController | null = null;
-
-  function initTheme() {
-    if (_ctrl) _ctrl.abort();
-    _ctrl = new AbortController();
-    const { signal } = _ctrl;
-
-    const btn = document.getElementById('theme-toggle');
-    const moon = document.getElementById('icon-moon');
-    const sun = document.getElementById('icon-sun');
+  function initTheme(signal: AbortSignal) {
+    const btn = document.getElementById('theme-toggle') as HTMLButtonElement | null;
+    const moon = document.getElementById('icon-moon') as SVGSVGElement | null;
+    const sun = document.getElementById('icon-sun') as SVGSVGElement | null;
     if (!btn || !moon || !sun) return;
 
     function update() {
       const isLight = document.documentElement.dataset.theme === 'light';
-      (moon as HTMLElement).style.display = isLight ? 'none' : '';
-      (sun as HTMLElement).style.display = isLight ? '' : 'none';
-      (btn as HTMLElement).setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+      if (moon) moon.style.display = isLight ? 'none' : '';
+      if (sun) sun.style.display = isLight ? '' : 'none';
+      if (btn) {
+        btn.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+        btn.setAttribute('aria-pressed', isLight.toString());
+      }
     }
+
+    update();
 
     btn.addEventListener('click', () => {
       const root = document.documentElement;
@@ -66,14 +66,15 @@
         root.dataset.theme = 'light';
         localStorage.setItem('theme', 'light');
       }
-      // Update theme-color meta tag to reflect the new theme
       const metaThemeColor = document.getElementById('theme-color-meta');
       if (metaThemeColor) metaThemeColor.setAttribute('content', isLight ? '#08080e' : '#f5f4fa');
       update();
     }, { signal });
-
-    update();
   }
 
-  document.addEventListener('astro:page-load', initTheme);
+  document.addEventListener('astro:page-load', () => {
+    // @ts-ignore - getController is injected by EventController
+    const controller = window.getController('theme-toggle');
+    initTheme(controller.signal);
+  });
 </script>

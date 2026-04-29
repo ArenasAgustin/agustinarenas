@@ -1,5 +1,6 @@
 ---
 import { getImage } from 'astro:assets';
+
 import { projects } from '../../constants/projects';
 
 import webtoolsImg    from '../../assets/webtools.webp';
@@ -67,7 +68,7 @@ for (const [id, img] of Object.entries(imageMap)) {
   </div>
   <!-- Floating preview — position: fixed, last child so it doesn't affect layout -->
   <div id="proj-preview" aria-hidden="true">
-    <img id="proj-preview-img" alt="" width="280" height="170" loading="lazy" />
+    <img id="proj-preview-img" alt="Project preview" aria-hidden="true" width="280" height="170" loading="lazy" />
     <div class="preview-label" id="proj-preview-label"></div>
   </div>
 </section>
@@ -92,13 +93,17 @@ for (const [id, img] of Object.entries(imageMap)) {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
-  #proj-preview img {
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
-    display: block;
-    transition: opacity 0.15s ease;
-  }
+   #proj-preview img {
+     width: 100%;
+     height: 170px;
+     object-fit: cover;
+     display: block;
+     transition: opacity 0.15s ease, filter 0.3s ease;
+     filter: grayscale(20%) contrast(1.05);
+   }
+   #proj-preview:hover img {
+     filter: grayscale(0%) contrast(1);
+   }
   #proj-preview .preview-label {
     font-family: var(--mono);
     font-size: 10px;
@@ -192,7 +197,7 @@ for (const [id, img] of Object.entries(imageMap)) {
   }
   .proj-link.demo:hover { background: var(--accent2); border-color: var(--accent2); }
 
-  @media (max-width: 900px) {
+  @media (max-width: 768px) {
     #proj-preview { display: none; }
     .section { padding: 60px 20px; }
     .project-row {
@@ -207,81 +212,99 @@ for (const [id, img] of Object.entries(imageMap)) {
 </style>
 
 <script>
-  let _ctrl: AbortController | null = null;
   let isHovering = false;
 
-  function initPreviews() {
-    isHovering = false;
-    if (_ctrl) _ctrl.abort();
-    _ctrl = new AbortController();
-    const { signal } = _ctrl;
+   function initPreviews() {
+     let isHovering = false;
+     let isPreviewHovered = false;
+     let rafId = 0;
+     let closeTimeout: number | null = null;
 
-    const preview = document.getElementById('proj-preview');
-    const previewImg = document.getElementById('proj-preview-img') as HTMLImageElement | null;
-    const previewLabel = document.getElementById('proj-preview-label');
-    if (!preview || !previewImg || !previewLabel) return;
+     const preview = document.getElementById('proj-preview');
+     const previewImg = document.getElementById('proj-preview-img') as HTMLImageElement | null;
+     const previewLabel = document.getElementById('proj-preview-label');
+     if (!preview || !previewImg || !previewLabel) return;
 
-    // Follow cursor — only active when hovering a project row
-    let cachedPreviewHeight = 0;
-    let rafId = 0;
-    let loadHandler: (() => void) | null = null;
+     // Hide preview on scroll (if not hovering)
+     window.addEventListener('scroll', () => {
+       if (!isHovering && !isPreviewHovered) {
+         preview.classList.remove('visible');
+       }
+     }, { passive: true });
 
-    document.addEventListener('mousemove', (e) => {
-      if (!isHovering) return;
-      if (rafId) return; // already queued
-      rafId = requestAnimationFrame(() => {
-        rafId = 0;
-        if (!cachedPreviewHeight) cachedPreviewHeight = preview.offsetHeight;
-        const pw = 280, ph = cachedPreviewHeight, pad = 24;
-        const vw = window.innerWidth, vh = window.innerHeight;
-        let left = e.clientX + pad;
-        let top  = e.clientY - ph / 2;
-        if (left + pw > vw - 8) left = e.clientX - pw - pad;
-        if (top < 8) top = 8;
-        if (top + ph > vh - 8) top = vh - ph - 8;
-        preview.style.left = left + 'px';
-        preview.style.top  = top + 'px';
-      });
-    }, { passive: true, signal });
+     // Follow cursor
+     document.addEventListener('mousemove', (e) => {
+       if (!isHovering && !isPreviewHovered) return;
+       if (rafId) cancelAnimationFrame(rafId);
+       rafId = requestAnimationFrame(() => {
+         const pw = 280;
+         const ph = preview.offsetHeight;
+         const pad = 24;
+         const vw = window.innerWidth;
+         const vh = window.innerHeight;
+         let left = e.clientX + pad;
+         let top = e.clientY - ph / 2;
 
-    window.addEventListener('resize', () => {
-      cachedPreviewHeight = 0;
-    }, { signal, passive: true });
+         // Adjust position if near edges
+         if (left + pw > vw - 8) left = e.clientX - pw - pad;
+         if (top < 8) top = 8;
+         if (top + ph > vh - 8) top = vh - ph - 8;
 
-    window.addEventListener('scroll', () => {
-      preview.classList.remove('visible');
-      isHovering = false;
-    }, { signal, passive: true });
+         preview.style.left = `${left}px`;
+         preview.style.top = `${top}px`;
+       });
+     }, { passive: true });
 
-    document.querySelectorAll<HTMLElement>('.project-row[data-preview-src]').forEach(row => {
-      row.addEventListener('mouseenter', () => {
-        const src = row.dataset.previewSrc ?? '';
-        if (!src) return;
-        isHovering = true;
-        previewImg.style.opacity = '0';
-        previewImg.src = src;
-        const name = row.querySelector('.proj-name')?.textContent ?? 'Project preview';
-        previewImg.setAttribute('alt', `Preview of ${name}`);
-        previewLabel.textContent = row.dataset.previewName ?? '';
-        preview.classList.add('visible');
-        cachedPreviewHeight = preview.offsetHeight;
-        if (loadHandler) {
-          previewImg.removeEventListener('load', loadHandler);
-        }
-        loadHandler = () => { if (isHovering) previewImg.style.opacity = '1'; };
-        previewImg.addEventListener('load', loadHandler, { once: true });
-        if (previewImg.complete) previewImg.style.opacity = '1';
-      }, { signal });
+     // Handle project rows
+     const rows = document.querySelectorAll<HTMLElement>('.project-row');
+     rows.forEach(row => {
+       row.addEventListener('mouseenter', () => {
+         if (closeTimeout) {
+           clearTimeout(closeTimeout);
+           closeTimeout = null;
+         }
+         isHovering = true;
+         if (row.dataset.previewSrc) {
+           previewImg.src = row.dataset.previewSrc;
+           previewImg.alt = `Preview of ${row.dataset.previewName}`;
+           previewLabel.textContent = row.dataset.previewName || '';
+           preview.classList.add('visible');
+         }
+       });
 
-      row.addEventListener('mouseleave', () => {
-        isHovering = false;
-        preview.classList.remove('visible');
-        previewImg.alt = '';
-      }, { signal });
-    });
+       row.addEventListener('mouseleave', () => {
+         isHovering = false;
+         closeTimeout = window.setTimeout(() => {
+           if (!isPreviewHovered) {
+             preview.classList.remove('visible');
+           }
+         }, 300); // Delay to allow mouse to enter preview
+       });
+     });
 
-    document.addEventListener('astro:before-swap', () => _ctrl?.abort(), { once: true, signal });
-  }
+     // Handle preview hover
+     preview.addEventListener('mouseenter', () => {
+       if (closeTimeout) {
+         clearTimeout(closeTimeout);
+         closeTimeout = null;
+       }
+       isPreviewHovered = true;
+     });
+
+     preview.addEventListener('mouseleave', () => {
+       isPreviewHovered = false;
+       if (!isHovering) {
+         preview.classList.remove('visible');
+       }
+     });
+
+     // Cleanup
+     document.addEventListener('astro:before-swap', () => {
+       preview.classList.remove('visible');
+       if (rafId) cancelAnimationFrame(rafId);
+       if (closeTimeout) clearTimeout(closeTimeout);
+     }, { once: true });
+   }
 
   document.addEventListener('astro:page-load', initPreviews);
 </script>

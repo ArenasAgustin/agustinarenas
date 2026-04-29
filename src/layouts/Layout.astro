@@ -4,6 +4,7 @@ import Footer from "@/components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
 import "@/styles/global.css";
 import { CONTACT_INFO } from "@/constants/contact";
+import EventController from "@/components/utils/EventController.astro";
 
 interface Props {
   title?: string;
@@ -93,7 +94,7 @@ const baseSchema = {
     }
     var metaThemeColor = document.getElementById('theme-color-meta');
     if (metaThemeColor) metaThemeColor.setAttribute('content', isDark ? '#08080e' : '#f5f4fa');
-  } catch (e) {}
+  } catch (e) { console.warn('[theme] Failed to read theme preference:', e); }
 })();</script>
 
     <link
@@ -106,9 +107,17 @@ const baseSchema = {
       crossorigin
     />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
+      onload="this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <title>{title}</title>
     <meta name="author" content="Agustín Arenas" />
@@ -127,13 +136,6 @@ const baseSchema = {
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/webp" />
     <meta property="og:image:alt" content={imageAlt} />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={canonicalURL} />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImageURL} />
-    <meta name="twitter:image:alt" content={imageAlt} />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -180,39 +182,45 @@ const baseSchema = {
     <ClientRouter />
 
     <script>
-      document.addEventListener('astro:after-swap', () => {
-        const meta = document.getElementById('theme-color-meta');
-        if (meta) meta.setAttribute('content', document.documentElement.dataset.theme === 'light' ? '#f5f4fa' : '#08080e');
-      });
-      document.addEventListener('astro:page-load', () => {
+      function initLayout() {
         const main = document.getElementById('main-content');
         if (main) main.focus();
-      });
+      }
+
+      document.addEventListener('astro:page-load', initLayout);
     </script>
   </head>
 
   <body>
-    <a href="#main-content" class="sr-only">Skip to main content</a>
-    <Nav />
+    <EventController key="layout">
+      <a href="#main-content" class="sr-only">Skip to main content</a>
+      <Nav />
 
-    <slot />
-    <Footer />
+      <slot />
+      <Footer />
+    </EventController>
 
     <script>
       function initReveal() {
+        let revealObserver: IntersectionObserver | null = null;
+
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        const observer = new IntersectionObserver((entries) => {
+        revealObserver = new IntersectionObserver((entries) => {
           entries.forEach(el => {
             if (el.isIntersecting) {
               el.target.classList.add('visible');
-              observer.unobserve(el.target);
+              revealObserver?.unobserve(el.target);
             }
           });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        document.addEventListener('astro:before-swap', () => observer.disconnect(), { once: true });
+        document.querySelectorAll('.reveal').forEach(el => revealObserver!.observe(el));
+        document.addEventListener('astro:before-swap', () => {
+          revealObserver?.disconnect();
+          revealObserver = null;
+        });
       }
       document.addEventListener('astro:page-load', initReveal);
     </script>
+
   </body>
 </html>
