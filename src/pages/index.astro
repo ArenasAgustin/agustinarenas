@@ -7,6 +7,24 @@ import Skills from '../sections/index/Skills.astro';
 import Projects from '../sections/index/Projects.astro';
 import Contact from '../sections/index/Contact.astro';
 import { CONTACT_INFO } from '../constants/contact';
+import { projects } from '../constants/projects';
+import { works } from '../constants/works';
+
+const projectItems = projects.map((p, i) => ({
+  "@type": "ListItem",
+  "position": i + 1,
+  "name": p.name,
+  ...(p.deployedUrl || p.repositoryUrl
+    ? { "url": p.deployedUrl ?? p.repositoryUrl }
+    : {}),
+}));
+
+const workItems = works.map((w, i) => ({
+  "@type": "ListItem",
+  "position": i + 1,
+  "name": w.subtitle,
+  "description": w.description,
+}));
 
 const homeSchema = {
   "@context": "https://schema.org",
@@ -32,14 +50,14 @@ const homeSchema = {
       "@id": `${CONTACT_INFO.site}#experience`,
       "name": "Work Experience",
       "description": "Professional experience of Agustín Arenas as a Software Developer.",
-      "itemListElement": [] // Se puede poblar dinámicamente con datos reales
+      "itemListElement": workItems
     },
     {
       "@type": "ItemList",
       "@id": `${CONTACT_INFO.site}#projects`,
       "name": "Projects",
       "description": "Open-source and professional projects developed by Agustín Arenas.",
-      "itemListElement": [] // Se puede poblar dinámicamente con datos reales
+      "itemListElement": projectItems
     }
   ],
 };

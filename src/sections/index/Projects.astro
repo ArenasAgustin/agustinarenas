@@ -3,30 +3,11 @@ import { getImage } from 'astro:assets';
 
 import { projects } from '../../constants/projects';
 
-import webtoolsImg    from '../../assets/webtools.webp';
-import brainGamesImg  from '../../assets/brain_games_es.webp';
-import waveMusicImg   from '../../assets/wave_music.webp';
-import blackparadoxImg from '../../assets/blackparadox.webp';
-import jsBenchmarkImg from '../../assets/js_benchmark.webp';
-import morseDecoderImg from '../../assets/morse_decoder.webp';
-import urlShortenerImg from '../../assets/url_shortener.webp';
-import cinemaImg      from '../../assets/cinema.webp';
-
-const imageMap: Record<string, ImageMetadata> = {
-  webdev_tools:   webtoolsImg,
-  brain_games_es: brainGamesImg,
-  wave_music:     waveMusicImg,
-  blackparadox:   blackparadoxImg,
-  js_benchmark:   jsBenchmarkImg,
-  morse_decoder:  morseDecoderImg,
-  url_shortener:  urlShortenerImg,
-  cinema:         cinemaImg,
-};
-
 const previewSrcs: Record<string, string> = {};
-for (const [id, img] of Object.entries(imageMap)) {
-  const optimized = await getImage({ src: img, width: 280, height: 170, format: 'webp' });
-  previewSrcs[id] = optimized.src;
+for (const project of projects) {
+  if (!project.image) continue;
+  const optimized = await getImage({ src: project.image, width: 280, height: 170, format: 'webp' });
+  previewSrcs[project.id] = optimized.src;
 }
 ---
 
@@ -212,8 +193,6 @@ for (const [id, img] of Object.entries(imageMap)) {
 </style>
 
 <script>
-  let isHovering = false;
-
    function initPreviews() {
      let isHovering = false;
      let isPreviewHovered = false;

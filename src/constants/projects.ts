@@ -1,3 +1,4 @@
+import type { ImageMetadata } from 'astro';
 import {
   BOOTSTRAP,
   CSS,
@@ -20,6 +21,15 @@ import {
   type Technology,
 } from "./technologies";
 
+import webtoolsImg      from '../assets/webtools.webp';
+import brainGamesImg    from '../assets/brain_games_es.webp';
+import waveMusicImg     from '../assets/wave_music.webp';
+import blackparadoxImg  from '../assets/blackparadox.webp';
+import jsBenchmarkImg   from '../assets/js_benchmark.webp';
+import morseDecoderImg  from '../assets/morse_decoder.webp';
+import urlShortenerImg  from '../assets/url_shortener.webp';
+import cinemaImg        from '../assets/cinema.webp';
+
 export interface Project {
   id: string;
   name: string;
@@ -28,6 +38,7 @@ export interface Project {
   repositoryUrl?: string;
   deployedUrl?: string;
   featured?: boolean;
+  image?: ImageMetadata;
 }
 
 const projectsIds = {
@@ -76,6 +87,7 @@ const allProjects: Project[] = [
     repositoryUrl: "https://github.com/ArenasAgustin/webdev.tools",
     deployedUrl: "https://arenas-webtools.vercel.app/",
     featured: true,
+    image: webtoolsImg,
   },
   {
     id: projectsIds.brain_games_es,
@@ -86,6 +98,7 @@ const allProjects: Project[] = [
     repositoryUrl: "https://github.com/ArenasAgustin/brain-games",
     deployedUrl: "https://brain-games.vercel.app/",
     featured: true,
+    image: brainGamesImg,
   },
   {
     id: projectsIds.brain_games_es_api,
@@ -103,6 +116,7 @@ const allProjects: Project[] = [
     technologies: [JAVASCRIPT, CSS, REACT, NODE, MONGODB],
     repositoryUrl: "https://github.com/ArenasAgustin/Repo-para-PG",
     featured: true,
+    image: waveMusicImg,
   },
   {
     id: projectsIds.blackparadox,
@@ -112,6 +126,7 @@ const allProjects: Project[] = [
     technologies: [PHP, HTML, SASS, JAVASCRIPT],
     repositoryUrl: "https://github.com/ArenasAgustin/blackparadox",
     featured: true,
+    image: blackparadoxImg,
   },
   {
     id: projectsIds.js_benchmark,
@@ -122,6 +137,7 @@ const allProjects: Project[] = [
     repositoryUrl: "https://github.com/ArenasAgustin/benchmarck",
     deployedUrl: "https://arenasagustin.github.io/benchmarck/",
     featured: true,
+    image: jsBenchmarkImg,
   },
   {
     id: projectsIds.morse_decoder,
@@ -132,6 +148,7 @@ const allProjects: Project[] = [
     repositoryUrl: "https://github.com/ArenasAgustin/morse",
     deployedUrl: "https://morsetranslator.vercel.app/",
     featured: true,
+    image: morseDecoderImg,
   },
   {
     id: projectsIds.url_shortener,
@@ -141,6 +158,7 @@ const allProjects: Project[] = [
     technologies: [TYPESCRIPT, REACT, TAILWIND, POSTGRESQL, NEXT],
     repositoryUrl: "https://github.com/ArenasAgustin/url-shortener",
     featured: true,
+    image: urlShortenerImg,
   },
   {
     id: projectsIds.cinema,
@@ -150,6 +168,7 @@ const allProjects: Project[] = [
     technologies: [PHP, LARAVEL, BOOTSTRAP, JAVASCRIPT, MYSQL],
     repositoryUrl: "https://github.com/ArenasAgustin/cinema-app",
     featured: true,
+    image: cinemaImg,
   },
   {
     id: projectsIds.old_portfolio,
