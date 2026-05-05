@@ -15,6 +15,8 @@
   --grid-color: rgba(100,80,200,0.06);
   --mono:       'JetBrains Mono', monospace;
   --sans:       'Space Grotesk', sans-serif;
+  --error:      #ef4444;
+  --success:    #10b981;
 }
 
 @supports (color: oklch(0% 0 0)) {
@@ -75,6 +77,65 @@ button:focus-visible {
 /* Suppress outline on programmatic focus of skip-link target, preserve for keyboard users */
 main:focus:not(:focus-visible) { outline: none; }
 
+/* ── BUTTONS ── */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.button-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.button-primary:hover {
+  background: var(--accent2);
+}
+
+.button-secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.button-secondary:hover {
+  background: var(--surface);
+}
+
+.button-error {
+  background: var(--error);
+  color: white;
+}
+
+.button-error:hover {
+  background: #dc2626;
+}
+
+.button-success {
+  background: var(--success);
+  color: white;
+}
+
+.button-success:hover {
+  background: #059669;
+}
+
+/* Focus styles for all buttons */
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
 /* ── REVEAL ANIMATIONS ── */
 @media (prefers-reduced-motion: no-preference) {
   .reveal {
@@ -120,13 +181,33 @@ main:focus:not(:focus-visible) { outline: none; }
   }
 }
 
+/* ── CARDS ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card:focus-within {
+  border-color: var(--accent);
+}
+
 /* ── SHARED SECTION STYLES ── */
 .section { max-width: 1200px; margin: 0 auto; padding: 80px 48px; }
-.section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }
+.section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem; }
 .section-num { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; color: var(--accent); white-space: nowrap; }
 .section-title { font-size: clamp(28px, 4vw, 42px); font-weight: 700; white-space: nowrap; }
 .section-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--border2), transparent); }
 @media (max-width: 768px) { .section { padding: 60px 20px; } }
+
+
 
 /* ── UTILITY ── */
 .sr-only {
