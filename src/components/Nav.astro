@@ -2,10 +2,11 @@
 import ToggleTheme from './Buttons/ToggleTheme.astro';
 ---
 
-<nav id="navbar" aria-label="Main navigation">
+<header>
+  <nav id="navbar" aria-label="Main navigation">
   {/* TODO: replace text with logo SVG once design is chosen from public/icons/sample/ */}
   <a class="nav-logo" href="/">AA.dev</a>
-  <button id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links-list">
+  <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-list">
     <span></span>
     <span></span>
     <span></span>
@@ -19,6 +20,7 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
     <li><ToggleTheme /></li>
   </ul>
 </nav>
+</header>
 
 <style>
   nav {
