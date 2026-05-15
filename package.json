@@ -10,22 +10,27 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "0.9.6",
+    "@astrojs/check": "0.9.9",
     "@astrojs/sitemap": "3.7.2",
     "@vercel/analytics": "1.6.1",
-    "astro": "5.18.1",
+    "astro": "6.3.1",
+    "fast-uri": "3.1.2",
     "sharp": "0.34.5",
     "tailwindcss": "^4.0.0",
-    "typescript": "5.9.3"
+    "typescript": "6.0.3",
+    "yaml": "2.8.3"
   },
   "devDependencies": {
-    "@astrojs/vercel": "10.0.2",
-    "@tailwindcss/vite": "^4.0.0",
-    "postcss": "8.4.24",
-    "vite": "6.4.2"
+    "@astrojs/vercel": "10.0.6",
+    "@tailwindcss/vite": "^4.3.0",
+    "postcss": "8.5.14",
+    "vite": "8.0.12"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "sharp"],
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ],
     "overrides": {
       "cross-spawn": "7.0.5",
       "mdast-util-to-hast": "13.2.1",
@@ -34,7 +39,7 @@
       "h3": "1.15.9",
       "tar": "7.5.11",
       "ajv": "8.18.0",
-      "devalue": "5.6.4",
+      "devalue": "5.8.1",
       "diff": "8.0.3",
       "lodash": "4.17.23",
       "minimatch": "10.2.3",
@@ -44,7 +49,15 @@
       "picomatch": "4.0.4",
       "vite": "6.4.2",
       "defu": "6.1.5",
-      "postcss": "8.5.10"
+      "postcss": "8.5.14",
+      "fast-uri": "3.1.2"
+    },
+    "patchedDependencies": {
+      "@astrojs/language-server@2.16.7": "patches/@astrojs__language-server@2.16.7.patch"
     }
+  },
+  "resolutions": {
+    "fast-uri": "3.1.2",
+    "yaml": "2.8.3"
   }
 }
