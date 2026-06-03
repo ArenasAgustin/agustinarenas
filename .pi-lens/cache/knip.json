@@ -1,0 +1,252 @@
+{
+  "success": true,
+  "issues": [
+    {
+      "type": "dependency",
+      "name": "@vercel/analytics",
+      "file": "package.json",
+      "line": 15
+    },
+    {
+      "type": "dependency",
+      "name": "fast-uri",
+      "file": "package.json",
+      "line": 17
+    },
+    {
+      "type": "dependency",
+      "name": "yaml",
+      "file": "package.json",
+      "line": 20
+    },
+    {
+      "type": "devDependency",
+      "name": "@astrojs/vercel",
+      "file": "package.json",
+      "line": 24
+    },
+    {
+      "type": "devDependency",
+      "name": "postcss",
+      "file": "package.json",
+      "line": 25
+    },
+    {
+      "type": "devDependency",
+      "name": "vite",
+      "file": "package.json",
+      "line": 27
+    },
+    {
+      "type": "export",
+      "name": "SOCIAL_LINKS",
+      "file": "src/constants/contact.ts",
+      "line": 11
+    },
+    {
+      "type": "export",
+      "name": "FEATURED_PROJECTS_COUNT",
+      "file": "src/constants/projects.ts",
+      "line": 346
+    },
+    {
+      "type": "export",
+      "name": "allProjectsList",
+      "file": "src/constants/projects.ts",
+      "line": 347
+    },
+    {
+      "type": "export",
+      "name": "Project",
+      "file": "src/constants/projects.ts",
+      "line": 33
+    },
+    {
+      "type": "export",
+      "name": "PYTHON",
+      "file": "src/constants/technologies.ts",
+      "line": 12
+    },
+    {
+      "type": "export",
+      "name": "ASTRO",
+      "file": "src/constants/technologies.ts",
+      "line": 21
+    },
+    {
+      "type": "export",
+      "name": "ANGULAR",
+      "file": "src/constants/technologies.ts",
+      "line": 23
+    },
+    {
+      "type": "export",
+      "name": "FIREBASE",
+      "file": "src/constants/technologies.ts",
+      "line": 32
+    },
+    {
+      "type": "export",
+      "name": "HEROKU",
+      "file": "src/constants/technologies.ts",
+      "line": 33
+    },
+    {
+      "type": "export",
+      "name": "VERCEL",
+      "file": "src/constants/technologies.ts",
+      "line": 34
+    },
+    {
+      "type": "export",
+      "name": "FIGMA",
+      "file": "src/constants/technologies.ts",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "GITHUB",
+      "file": "src/constants/technologies.ts",
+      "line": 38
+    },
+    {
+      "type": "export",
+      "name": "GITLAB",
+      "file": "src/constants/technologies.ts",
+      "line": 39
+    },
+    {
+      "type": "export",
+      "name": "Work",
+      "file": "src/constants/works.ts",
+      "line": 20
+    }
+  ],
+  "unusedExports": [
+    {
+      "type": "export",
+      "name": "SOCIAL_LINKS",
+      "file": "src/constants/contact.ts",
+      "line": 11
+    },
+    {
+      "type": "export",
+      "name": "FEATURED_PROJECTS_COUNT",
+      "file": "src/constants/projects.ts",
+      "line": 346
+    },
+    {
+      "type": "export",
+      "name": "allProjectsList",
+      "file": "src/constants/projects.ts",
+      "line": 347
+    },
+    {
+      "type": "export",
+      "name": "Project",
+      "file": "src/constants/projects.ts",
+      "line": 33
+    },
+    {
+      "type": "export",
+      "name": "PYTHON",
+      "file": "src/constants/technologies.ts",
+      "line": 12
+    },
+    {
+      "type": "export",
+      "name": "ASTRO",
+      "file": "src/constants/technologies.ts",
+      "line": 21
+    },
+    {
+      "type": "export",
+      "name": "ANGULAR",
+      "file": "src/constants/technologies.ts",
+      "line": 23
+    },
+    {
+      "type": "export",
+      "name": "FIREBASE",
+      "file": "src/constants/technologies.ts",
+      "line": 32
+    },
+    {
+      "type": "export",
+      "name": "HEROKU",
+      "file": "src/constants/technologies.ts",
+      "line": 33
+    },
+    {
+      "type": "export",
+      "name": "VERCEL",
+      "file": "src/constants/technologies.ts",
+      "line": 34
+    },
+    {
+      "type": "export",
+      "name": "FIGMA",
+      "file": "src/constants/technologies.ts",
+      "line": 36
+    },
+    {
+      "type": "export",
+      "name": "GITHUB",
+      "file": "src/constants/technologies.ts",
+      "line": 38
+    },
+    {
+      "type": "export",
+      "name": "GITLAB",
+      "file": "src/constants/technologies.ts",
+      "line": 39
+    },
+    {
+      "type": "export",
+      "name": "Work",
+      "file": "src/constants/works.ts",
+      "line": 20
+    }
+  ],
+  "unusedFiles": [],
+  "unusedDeps": [
+    {
+      "type": "dependency",
+      "name": "@vercel/analytics",
+      "file": "package.json",
+      "line": 15
+    },
+    {
+      "type": "dependency",
+      "name": "fast-uri",
+      "file": "package.json",
+      "line": 17
+    },
+    {
+      "type": "dependency",
+      "name": "yaml",
+      "file": "package.json",
+      "line": 20
+    },
+    {
+      "type": "devDependency",
+      "name": "@astrojs/vercel",
+      "file": "package.json",
+      "line": 24
+    },
+    {
+      "type": "devDependency",
+      "name": "postcss",
+      "file": "package.json",
+      "line": 25
+    },
+    {
+      "type": "devDependency",
+      "name": "vite",
+      "file": "package.json",
+      "line": 27
+    }
+  ],
+  "unlistedDeps": [],
+  "summary": "Found 20 issues"
+}

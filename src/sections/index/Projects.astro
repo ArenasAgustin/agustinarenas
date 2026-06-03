@@ -6,7 +6,7 @@ import { projects } from '../../constants/projects';
 const previewSrcs: Record<string, string> = {};
 for (const project of projects) {
   if (!project.image) continue;
-  const optimized = await getImage({ src: project.image, width: 280, height: 170, format: 'webp' });
+  const optimized = await getImage({ src: project.image, width: 500, format: 'webp' });
   previewSrcs[project.id] = optimized.src;
 }
 ---
