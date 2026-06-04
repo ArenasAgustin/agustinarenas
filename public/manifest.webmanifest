@@ -37,7 +37,13 @@
             "src": "/icons/favicon-192x192.png",
             "type": "image/png",
             "sizes": "192x192",
-            "purpose": "any maskable"
+            "purpose": "any"
+        },
+        {
+            "src": "/icons/favicon-192x192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "maskable"
         },
         {
             "src": "/icons/favicon-384x384.png",
@@ -55,6 +61,6 @@
     "scope": "/",
     "start_url": "/?source=pwa",
     "display": "standalone",
-    "theme_color": "#262626",
-    "background_color": "#262626"
+    "theme_color": "#08080e",
+    "background_color": "#08080e"
 }

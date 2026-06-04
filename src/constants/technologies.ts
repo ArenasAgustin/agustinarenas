@@ -9,7 +9,7 @@ export const BOOTSTRAP = "Bootstrap" as const;
 export const JAVASCRIPT = "JavaScript" as const;
 export const TYPESCRIPT = "TypeScript" as const;
 export const PHP = "PHP" as const;
-export const PYTHON = "Python" as const;
+export const PYTHON = "Python" as const; // Unused — kept for future use
 export const SOLIDITY = "Solidity" as const;
 
 export const JQUERY = "jQuery" as const;
@@ -18,9 +18,9 @@ export const WEB3 = "Web3.js" as const;
 export const NODE = "Node.js" as const;
 export const EXPRESS = "Express" as const;
 export const SEQUELIZE = "Sequelize" as const;
-export const ASTRO = "Astro" as const;
+export const ASTRO = "Astro" as const; // Unused — kept for future use
 export const REACT = "React" as const;
-export const ANGULAR = "Angular" as const;
+export const ANGULAR = "Angular" as const; // Unused — kept for future use
 export const NEXT = "Next.js" as const;
 export const LARAVEL = "Laravel" as const;
 
@@ -29,14 +29,14 @@ export const MYSQL = "MySQL" as const;
 export const MARIADB = "MariaDB" as const;
 export const POSTGRESQL = "PostgreSQL" as const;
 
-export const FIREBASE = "Firebase" as const;
-export const HEROKU = "Heroku" as const;
-export const VERCEL = "Vercel" as const;
+export const FIREBASE = "Firebase" as const; // Unused — kept for future use
+export const HEROKU = "Heroku" as const; // Unused — kept for future use
+export const VERCEL = "Vercel" as const; // Unused — kept for future use
 
-export const FIGMA = "Figma" as const;
+export const FIGMA = "Figma" as const; // Unused — kept for future use
 export const GIT = "Git" as const;
-export const GITHUB = "GitHub" as const;
-export const GITLAB = "GitLab" as const;
+export const GITHUB = "GitHub" as const; // Unused — kept for future use
+export const GITLAB = "GitLab" as const; // Unused — kept for future use
 
 export type Technology =
   | typeof HTML

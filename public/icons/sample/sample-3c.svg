@@ -1,0 +1,9 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'>
+  <defs><style>@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&amp;display=swap');@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap');</style></defs>
+  <rect width='512' height='512' rx='96' fill='#08080e'/>
+  <!-- solo TL + BR como en el hero -->
+  <path d='M68 188 L68 68 L188 68' fill='none' stroke='#7c5cbf' stroke-width='12' stroke-linecap='square'/>
+  <path d='M444 324 L444 444 L324 444' fill='none' stroke='#7c5cbf' stroke-width='12' stroke-linecap='square'/>
+  <text x='256' y='270' text-anchor='middle' dominant-baseline='central'
+    font-family="'Space Grotesk', sans-serif" font-size='240' font-weight='700' fill='#e8e6f0'>A</text>
+</svg>

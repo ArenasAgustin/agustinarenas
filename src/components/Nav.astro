@@ -1,0 +1,227 @@
+---
+import ToggleTheme from './Buttons/ToggleTheme.astro';
+// TODO: replace nav-logo text with logo SVG once design is chosen from public/icons/sample/
+---
+
+<header>
+  <nav id="navbar" aria-label="Main navigation">
+  <a class="nav-logo" href="/">AA.dev</a>
+  <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-list">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <ul class="nav-links" id="nav-links-list" aria-live="polite">
+    <li><a href="#about-section" aria-label="Go to About section">about</a></li>
+    <li><a href="#experience-section" aria-label="Go to Experience section">experience</a></li>
+    <li><a href="#skills-section" aria-label="Go to Skills section">skills</a></li>
+    <li><a href="#projects-section" aria-label="Go to Projects section">projects</a></li>
+    <li><a href="#contact-section" aria-label="Go to Contact section">contact</a></li>
+    <li><ToggleTheme /></li>
+  </ul>
+</nav>
+</header>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 1px solid transparent;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    nav { transition: border-color 0.3s, background 0.3s, backdrop-filter 0.3s; }
+  }
+  nav.scrolled {
+    border-color: var(--border);
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    backdrop-filter: blur(16px);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--fg2);
+    text-decoration: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-links a { transition: color 0.2s; }
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* Hamburger button — hidden on desktop */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 48px;
+    height: 48px;
+    background: transparent;
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0;
+    color: var(--fg2);
+  }
+  .menu-toggle span {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: currentColor;
+    transform-origin: center;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .menu-toggle span { transition: transform 0.25s ease, opacity 0.25s ease; }
+  }
+  /* X state */
+  .menu-toggle.open span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+  .menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  .menu-toggle.open span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .menu-toggle { display: flex; }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg);
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      display: block;
+      width: 100%;
+      padding: 8px 0;
+      font-size: 13px;
+    }
+  }
+</style>
+
+<script>
+
+
+  function initNav(signal: AbortSignal) {
+    const navbar = document.getElementById('navbar') as HTMLElement | null;
+    const toggle = document.querySelector<HTMLButtonElement>('#menu-toggle');
+    const navList = document.getElementById('nav-links-list') as HTMLUListElement | null;
+    if (!navbar || !toggle || !navList) return;
+    const nav = navbar;
+
+    function onScroll() {
+      nav.classList.toggle('scrolled', window.scrollY > 10);
+    }
+    onScroll();
+    window.addEventListener('scroll', onScroll, { signal, passive: true });
+
+    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+
+    function closeMenu() {
+      toggle?.classList.remove('open');
+      navList?.classList.remove('open');
+      if (isMobile()) navList?.setAttribute('inert', '');
+      if (toggle) {
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open menu');
+      }
+    }
+
+    closeMenu();
+
+    window.addEventListener('resize', () => {
+      if (!isMobile()) {
+        navList?.removeAttribute('inert');
+      } else if (!navList?.classList.contains('open')) {
+        navList?.setAttribute('inert', '');
+      }
+    }, { signal, passive: true });
+
+    if (toggle && navList) {
+      toggle.addEventListener('click', () => {
+        const isOpen = navList.classList.contains('open');
+        if (isOpen) {
+          closeMenu();
+        } else {
+          toggle.classList.add('open');
+          navList.classList.add('open');
+          if (isMobile()) navList.removeAttribute('inert');
+          toggle.setAttribute('aria-expanded', 'true');
+          toggle.setAttribute('aria-label', 'Close menu');
+        }
+      }, { signal });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navList.classList.contains('open')) {
+          closeMenu();
+          toggle.focus();
+        }
+      }, { signal });
+
+      navList.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          closeMenu();
+          const href = link.getAttribute('href');
+          if (!href) return;
+          const id = href.slice(1);
+          const target = document.getElementById(id);
+          if (!target) return;
+          const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+        }, { signal });
+      });
+
+      document.addEventListener('click', (e) => {
+        if (e.target && !nav.contains(e.target as Node)) {
+          closeMenu();
+        }
+      }, { signal });
+    }
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    const controller = window.getController('navbar');
+    initNav(controller.signal);
+  });
+</script>

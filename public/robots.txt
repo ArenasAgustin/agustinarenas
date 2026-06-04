@@ -1,8 +1,5 @@
 User-agent: *
 Allow: /
 
-# Host
-Host: https://agustinarenas.vercel.app
-
 # Sitemaps
 Sitemap: https://agustinarenas.vercel.app/sitemap-index.xml

@@ -1,10 +1,30 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Hero from "@/sections/home/Hero.astro";
-import About from "@/sections/home/About.astro";
-import Portfolio from "@/sections/home/Portfolio.astro";
-import Contact from "@/sections/home/Contact.astro";
-import { CONTACT_INFO } from "@/constants/contact";
+import Layout from '../layouts/Layout.astro';
+import Hero from '../sections/index/Hero.astro';
+import About from '../sections/index/About.astro';
+import Experience from '../sections/index/Experience.astro';
+import Skills from '../sections/index/Skills.astro';
+import Projects from '../sections/index/Projects.astro';
+import Contact from '../sections/index/Contact.astro';
+import { CONTACT_INFO } from '../constants/contact';
+import { projects } from '../constants/projects';
+import { works } from '../constants/works';
+
+const projectItems = projects.map((p, i) => ({
+  "@type": "ListItem",
+  "position": i + 1,
+  "name": p.name,
+  ...(p.deployedUrl || p.repositoryUrl
+    ? { "url": p.deployedUrl ?? p.repositoryUrl }
+    : {}),
+}));
+
+const workItems = works.map((w, i) => ({
+  "@type": "ListItem",
+  "position": i + 1,
+  "name": w.subtitle,
+  "description": w.description,
+}));
 
 const homeSchema = {
   "@context": "https://schema.org",
@@ -17,22 +37,44 @@ const homeSchema = {
       "description": "Full-Stack Developer from Argentina. Experienced in JavaScript, TypeScript, React, Node.js, and modern web technologies.",
       "isPartOf": { "@id": `${CONTACT_INFO.site}#website` },
       "about": { "@id": `${CONTACT_INFO.site}#person` },
+      "hasPart": [
+        { "@id": `${CONTACT_INFO.site}#about` },
+        { "@id": `${CONTACT_INFO.site}#experience` },
+        { "@id": `${CONTACT_INFO.site}#skills` },
+        { "@id": `${CONTACT_INFO.site}#projects` },
+        { "@id": `${CONTACT_INFO.site}#contact` }
+      ]
     },
+    {
+      "@type": "ItemList",
+      "@id": `${CONTACT_INFO.site}#experience`,
+      "name": "Work Experience",
+      "description": "Professional experience of Agustín Arenas as a Software Developer.",
+      "itemListElement": workItems
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${CONTACT_INFO.site}#projects`,
+      "name": "Projects",
+      "description": "Open-source and professional projects developed by Agustín Arenas.",
+      "itemListElement": projectItems
+    }
   ],
 };
 ---
 
 <Layout
-  title="Agustín Arenas | Software Developer"
-  description="Full-Stack Developer from Argentina. Experienced in JavaScript, TypeScript, React, Node.js, and modern web technologies. View my portfolio and projects."
+  title="Agustín Arenas — Full-Stack Developer | My Portfolio"
+  description="Full-Stack Developer from Argentina. TypeScript, React, Node.js. Projects, work experience, and open-source contributions. Available for new opportunities."
   image="/img/meta-home.webp"
   schema={homeSchema}
 >
-  <Hero />
-
-  <About />
-
-  <Portfolio />
-
-  <Contact />
+  <main id="main-content" tabindex="-1">
+    <Hero />
+    <About />
+    <Experience />
+    <Skills />
+    <Projects />
+    <Contact />
+  </main>
 </Layout>

@@ -1,3 +1,4 @@
+// TODO: render education section
 export interface Education {
   id: string;
   title: string;

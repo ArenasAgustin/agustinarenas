@@ -1,23 +1,59 @@
 ---
-import Section from "@/components/Section/Section.astro";
-import GlowCard from "@/components/Card/GlowCard.astro";
-import LinkButton from "@/components/Links/LinkButton.astro";
 ---
 
-<Section extraClass="h-screen relative" id="404">
-  <GlowCard name="hero">
-    <p aria-hidden="true" class="text-4xl md:text-7xl text-center font-bold m-0 mb-4">
-      Error 404
-    </p>
+<section class="not-found">
+  <p class="code" aria-hidden="true">404</p>
+  <h1 class="title">Page not found</h1>
+  <p class="desc">The page you're looking for doesn't exist. Check the URL or head back home.</p>
+  <a href="/" class="btn">Go home</a>
+</section>
 
-    <h1 class="text-2xl md:text-4xl text-center font-bold m-0 mb-4">
-      Page not found
-    </h1>
-
-    <span class="text-center text-lg md:text-3xl md:max-w-5xl mb-6">
-      The page you are looking for does not exist. Please check the URL or go
-      back to the homepage.
-    </span>
-    <LinkButton href="/" ariaLabel="Go back to the homepage">Go home</LinkButton>
-  </GlowCard>
-</Section>
+<style>
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 48px 24px;
+    gap: 16px;
+  }
+  .code {
+    font-family: var(--mono);
+    font-size: clamp(80px, 20vw, 180px);
+    font-weight: 700;
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .title {
+    font-size: clamp(24px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--fg);
+  }
+  .desc {
+    font-size: 16px;
+    color: var(--fg2);
+    max-width: 480px;
+    line-height: 1.6;
+  }
+  .btn {
+    margin-top: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 12px 28px;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+</style>

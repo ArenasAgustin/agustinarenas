@@ -1,0 +1,26 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='512' height='512'>
+  <defs>
+    <linearGradient id='g' x1='0.2' y1='0' x2='0.8' y2='1'>
+      <stop offset='0%' stop-color='#a87fe8'/>
+      <stop offset='100%' stop-color='#4a2898'/>
+    </linearGradient>
+    <filter id='glow'>
+      <feGaussianBlur stdDeviation='8' result='blur'/>
+      <feMerge><feMergeNode in='blur'/><feMergeNode in='SourceGraphic'/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- bg: dark rounded square -->
+  <rect width='512' height='512' rx='96' fill='#08080e'/>
+
+  <!-- subtle inner glow -->
+  <rect width='512' height='512' rx='96' fill='none' stroke='#7c5cbf' stroke-width='1.5' opacity='0.2'/>
+
+  <!-- geometric A lettermark, centered in 512×512 with 66px h-padding, 88px v-padding -->
+  <!-- original paths: viewBox 0 0 541 477, scale=0.7024, mark=380×335, offset=(66,88) -->
+  <g transform='translate(66, 88) scale(0.7024)' fill='url(#g)' filter='url(#glow)'>
+    <path d='M2.713 473 201.448 67 264.8 209.5l-46.8 90L2.713 473Z'/>
+    <path d='M405 476.5h135L307.5.5H234L204.385 61 405 476.5Z'/>
+    <path d='M172.5 424.5h187.882L298.447 286 1.86 476.5H146.5l26-52Z'/>
+  </g>
+</svg>
