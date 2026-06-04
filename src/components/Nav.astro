@@ -1,10 +1,10 @@
 ---
 import ToggleTheme from './Buttons/ToggleTheme.astro';
+// TODO: replace nav-logo text with logo SVG once design is chosen from public/icons/sample/
 ---
 
 <header>
   <nav id="navbar" aria-label="Main navigation">
-  {/* TODO: replace text with logo SVG once design is chosen from public/icons/sample/ */}
   <a class="nav-logo" href="/">AA.dev</a>
   <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-list">
     <span></span>
@@ -34,7 +34,6 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
     justify-content: space-between;
     padding: 20px 48px;
     border-bottom: 1px solid transparent;
-    transition: border-color 0.3s, background 0.3s;
   }
   @media (prefers-reduced-motion: no-preference) {
     nav { transition: border-color 0.3s, background 0.3s, backdrop-filter 0.3s; }
@@ -65,7 +64,9 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
     text-transform: uppercase;
     color: var(--fg2);
     text-decoration: none;
-    transition: color 0.2s;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-links a { transition: color 0.2s; }
   }
   .nav-links a:hover { color: var(--accent); }
 
@@ -90,8 +91,10 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
     width: 16px;
     height: 1.5px;
     background: currentColor;
-    transition: transform 0.25s ease, opacity 0.25s ease;
     transform-origin: center;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .menu-toggle span { transition: transform 0.25s ease, opacity 0.25s ease; }
   }
   /* X state */
   .menu-toggle.open span:nth-child(1) {

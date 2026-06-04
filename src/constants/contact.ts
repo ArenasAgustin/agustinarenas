@@ -7,26 +7,3 @@ export const CONTACT_INFO = {
   cv: "/curriculum/Curriculum_Agustin_Arenas.pdf",
   site: "https://agustinarenas.vercel.app",
 } as const;
-
-export const SOCIAL_LINKS = [
-  {
-    name: "GitHub",
-    url: CONTACT_INFO.github,
-    ariaLabel: "Visit Agustín's GitHub profile",
-  },
-  {
-    name: "LinkedIn",
-    url: CONTACT_INFO.linkedin,
-    ariaLabel: "Visit Agustín's LinkedIn profile",
-  },
-  {
-    name: "Email",
-    url: `mailto:${CONTACT_INFO.email}`,
-    ariaLabel: "Send email to Agustín Arenas",
-  },
-  {
-    name: "CV",
-    url: CONTACT_INFO.cv,
-    ariaLabel: "Download Agustín's curriculum vitae",
-  },
-] as const;

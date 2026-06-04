@@ -187,7 +187,7 @@ const baseSchema = {
         if (main) main.focus();
       }
 
-      document.addEventListener('astro:page-load', initLayout);
+      document.addEventListener('astro:after-swap', initLayout);
     </script>
   </head>
 

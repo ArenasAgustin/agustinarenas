@@ -29,17 +29,9 @@ export interface Work {
   businessContext?: string;
 }
 
-const worksIds = {
-  dequo: "dequo",
-  sellers_latam: "sellers_latam",
-  last_horde: "last_horde",
-  praga_revestimientos: "praga_revestimientos",
-  municipalidad_de_cordoba: "municipalidad_de_cordoba",
-};
-
 const allWorks: Work[] = [
   {
-    id: worksIds.dequo,
+    id: "dequo",
     title: "Full-Stack Developer",
     subtitle: "Dequo",
     description:
@@ -58,7 +50,7 @@ const allWorks: Work[] = [
       "E-commerce product (Tiendaquick) used by businesses to manage and improve their online sales operations.",
   },
   {
-    id: worksIds.sellers_latam,
+    id: "sellers_latam",
     title: "Frontend Developer",
     subtitle: "Sellers Latam",
     description:
@@ -77,7 +69,7 @@ const allWorks: Work[] = [
       "Digital presence and web growth for commercial brands, including website expansion and frontend optimization.",
   },
   {
-    id: worksIds.last_horde,
+    id: "last_horde",
     title: "Full-Stack Developer",
     subtitle: "Last Horde",
     description:
@@ -107,7 +99,7 @@ const allWorks: Work[] = [
   },
 
   {
-    id: worksIds.praga_revestimientos,
+    id: "praga_revestimientos",
     title: "Sales and customer service",
     subtitle: "Praga Revestimientos",
     description:
@@ -116,7 +108,7 @@ const allWorks: Work[] = [
   },
 
   {
-    id: worksIds.municipalidad_de_cordoba,
+    id: "municipalidad_de_cordoba",
     title: "Customer Service (Internships)",
     subtitle: "Municipalidad de Córdoba",
     description:
@@ -126,10 +118,10 @@ const allWorks: Work[] = [
 ];
 
 // WARNING: entries added to allWorks must also be added here to appear in the UI.
-const worksActives: Array<(typeof worksIds)[keyof typeof worksIds]> = [
-  worksIds.dequo,
-  worksIds.sellers_latam,
-  worksIds.last_horde,
+const worksActives: string[] = [
+  "dequo",
+  "sellers_latam",
+  "last_horde",
 ];
 
 export const works = allWorks.filter((work) => worksActives.includes(work.id));
