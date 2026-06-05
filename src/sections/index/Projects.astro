@@ -1,12 +1,16 @@
 ---
-import { getImage } from 'astro:assets';
+import { getImage } from "astro:assets";
 
-import { projects } from '../../constants/projects';
+import { projects } from "../../constants/projects";
 
 const previewSrcs: Record<string, string> = {};
 for (const project of projects) {
   if (!project.image) continue;
-  const optimized = await getImage({ src: project.image, width: 500, format: 'webp' });
+  const optimized = await getImage({
+    src: project.image,
+    width: 500,
+    format: "webp",
+  });
   previewSrcs[project.id] = optimized.src;
 }
 ---
@@ -19,37 +23,62 @@ for (const project of projects) {
       <div class="section-line"></div>
     </div>
     <div class="project-list">
-      {projects.map((project, index) => (
-        <div
-          class={`project-row reveal${index % 4 === 1 ? ' reveal-delay-1' : index % 4 === 2 ? ' reveal-delay-2' : index % 4 === 3 ? ' reveal-delay-3' : ''}`}
-          data-preview-src={previewSrcs[project.id] ?? ''}
-          data-preview-name={project.name}
-        >
-          <div class="proj-num">{String(index + 1).padStart(2, '0')}</div>
-          <div class="proj-info">
-            <div class="proj-name">{project.name}</div>
-            <div class="proj-desc">{project.description}</div>
+      {
+        projects.map((project, index) => (
+          <div
+            class={`project-row reveal${index % 4 === 1 ? " reveal-delay-1" : index % 4 === 2 ? " reveal-delay-2" : index % 4 === 3 ? " reveal-delay-3" : ""}`}
+            data-preview-src={previewSrcs[project.id] ?? ""}
+            data-preview-name={project.name}
+          >
+            <div class="proj-num">{String(index + 1).padStart(2, "0")}</div>
+            <div class="proj-info">
+              <div class="proj-name">{project.name}</div>
+              <div class="proj-desc">{project.description}</div>
+            </div>
+            <div class="proj-tags">
+              {project.technologies?.map((tech) => (
+                <span class="proj-tag">{tech}</span>
+              ))}
+            </div>
+            <div class="proj-links">
+              {project.repositoryUrl && (
+                <a
+                  class="proj-link"
+                  href={project.repositoryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.name} on GitHub`}
+                >
+                  GitHub
+                </a>
+              )}
+              {project.deployedUrl && (
+                <a
+                  class="proj-link demo"
+                  href={project.deployedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${project.name} live demo`}
+                >
+                  Live ↗
+                </a>
+              )}
+            </div>
           </div>
-          <div class="proj-tags">
-            {project.technologies?.map((tech) => (
-              <span class="proj-tag">{tech}</span>
-            ))}
-          </div>
-          <div class="proj-links">
-            {project.repositoryUrl && (
-              <a class="proj-link" href={project.repositoryUrl} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} on GitHub`}>GitHub</a>
-            )}
-            {project.deployedUrl && (
-              <a class="proj-link demo" href={project.deployedUrl} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} live demo`}>Live ↗</a>
-            )}
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </div>
   <!-- Floating preview — position: fixed, last child so it doesn't affect layout -->
   <div id="proj-preview" aria-hidden="true">
-    <img id="proj-preview-img" alt="Project preview" aria-hidden="true" width="280" height="170" loading="lazy" />
+    <img
+      id="proj-preview-img"
+      alt="Project preview"
+      aria-hidden="true"
+      width="280"
+      height="170"
+      loading="lazy"
+    />
     <div class="preview-label" id="proj-preview-label"></div>
   </div>
 </section>
@@ -64,7 +93,7 @@ for (const project of projects) {
     border-radius: 10px;
     overflow: hidden;
     border: 1px solid var(--border2);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     opacity: 0;
     transform: scale(0.94) translateY(6px);
     background: var(--surface);
@@ -74,19 +103,27 @@ for (const project of projects) {
     transform: scale(1) translateY(0);
   }
   @media (prefers-reduced-motion: no-preference) {
-    #proj-preview { transition: opacity 0.22s ease, transform 0.22s ease; }
-    #proj-preview img { transition: opacity 0.15s ease, filter 0.3s ease; }
+    #proj-preview {
+      transition:
+        opacity 0.22s ease,
+        transform 0.22s ease;
+    }
+    #proj-preview img {
+      transition:
+        opacity 0.15s ease,
+        filter 0.3s ease;
+    }
   }
-   #proj-preview img {
-     width: 100%;
-     height: 170px;
-     object-fit: cover;
-     display: block;
-     filter: grayscale(20%) contrast(1.05);
-   }
-   #proj-preview:hover img {
-     filter: grayscale(0%) contrast(1);
-   }
+  #proj-preview img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(20%) contrast(1.05);
+  }
+  #proj-preview:hover img {
+    filter: grayscale(0%) contrast(1);
+  }
   #proj-preview .preview-label {
     font-family: var(--mono);
     font-size: 10px;
@@ -97,7 +134,10 @@ for (const project of projects) {
   }
 
   /* ── ROWS ── */
-  .project-list { display: flex; flex-direction: column; }
+  .project-list {
+    display: flex;
+    flex-direction: column;
+  }
   .project-row {
     display: grid;
     grid-template-columns: 48px 1fr auto auto;
@@ -114,7 +154,7 @@ for (const project of projects) {
     }
   }
   .project-row::before {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0 -24px;
     background: var(--surface);
@@ -128,8 +168,12 @@ for (const project of projects) {
       transition: opacity 0.15s;
     }
   }
-  .project-row:hover::before { opacity: 1; }
-  .project-row:hover { border-color: transparent; }
+  .project-row:hover::before {
+    opacity: 1;
+  }
+  .project-row:hover {
+    border-color: transparent;
+  }
   .proj-num {
     font-family: var(--mono);
     font-size: 11px;
@@ -181,123 +225,158 @@ for (const project of projects) {
   }
   @media (prefers-reduced-motion: no-preference) {
     .proj-link {
-      transition: border-color 0.2s, color 0.2s;
+      transition:
+        border-color 0.2s,
+        color 0.2s;
     }
   }
-  .proj-link:hover { border-color: var(--accent); color: var(--accent); }
+  .proj-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
   .proj-link.demo {
     background: var(--accent);
     color: #fff;
     border-color: var(--accent);
   }
-  .proj-link.demo:hover { background: var(--accent2); border-color: var(--accent2); }
+  .proj-link.demo:hover {
+    background: var(--accent2);
+    border-color: var(--accent2);
+  }
 
   @media (max-width: 768px) {
-    #proj-preview { display: none; }
-    .section { padding: 60px 20px; }
+    #proj-preview {
+      display: none;
+    }
+    .section {
+      padding: 60px 20px;
+    }
     .project-row {
       grid-template-columns: 32px 1fr;
       grid-template-rows: auto auto;
     }
-    .proj-tags { justify-content: flex-start; grid-column: 2; }
-    .proj-links { grid-column: 2; }
-    .project-row::before { inset: 0 -10px; }
-    .project-row:hover { padding: 20px 0; }
+    .proj-tags {
+      justify-content: flex-start;
+      grid-column: 2;
+    }
+    .proj-links {
+      grid-column: 2;
+    }
+    .project-row::before {
+      inset: 0 -10px;
+    }
+    .project-row:hover {
+      padding: 20px 0;
+    }
   }
 </style>
 
 <script>
-   function initPreviews() {
-     let isHovering = false;
-     let isPreviewHovered = false;
-     let rafId = 0;
-     let closeTimeout: number | null = null;
+  function initPreviews() {
+    let isHovering = false;
+    let isPreviewHovered = false;
+    let rafId = 0;
+    let closeTimeout: number | null = null;
 
-     const preview = document.getElementById('proj-preview');
-     const previewImg = document.getElementById('proj-preview-img') as HTMLImageElement | null;
-     const previewLabel = document.getElementById('proj-preview-label');
-     if (!preview || !previewImg || !previewLabel) return;
+    const preview = document.getElementById("proj-preview");
+    const previewImg = document.getElementById(
+      "proj-preview-img",
+    ) as HTMLImageElement | null;
+    const previewLabel = document.getElementById("proj-preview-label");
+    if (!preview || !previewImg || !previewLabel) return;
 
-     // Hide preview on scroll (if not hovering)
-     window.addEventListener('scroll', () => {
-       if (!isHovering && !isPreviewHovered) {
-         preview.classList.remove('visible');
-       }
-     }, { passive: true });
+    // Hide preview on scroll (if not hovering)
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (!isHovering && !isPreviewHovered) {
+          preview.classList.remove("visible");
+        }
+      },
+      { passive: true },
+    );
 
-     // Follow cursor
-     document.addEventListener('mousemove', (e) => {
-       if (!isHovering && !isPreviewHovered) return;
-       if (rafId) cancelAnimationFrame(rafId);
-       rafId = requestAnimationFrame(() => {
-         const pw = 280;
-         const ph = preview.offsetHeight;
-         const pad = 24;
-         const vw = window.innerWidth;
-         const vh = window.innerHeight;
-         let left = e.clientX + pad;
-         let top = e.clientY - ph / 2;
+    // Follow cursor
+    document.addEventListener(
+      "mousemove",
+      (e) => {
+        if (!isHovering && !isPreviewHovered) return;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          const pw = 280;
+          const ph = preview.offsetHeight;
+          const pad = 24;
+          const vw = window.innerWidth;
+          const vh = window.innerHeight;
+          let left = e.clientX + pad;
+          let top = e.clientY - ph / 2;
 
-         // Adjust position if near edges
-         if (left + pw > vw - 8) left = e.clientX - pw - pad;
-         if (top < 8) top = 8;
-         if (top + ph > vh - 8) top = vh - ph - 8;
+          // Adjust position if near edges
+          if (left + pw > vw - 8) left = e.clientX - pw - pad;
+          if (top < 8) top = 8;
+          if (top + ph > vh - 8) top = vh - ph - 8;
 
-         preview.style.left = `${left}px`;
-         preview.style.top = `${top}px`;
-       });
-     }, { passive: true });
+          preview.style.left = `${left}px`;
+          preview.style.top = `${top}px`;
+        });
+      },
+      { passive: true },
+    );
 
-     // Handle project rows
-     const rows = document.querySelectorAll<HTMLElement>('.project-row');
-     rows.forEach(row => {
-       row.addEventListener('mouseenter', () => {
-         if (closeTimeout) {
-           clearTimeout(closeTimeout);
-           closeTimeout = null;
-         }
-         isHovering = true;
-         if (row.dataset.previewSrc) {
-           previewImg.src = row.dataset.previewSrc;
-           previewImg.alt = `Preview of ${row.dataset.previewName}`;
-           previewLabel.textContent = row.dataset.previewName || '';
-           preview.classList.add('visible');
-         }
-       });
+    // Handle project rows
+    const rows = document.querySelectorAll<HTMLElement>(".project-row");
+    rows.forEach((row) => {
+      row.addEventListener("mouseenter", () => {
+        if (closeTimeout) {
+          clearTimeout(closeTimeout);
+          closeTimeout = null;
+        }
+        isHovering = true;
+        if (row.dataset.previewSrc) {
+          previewImg.src = row.dataset.previewSrc;
+          previewImg.alt = `Preview of ${row.dataset.previewName}`;
+          previewLabel.textContent = row.dataset.previewName || "";
+          preview.classList.add("visible");
+        }
+      });
 
-       row.addEventListener('mouseleave', () => {
-         isHovering = false;
-         closeTimeout = window.setTimeout(() => {
-           if (!isPreviewHovered) {
-             preview.classList.remove('visible');
-           }
-         }, 300); // Delay to allow mouse to enter preview
-       });
-     });
+      row.addEventListener("mouseleave", () => {
+        isHovering = false;
+        closeTimeout = window.setTimeout(() => {
+          if (!isPreviewHovered) {
+            preview.classList.remove("visible");
+          }
+        }, 300); // Delay to allow mouse to enter preview
+      });
+    });
 
-     // Handle preview hover
-     preview.addEventListener('mouseenter', () => {
-       if (closeTimeout) {
-         clearTimeout(closeTimeout);
-         closeTimeout = null;
-       }
-       isPreviewHovered = true;
-     });
+    // Handle preview hover
+    preview.addEventListener("mouseenter", () => {
+      if (closeTimeout) {
+        clearTimeout(closeTimeout);
+        closeTimeout = null;
+      }
+      isPreviewHovered = true;
+    });
 
-     preview.addEventListener('mouseleave', () => {
-       isPreviewHovered = false;
-       if (!isHovering) {
-         preview.classList.remove('visible');
-       }
-     });
+    preview.addEventListener("mouseleave", () => {
+      isPreviewHovered = false;
+      if (!isHovering) {
+        preview.classList.remove("visible");
+      }
+    });
 
-     // Cleanup
-     document.addEventListener('astro:before-swap', () => {
-       preview.classList.remove('visible');
-       if (rafId) cancelAnimationFrame(rafId);
-       if (closeTimeout) clearTimeout(closeTimeout);
-     }, { once: true });
-   }
+    // Cleanup
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        preview.classList.remove("visible");
+        if (rafId) cancelAnimationFrame(rafId);
+        if (closeTimeout) clearTimeout(closeTimeout);
+      },
+      { once: true },
+    );
+  }
 
-  document.addEventListener('astro:page-load', initPreviews);
+  document.addEventListener("astro:page-load", initPreviews);
 </script>
