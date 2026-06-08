@@ -1,0 +1,33 @@
+{
+  "format": "agent-skills-v1",
+  "skills": [
+    {
+      "name": "web-development",
+      "description": "Full-stack web development with modern frameworks"
+    },
+    {
+      "name": "typescript",
+      "description": "Type-safe JavaScript development"
+    },
+    {
+      "name": "react",
+      "description": "React component architecture and state management"
+    },
+    {
+      "name": "nodejs",
+      "description": "Server-side JavaScript with Express and REST APIs"
+    },
+    {
+      "name": "astro",
+      "description": "Content-focused static site generation"
+    },
+    {
+      "name": "accessibility",
+      "description": "WCAG-compliant accessible web interfaces"
+    },
+    {
+      "name": "performance",
+      "description": "Core Web Vitals optimization and loading strategies"
+    }
+  ]
+}
