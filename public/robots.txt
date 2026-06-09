@@ -3,3 +3,22 @@ Allow: /
 
 # Sitemaps
 Sitemap: https://agustinarenas.vercel.app/sitemap-index.xml
+
+# AI Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: CCBot
+Allow: /
