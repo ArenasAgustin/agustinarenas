@@ -58,7 +58,9 @@ body {
   background: var(--bg);
   color: var(--fg);
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
+  scrollbar-gutter: stable;
   background-image:
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
