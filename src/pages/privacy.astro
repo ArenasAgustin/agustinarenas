@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 ---
 
 <Layout
@@ -9,6 +10,8 @@ import Layout from '../layouts/Layout.astro';
 >
   <main id="main-content" tabindex="-1">
     <section class="section">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Privacy Policy' }]} />
+
       <div class="section-header">
         <span class="section-num">[ 00 ]</span>
         <h1 class="section-title">Privacy Policy</h1>
