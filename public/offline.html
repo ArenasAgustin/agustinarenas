@@ -1,0 +1,71 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're offline | Agustín Arenas</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: #08080e;
+      color: #e8e6e3;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+    .offline {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      max-width: 480px;
+    }
+    .offline-icon {
+      font-size: 48px;
+      line-height: 1;
+      opacity: 0.6;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+    }
+    p {
+      font-size: 16px;
+      color: #9b9a97;
+      line-height: 1.6;
+    }
+    a {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 12px 28px;
+      border: 1px solid #7c5cbf;
+      border-radius: 6px;
+      color: #7c5cbf;
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+    a:hover {
+      background: #7c5cbf;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="offline">
+    <div class="offline-icon" aria-hidden="true">📡</div>
+    <h1>You're offline</h1>
+    <p>It looks like your internet connection dropped. Try refreshing the page once you're back online.</p>
+    <a href="/">Try again</a>
+  </div>
+</body>
+</html>

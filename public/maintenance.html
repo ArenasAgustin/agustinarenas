@@ -1,0 +1,61 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maintenance — Agustín Arenas</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      background: #08080e;
+      color: #e8e6e3;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      text-align: center;
+    }
+    .maintenance {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      max-width: 480px;
+    }
+    .icon {
+      font-size: 48px;
+      line-height: 1;
+      opacity: 0.6;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+    }
+    p {
+      font-size: 16px;
+      color: #9b9a97;
+      line-height: 1.6;
+    }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      background: rgba(255,255,255,0.05);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="maintenance">
+    <div class="icon" aria-hidden="true">🔧</div>
+    <h1>Under maintenance</h1>
+    <p>We're temporarily unavailable. Please check back in a few minutes.</p>
+    <p><code>Retry-After: 3600</code></p>
+  </div>
+</body>
+</html>
