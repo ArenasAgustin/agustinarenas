@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "catalog": {
+    "name": "Agustín Arenas Portfolio",
+    "description": "Personal portfolio website of Agustín Arenas, Full-Stack Developer from Argentina.",
+    "url": "https://agustinarenas.vercel.app",
+    "apis": [
+      {
+        "name": "Sitemap",
+        "description": "XML sitemap listing all pages on the site",
+        "url": "https://agustinarenas.vercel.app/sitemap-index.xml",
+        "type": "application/xml"
+      },
+      {
+        "name": "LLMs.txt",
+        "description": "Machine-readable index of site content for AI agents",
+        "url": "https://agustinarenas.vercel.app/llms.txt",
+        "type": "text/markdown"
+      },
+      {
+        "name": "LLMs Full.txt",
+        "description": "Comprehensive content index for AI agents with full page content",
+        "url": "https://agustinarenas.vercel.app/llms-full.txt",
+        "type": "text/markdown"
+      },
+      {
+        "name": "Robots.txt",
+        "description": "Crawler instructions including AI crawler rules",
+        "url": "https://agustinarenas.vercel.app/robots.txt",
+        "type": "text/plain"
+      },
+      {
+        "name": "WebManifest",
+        "description": "PWA manifest for installation",
+        "url": "https://agustinarenas.vercel.app/manifest.webmanifest",
+        "type": "application/manifest+json"
+      }
+    ],
+    "links": [
+      {
+        "rel": "author",
+        "title": "GitHub Profile",
+        "url": "https://github.com/ArenasAgustin"
+      },
+      {
+        "rel": "author",
+        "title": "LinkedIn Profile",
+        "url": "https://www.linkedin.com/in/agustin-arenas/"
+      }
+    ]
+  }
+}
