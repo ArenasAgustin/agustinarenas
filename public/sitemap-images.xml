@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://agustinarenas.vercel.app/</loc>
+    <image:image>
+      <image:loc>https://agustinarenas.vercel.app/img/meta-home.webp</image:loc>
+      <image:title>Agustín Arenas Portfolio</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://agustinarenas.vercel.app/cv/</loc>
+  </url>
+  <url>
+    <loc>https://agustinarenas.vercel.app/privacy/</loc>
+  </url>
+</urlset>

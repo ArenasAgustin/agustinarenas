@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 ---
 
 <Layout
@@ -9,6 +10,8 @@ import Layout from '../layouts/Layout.astro';
 >
   <main id="main-content" tabindex="-1">
     <section class="section">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Privacy Policy' }]} />
+
       <div class="section-header">
         <span class="section-num">[ 00 ]</span>
         <h1 class="section-title">Privacy Policy</h1>
@@ -77,62 +80,3 @@ import Layout from '../layouts/Layout.astro';
     </section>
   </main>
 </Layout>
-
-<style>
-  .policy-content {
-    max-width: 720px;
-  }
-
-  .policy-date {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--fg2);
-    margin-bottom: 2rem;
-  }
-
-  .policy-content h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    color: var(--fg);
-  }
-
-  .policy-content h2:first-of-type {
-    margin-top: 0;
-  }
-
-  .policy-content p {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--fg2);
-    margin-bottom: 1rem;
-  }
-
-  .policy-content ul {
-    list-style: disc;
-    padding-left: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .policy-content li {
-    font-size: 15px;
-    line-height: 1.75;
-    color: var(--fg2);
-    margin-bottom: 0.5rem;
-  }
-
-  .policy-content a {
-    color: var(--accent);
-    text-decoration: underline;
-    text-underline-offset: 2px;
-  }
-
-  .policy-content a:hover {
-    color: var(--accent2);
-  }
-
-  .policy-content strong {
-    color: var(--fg);
-  }
-</style>
