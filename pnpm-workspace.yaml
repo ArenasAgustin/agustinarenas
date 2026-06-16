@@ -2,7 +2,6 @@ allowBuilds:
   esbuild: true
   sharp: true
 patchedDependencies:
-  '@astrojs/language-server@2.16.7': patches/@astrojs__language-server@2.16.7.patch
   '@astrojs/vercel@10.0.8': patches/@astrojs__vercel@10.0.8.patch
-  astro@6.4.4: patches/astro@6.4.4.patch
+  astro@6.4.6: patches/astro@6.4.6.patch
   vite@7.3.5: patches/vite@7.3.5.patch
