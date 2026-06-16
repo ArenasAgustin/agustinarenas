@@ -1,0 +1,13 @@
+diff --git a/package.json b/package.json
+index 3e928dff5be9bd54a5507e446d5a016148792905..a6989448705a33f2b2adb66bec665d5e85988ac3 100644
+--- a/package.json
++++ b/package.json
+@@ -128,7 +128,7 @@
+     "diff": "^8.0.3",
+     "dset": "^3.1.4",
+     "es-module-lexer": "^2.0.0",
+-    "esbuild": "^0.27.3",
++    "esbuild": "^0.28.0",
+     "flattie": "^1.1.1",
+     "fontace": "~0.4.1",
+     "get-tsconfig": "5.0.0-beta.4",

@@ -1,0 +1,13 @@
+diff --git a/package.json b/package.json
+index 178410d49ed67151409878bf37d89593a27a10bc..603de2ae5087da5a3abe2d73f96d49eefb1eab61 100644
+--- a/package.json
++++ b/package.json
+@@ -43,7 +43,7 @@
+     "@vercel/functions": "^3.4.3",
+     "@vercel/nft": "^1.3.2",
+     "@vercel/routing-utils": "^5.3.3",
+-    "esbuild": "^0.27.3",
++    "esbuild": "^0.28.0",
+     "tinyglobby": "^0.2.15",
+     "@astrojs/internal-helpers": "0.10.0"
+   },
