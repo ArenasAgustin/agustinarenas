@@ -51,7 +51,8 @@
       "vite": "6.4.2",
       "defu": "6.1.5",
       "postcss": "8.5.14",
-      "fast-uri": "3.1.2"
+      "fast-uri": "3.1.2",
+      "esbuild": "0.28.1"
     },
     "patchedDependencies": {
       "@astrojs/language-server@2.16.7": "patches/@astrojs__language-server@2.16.7.patch"
