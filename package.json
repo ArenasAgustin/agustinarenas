@@ -24,7 +24,7 @@
     "@astrojs/vercel": "10.0.8",
     "@tailwindcss/vite": "4.3.3",
     "esbuild": "0.28.1",
-    "postcss": "8.5.14",
+    "postcss": "8.5.18",
     "tailwindcss": "4.3.3"
   }
 }
