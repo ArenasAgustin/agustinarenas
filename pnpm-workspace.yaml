@@ -12,12 +12,6 @@ allowBuilds:
 # Remove an entry once the upstream range already resolves above the floor on
 # its own.
 overrides:
-  # Not a security pin, and exact on purpose: `autoInstallPeers` resolves the
-  # @tailwindcss/vite peer range (^5.2.0 || ^6 || ^7 || ^8) to the highest
-  # match, pulling a second, Rolldown-based Vite 8 that the plugin cannot
-  # drive. Keep it on the Vite that Astro itself depends on, and bump it
-  # together with patches/vite@7.3.5.patch, which is keyed to this version.
-  vite: 7.3.5
   brace-expansion: ^5.0.7 # GHSA-3jxr-9vmj-r5cp
   esbuild: ^0.28.1 # GHSA-g7r4-m6w7-qqqr
   fast-uri: ^3.1.4 # GHSA-v2hh-gcrm-f6hx, GHSA-4c8g-83qw-93j6
@@ -26,7 +20,3 @@ overrides:
   sharp: ^0.35.0 # GHSA-f88m-g3jw-g9cj
   svgo: ^4.0.2 # GHSA-2p49-hgcm-8545
   tar: ^7.5.18 # GHSA-w8wr-v893-vjvp
-patchedDependencies:
-  '@astrojs/vercel@10.0.8': patches/@astrojs__vercel@10.0.8.patch
-  astro@6.4.6: patches/astro@6.4.6.patch
-  vite@7.3.5: patches/vite@7.3.5.patch
