@@ -16,7 +16,7 @@
     "@vercel/analytics": "1.6.1",
     "astro": "6.4.6",
     "sharp": "^0.35.0",
-    "typescript": "6.0.3"
+    "typescript": "7.0.2"
   },
   "devDependencies": {
     "@astrojs/vercel": "10.0.8",
