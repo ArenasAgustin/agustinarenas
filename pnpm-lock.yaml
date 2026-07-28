@@ -6,14 +6,14 @@ settings:
 
 overrides:
   vite: 7.3.5
-  brace-expansion: 5.0.7
-  esbuild: 0.28.1
-  fast-uri: 3.1.4
-  js-yaml: 4.3.0
-  postcss: 8.5.24
-  sharp: 0.35.0
-  svgo: 4.0.2
-  tar: 7.5.18
+  brace-expansion: ^5.0.7
+  esbuild: ^0.28.1
+  fast-uri: ^3.1.4
+  js-yaml: ^4.3.0
+  postcss: ^8.5.24
+  sharp: ^0.35.0
+  svgo: ^4.0.2
+  tar: ^7.5.18
 
 patchedDependencies:
   '@astrojs/vercel@10.0.8': 4facaf5127af1f3d757164f97e07bdeed0b105cf0fd05286c43719cc64ebfec9
@@ -36,18 +36,12 @@ importers:
       astro:
         specifier: 6.4.6
         version: 6.4.6(patch_hash=8ee77e67af9b7bb308286501d56a14e76bf4313b42f42bc7090b6bd3b4cbafa2)(@types/node@24.13.2)(@vercel/functions@3.7.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.62.0)(yaml@2.9.0)
-      fast-uri:
-        specifier: 3.1.4
-        version: 3.1.4
       sharp:
-        specifier: 0.35.0
+        specifier: ^0.35.0
         version: 0.35.0
       typescript:
         specifier: 6.0.3
         version: 6.0.3
-      yaml:
-        specifier: 2.9.0
-        version: 2.9.0
     devDependencies:
       '@astrojs/vercel':
         specifier: 10.0.8
@@ -56,7 +50,7 @@ importers:
         specifier: 4.3.3
         version: 4.3.3(vite@7.3.5(patch_hash=ac289d19046e9356c44b762eb05e8359bf9d9bdb9f604e7fc88b5f876dd90802)(@types/node@24.13.2)(jiti@2.7.0)(lightningcss@1.32.0)(yaml@2.9.0))
       esbuild:
-        specifier: 0.28.1
+        specifier: ^0.28.1
         version: 0.28.1
       tailwindcss:
         specifier: 4.3.3
