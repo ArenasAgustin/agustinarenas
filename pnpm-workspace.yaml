@@ -5,6 +5,11 @@ allowBuilds:
 # resolution would pick. Remove an entry once the upstream range already
 # resolves to a patched version on its own.
 overrides:
+  # Not a security pin: `autoInstallPeers` resolves the @tailwindcss/vite peer
+  # range (^5.2.0 || ^6 || ^7 || ^8) to the highest match, pulling a second,
+  # Rolldown-based Vite 8 that the plugin cannot drive. Keep it on the Vite
+  # that Astro itself depends on. Bump together with patches/vite@7.3.5.patch.
+  vite: 7.3.5
   brace-expansion: 5.0.7 # GHSA-3jxr-9vmj-r5cp
   esbuild: 0.28.1 # GHSA-g7r4-m6w7-qqqr
   fast-uri: 3.1.4 # GHSA-v2hh-gcrm-f6hx, GHSA-4c8g-83qw-93j6
