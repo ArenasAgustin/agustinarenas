@@ -10,5 +10,9 @@ allowBuilds:
 # packages put their breaking changes.
 #
 # Remove an entry once the upstream range already resolves above the floor on
-# its own -- which is why there is currently no `overrides:` block: every past
-# pin was reached by natural resolution and pruned.
+# its own -- but judge that against the committed lockfile, not a clean
+# resolve. pnpm keeps an already-locked version whenever it still satisfies
+# the consumer range, so a floor can be load-bearing even when resolving from
+# scratch would pick a patched version anyway.
+overrides:
+  fast-uri: ^3.1.5 # GHSA-v2hh-gcrm-f6hx, GHSA-4c8g-83qw-93j6, GHSA-7p8r-x3mc-p8w7
