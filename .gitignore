@@ -23,5 +23,10 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
-# Local Pi runtime state
+
+# local agent + editor state (kept out of the repo, still present locally)
 .atl/
+.pi/
+.pi-lens/
+.vscode/
+.windsurf/
