@@ -14,22 +14,22 @@ No test suite. No linting script. Type checking is part of `build`.
 
 ## Stack
 
-- **Astro 5** — static output (`output: "static"`), deployed to Vercel; integrations: `@astrojs/sitemap`, `@vercel/analytics`
+- **Astro 7** — static output (`output: "static"`), deployed to Vercel; integrations: `@astrojs/sitemap`
 - **Tailwind CSS v4** — loaded via `@tailwindcss/vite` Vite plugin (no `tailwind.config.*`)
 - **TypeScript** — strict mode (`astro/tsconfigs/strict`)
-- **pnpm** — package manager; `pnpm.overrides` pins transitive deps
+- **pnpm** — package manager; overrides and `allowBuilds` live in `pnpm-workspace.yaml`, NOT `package.json` (pnpm 11 silently ignores a `pnpm.overrides` block there)
 
 Path alias: `@/*` → `src/*`.
 
 ## Architecture
 
-Single-page portfolio. One route (`src/pages/index.astro`) renders all sections in order: Hero → About → Experience → Skills → Projects → Contact. `src/pages/404.astro` is the only other page.
+Portfolio built around one main route. `src/pages/index.astro` renders all sections in order: Hero → About → Experience → Skills → Projects → Contact. The other routes are `src/pages/cv.astro`, `src/pages/privacy.astro` and `src/pages/404.astro`.
 
 **Layers:**
 
 - `src/layouts/Layout.astro` — root HTML shell with full SEO (OpenGraph, Schema.org JSON-LD, canonical URL, theme detection). Accepts optional `schema` prop to merge page-level Schema.org `@graph` items into the base graph.
 - `src/sections/index/` — one `.astro` file per section; imported by `index.astro`
-- `src/components/` — reusable components (`Nav`, `Footer`, `Buttons/ToggleTheme`)
+- `src/components/` — reusable components (`Nav`, `Footer`, `Breadcrumbs`, `Buttons/ToggleTheme`, `utils/EventController`)
 - `src/constants/` — all site content as plain TypeScript exports. **Content lives here, not in sections.**
 - `src/assets/` — project preview images (`.webp`) imported in `projects.ts` as `ImageMetadata`
 - `src/styles/global.css` — design tokens, shared utility classes, reset
