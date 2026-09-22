@@ -1,0 +1,4 @@
+# Default owner for every path in this repository.
+# Required by the `require_code_owner_review` rule on the `main` ruleset,
+# which stays inert while no owners are defined.
+* @ArenasAgustin
