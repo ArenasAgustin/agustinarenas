@@ -15,4 +15,5 @@ allowBuilds:
 # the consumer range, so a floor can be load-bearing even when resolving from
 # scratch would pick a patched version anyway.
 overrides:
-  fast-uri: ^3.1.6 # GHSA-v2hh-gcrm-f6hx, GHSA-4c8g-83qw-93j6, GHSA-7p8r-x3mc-p8w7, GHSA-jqff-g426-hqxp, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf, GHSA-5jgf-p345-68v8
+  fast-uri: ^3.1.8 # GHSA-v2hh-gcrm-f6hx, GHSA-4c8g-83qw-93j6, GHSA-7p8r-x3mc-p8w7, GHSA-jqff-g426-hqxp, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf, GHSA-5jgf-p345-68v8, GHSA-hrr3-gc8f-f4qj
+  source-map-js: ^1.2.2 # GHSA-68fv-2mgg-jv7q
