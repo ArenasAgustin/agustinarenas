@@ -1,11 +1,15 @@
 ---
 import ToggleTheme from './Buttons/ToggleTheme.astro';
-// TODO: replace nav-logo text with logo SVG once design is chosen from public/icons/sample/
 ---
 
 <header>
   <nav id="navbar" aria-label="Main navigation">
-  <a class="nav-logo" href="/">AA.dev</a>
+  <a class="nav-logo" href="/" aria-label="Agustín Arenas — home">
+    <svg class="nav-logo-mark" viewBox="0 0 256 256" aria-hidden="true" focusable="false">
+      <path class="nav-logo-slashes" d="M47 204H79L119.73 52H87.73Z M209 204H177L136.27 52H168.27Z" />
+      <rect class="nav-logo-dash" x="110" y="136" width="36" height="24" />
+    </svg>
+  </a>
   <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-list">
     <span></span>
     <span></span>
@@ -45,11 +49,30 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
     backdrop-filter: blur(16px);
   }
   .nav-logo {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--accent);
-    letter-spacing: 0.08em;
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
+  }
+  .nav-logo-mark {
+    display: block;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  .nav-logo-slashes { fill: var(--fg); }
+  .nav-logo-dash { fill: var(--accent); }
+  /* Hover/focus: the dash behaves like a terminal cursor */
+  .nav-logo:hover .nav-logo-dash,
+  .nav-logo:focus-visible .nav-logo-dash { fill: var(--fg); }
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-logo:hover .nav-logo-dash,
+    .nav-logo:focus-visible .nav-logo-dash {
+      fill: var(--accent);
+      animation: nav-logo-blink 1s steps(1) infinite;
+    }
+  }
+  .nav-logo:active .nav-logo-dash { fill: var(--accent2); animation: none; }
+  @keyframes nav-logo-blink {
+    50% { opacity: 0; }
   }
   .nav-links {
     display: flex;
