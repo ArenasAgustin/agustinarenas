@@ -30,3 +30,6 @@ pnpm-debug.log*
 .pi-lens/
 .vscode/
 .windsurf/
+
+# Local agent skills lockfile
+skills-lock.json
