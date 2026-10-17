@@ -38,7 +38,7 @@ In the site, use the tokens (`var(--fg)`, `var(--accent)`), never hardcoded valu
 
 ## Regenerating icons
 
-Renderer: `.claude/skills/logo-design/scripts/render_png.py`.
+Renderer: `render_png.py` from the local `logo-design` agent skill (`.claude/skills/logo-design/`, not tracked in git). Any SVG→PNG tool works as long as sizes and filenames match `public/icons/`.
 
 ```bash
 python .claude/skills/logo-design/scripts/render_png.py brand/logo-tile-square.svg -o public/icons/favicon-192x192.png --size 192
