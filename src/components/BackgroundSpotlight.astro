@@ -1,0 +1,93 @@
+<div class="bg-spotlight" aria-hidden="true">
+  <div class="bg-spotlight-track"></div>
+</div>
+
+<style>
+  /* Accent copy of the body grid, revealed only around the pointer. */
+  .bg-spotlight {
+    --cell: 64px;
+    --spot-r: 220px;
+    --spot-mix: 15%;
+    --mx: 50vw;
+    --my: 50vh;
+    --sy: 0px;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    mask-image: radial-gradient(circle var(--spot-r) at var(--mx) var(--my), black, transparent);
+  }
+
+  .bg-spotlight.is-active {
+    opacity: 1;
+  }
+
+  /* One cell taller than the viewport; shifted by scroll so lines stay aligned with the body grid. */
+  .bg-spotlight-track {
+    position: absolute;
+    inset: 0 0 calc(var(--cell) * -1);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: var(--cell) var(--cell);
+    transform: translateY(var(--sy));
+    --line: color-mix(in oklch, var(--accent) var(--spot-mix), transparent);
+  }
+
+  @media not ((hover: hover) and (pointer: fine)) {
+    .bg-spotlight { display: none; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .bg-spotlight { transition: opacity 0.6s ease; }
+  }
+</style>
+
+<script>
+  function initSpotlight(signal: AbortSignal) {
+    const spot = document.querySelector<HTMLElement>(".bg-spotlight");
+    if (!spot || !window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+
+    let frame = 0;
+    let px = 0;
+    let py = 0;
+
+    // Batch pointer and scroll updates into one style write per frame.
+    const render = () => {
+      frame = 0;
+      spot.style.setProperty("--mx", `${px}px`);
+      spot.style.setProperty("--my", `${py}px`);
+      spot.style.setProperty("--sy", `${-(window.scrollY % 64)}px`);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(render);
+    };
+
+    window.addEventListener(
+      "pointermove",
+      (e) => {
+        px = e.clientX;
+        py = e.clientY;
+        spot.classList.add("is-active");
+        schedule();
+      },
+      { signal, passive: true },
+    );
+    window.addEventListener("scroll", schedule, { signal, passive: true });
+    document.documentElement.addEventListener(
+      "pointerleave",
+      () => spot.classList.remove("is-active"),
+      { signal },
+    );
+    signal.addEventListener("abort", () => cancelAnimationFrame(frame));
+
+    schedule();
+  }
+
+  document.addEventListener("astro:page-load", () => {
+    const controller = window.getController("bg-spotlight");
+    initSpotlight(controller.signal);
+  });
+</script>
