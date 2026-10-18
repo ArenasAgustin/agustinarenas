@@ -117,6 +117,7 @@ El **Portfolio Personal** está diseñado para transmitir **profesionalismo, min
 - **Legibilidad**: Asegurar suficiente espaciado vertical entre secciones (`80px` en desktop).
 - **Responsividad**: Reducir padding en mobile (`60px 20px`).
 - **Grid**: Mantener el patrón de grid sutil en el fondo para dar profundidad.
+- **Spotlight del grid**: `BackgroundSpotlight.astro` resalta el grid con `var(--accent)` al 15% en un radio de `220px` alrededor del cursor. Solo en dispositivos con puntero fino; el fade respeta `prefers-reduced-motion`.
 
 ---
 

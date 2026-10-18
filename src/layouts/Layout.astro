@@ -5,6 +5,7 @@ import { ClientRouter } from "astro:transitions";
 import "@/styles/global.css";
 import { CONTACT_INFO } from "@/constants/contact";
 import EventController from "@/components/utils/EventController.astro";
+import BackgroundSpotlight from "@/components/BackgroundSpotlight.astro";
 
 interface Props {
   title?: string;
@@ -198,6 +199,7 @@ const baseSchema = {
   </head>
 
   <body>
+    <BackgroundSpotlight />
     <EventController key="layout">
       <a href="#main-content" class="sr-only">Skip to main content</a>
       <Nav />
