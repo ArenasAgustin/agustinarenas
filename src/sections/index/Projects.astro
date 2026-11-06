@@ -2,6 +2,10 @@
 import { getImage } from "astro:assets";
 
 import { projects } from "../../constants/projects";
+import { getLocale, localize, useTranslations } from "@/i18n/utils";
+
+const lang = getLocale(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
 
 const previewSrcs: Record<string, string> = {};
 for (const project of projects) {
@@ -19,7 +23,7 @@ for (const project of projects) {
   <div class="section">
     <div class="section-header reveal">
       <span class="section-num">[ 04 ]</span>
-      <h2 class="section-title">Projects</h2>
+      <h2 class="section-title">{t("projects.title")}</h2>
       <div class="section-line"></div>
     </div>
     <div class="project-list">
@@ -33,7 +37,7 @@ for (const project of projects) {
             <div class="proj-num">{String(index + 1).padStart(2, "0")}</div>
             <div class="proj-info">
               <div class="proj-name">{project.name}</div>
-              <div class="proj-desc">{project.description}</div>
+              <div class="proj-desc">{localize(project.description, lang)}</div>
             </div>
             <div class="proj-tags">
               {project.technologies?.map((tech) => (
@@ -47,9 +51,9 @@ for (const project of projects) {
                   href={project.repositoryUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${project.name} on GitHub`}
+                  aria-label={t("projects.githubLabel", { name: project.name })}
                 >
-                  GitHub
+                  {t("projects.github")}
                 </a>
               )}
               {project.deployedUrl && (
@@ -58,9 +62,9 @@ for (const project of projects) {
                   href={project.deployedUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`${project.name} live demo`}
+                  aria-label={t("projects.liveLabel", { name: project.name })}
                 >
-                  Live ↗
+                  {t("projects.live")}
                 </a>
               )}
             </div>
@@ -70,10 +74,10 @@ for (const project of projects) {
     </div>
   </div>
   <!-- Floating preview — position: fixed, last child so it doesn't affect layout -->
-  <div id="proj-preview" aria-hidden="true">
+  <div id="proj-preview" aria-hidden="true" data-preview-alt={t("projects.previewOf")}>
     <img
       id="proj-preview-img"
-      alt="Project preview"
+      alt={t("projects.previewAlt")}
       aria-hidden="true"
       width="280"
       height="170"
@@ -334,7 +338,8 @@ for (const project of projects) {
         isHovering = true;
         if (row.dataset.previewSrc) {
           previewImg.src = row.dataset.previewSrc;
-          previewImg.alt = `Preview of ${row.dataset.previewName}`;
+          const altTemplate = preview.dataset.previewAlt ?? "{name}";
+          previewImg.alt = altTemplate.replace("{name}", row.dataset.previewName ?? "");
           previewLabel.textContent = row.dataset.previewName || "";
           preview.classList.add("visible");
         }

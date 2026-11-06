@@ -1,0 +1,66 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { privacySections } from '@/constants/privacy';
+import { getLocale, getLocalizedPath, localize, useTranslations } from '@/i18n/utils';
+
+const lang = getLocale(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={t("privacy.title")}
+  description={t("privacy.description")}
+  robots="index, follow"
+>
+  <main id="main-content" tabindex="-1">
+    <section class="section">
+      <Breadcrumbs
+        items={[
+          { label: t("breadcrumbs.home"), href: getLocalizedPath('/', lang) },
+          { label: t("privacy.heading") },
+        ]}
+      />
+
+      <div class="section-header">
+        <span class="section-num">[ 00 ]</span>
+        <h1 class="section-title">{t("privacy.heading")}</h1>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="policy-content">
+        <p class="policy-date">{t("privacy.lastUpdated")}</p>
+
+        {privacySections.map((section) => (
+          <>
+            <h2>{localize(section.heading, lang)}</h2>
+            {section.paragraphs.map((paragraph) => <p>{localize(paragraph, lang)}</p>)}
+            {section.list && (
+              <ul>
+                {section.list.map((item) => (
+                  <li>
+                    {item.strong && <><strong>{item.strong}</strong>{' '}</>}
+                    {item.text && localize(item.text, lang)}
+                    {item.link && (
+                      <>
+                        {' '}
+                        <a
+                          href={item.link.href}
+                          {...(item.link.external
+                            ? { target: '_blank', rel: 'noopener noreferrer' }
+                            : {})}
+                        >
+                          {localize(item.link.label, lang)}
+                        </a>
+                      </>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -6,6 +6,8 @@ import "@/styles/global.css";
 import { CONTACT_INFO } from "@/constants/contact";
 import EventController from "@/components/utils/EventController.astro";
 import BackgroundSpotlight from "@/components/BackgroundSpotlight.astro";
+import { defaultLocale, htmlLang, locales, ogLocale } from "@/i18n/config";
+import { getAlternatePath, getLocale, useTranslations } from "@/i18n/utils";
 
 interface Props {
   title?: string;
@@ -14,20 +16,39 @@ interface Props {
   imageAlt?: string;
   schema?: Record<string, unknown>;
   robots?: string;
+  /** False for pages without a counterpart in the other locale (e.g. 404). */
+  translatable?: boolean;
 }
 
+const lang = getLocale(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
+
 const {
-  title = "Agustín Arenas — Software Developer",
-  description = "Personal portfolio of Agustín Arenas, a Full-Stack Developer focused on building fast, reliable, and maintainable web products.",
+  title = t("meta.title"),
+  description = t("meta.description"),
   image = "/img/meta-home.webp",
-  imageAlt = "Agustín Arenas — Full-Stack Developer portfolio preview",
+  imageAlt = t("meta.imageAlt"),
   schema,
   robots = "index, follow",
+  translatable = true,
 } = Astro.props;
 
 const baseURL = Astro.site ?? new URL('https://agustinarenas.vercel.app');
 const canonicalURL = new URL(Astro.url.pathname, baseURL);
 const ogImageURL = new URL(image, baseURL);
+
+const alternates = translatable
+  ? locales.map((locale) => ({
+      hreflang: htmlLang[locale],
+      href: new URL(getAlternatePath(Astro.url.pathname, locale), baseURL).href,
+    }))
+  : [];
+const xDefaultHref = translatable
+  ? new URL(getAlternatePath(Astro.url.pathname, defaultLocale), baseURL).href
+  : undefined;
+const ogLocaleAlternates = locales
+  .filter((locale) => locale !== lang)
+  .map((locale) => ogLocale[locale]);
 
 const baseSchema = {
   "@context": "https://schema.org",
@@ -38,9 +59,8 @@ const baseSchema = {
       name: "Agustín Arenas",
       url: baseURL,
       image: `${baseURL}/img/meta-home.webp`,
-      jobTitle: "Software Developer",
-      description:
-        "Full-Stack Developer with expertise in web development, problem-solving, and open-source contributions",
+      jobTitle: t("schema.jobTitle"),
+      description: t("schema.personDescription"),
       sameAs: [CONTACT_INFO.github, CONTACT_INFO.linkedin],
       knowsAbout: [
         "JavaScript",
@@ -67,9 +87,9 @@ const baseSchema = {
     {
       "@type": "WebSite",
       "@id": `${baseURL}#website`,
-      name: "Agustín Arenas Portfolio",
+      name: t("meta.siteName"),
       url: baseURL,
-      inLanguage: "en",
+      inLanguage: locales.map((locale) => htmlLang[locale]),
       datePublished: "2024-04-22",
       publisher: {
         "@id": `${baseURL}#person`,
@@ -80,7 +100,7 @@ const baseSchema = {
 ---
 
 <!doctype html>
-<html lang="en" id="site-html">
+<html lang={htmlLang[lang]} id="site-html">
   <head>
     <meta charset="UTF-8" />
     <meta name="theme-color" id="theme-color-meta" content="#08080e">
@@ -128,13 +148,20 @@ const baseSchema = {
     <meta name="description" content={description} />
 
     <link rel="canonical" href={canonicalURL} />
+    {alternates.map((alternate) => (
+      <link rel="alternate" hreflang={alternate.hreflang} href={alternate.href} />
+    ))}
+    {xDefaultHref && <link rel="alternate" hreflang="x-default" href={xDefaultHref} />}
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:site_name" content="Agustín Arenas Portfolio" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content={t("meta.siteName")} />
+    <meta property="og:locale" content={ogLocale[lang]} />
+    {ogLocaleAlternates.map((locale) => (
+      <meta property="og:locale:alternate" content={locale} />
+    ))}
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:image:width" content="1899" />
     <meta property="og:image:height" content="949" />
@@ -201,8 +228,8 @@ const baseSchema = {
   <body>
     <BackgroundSpotlight />
     <EventController key="layout">
-      <a href="#main-content" class="sr-only">Skip to main content</a>
-      <Nav />
+      <a href="#main-content" class="sr-only">{t("layout.skipLink")}</a>
+      <Nav translatable={translatable} />
 
       <slot />
       <Footer />

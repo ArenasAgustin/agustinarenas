@@ -1,24 +1,28 @@
 ---
 import { CONTACT_INFO } from '../../constants/contact';
+import { getLocale, useTranslations } from '@/i18n/utils';
+
+const lang = getLocale(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="contact-section">
   <div class="section">
     <div class="section-header reveal">
       <span class="section-num">[ 05 ]</span>
-      <h2 class="section-title">Contact</h2>
+      <h2 class="section-title">{t("contact.title")}</h2>
       <div class="section-line"></div>
     </div>
     <div class="contact-inner">
       <div class="contact-headline reveal">
-        Let's build<br />something<br /><span>great.</span>
+        {t("contact.headline1")}<br />{t("contact.headline2")}<br /><span>{t("contact.headlineAccent")}</span>
       </div>
       <div class="contact-channels">
         <!-- Email -->
         <a
           class="contact-link reveal reveal-delay-1"
           href={`mailto:${CONTACT_INFO.email}`}
-          aria-label={`Send email to ${CONTACT_INFO.email}`}
+          aria-label={t("contact.emailLabel", { email: CONTACT_INFO.email })}
         >
           <div class="contact-icon">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -27,7 +31,7 @@ import { CONTACT_INFO } from '../../constants/contact';
             </svg>
           </div>
           <div class="contact-info">
-            <div class="contact-label">Email</div>
+            <div class="contact-label">{t("common.email")}</div>
             <div class="contact-val">{CONTACT_INFO.email}</div>
           </div>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--dim)" aria-hidden="true">
@@ -41,7 +45,7 @@ import { CONTACT_INFO } from '../../constants/contact';
           href={CONTACT_INFO.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="LinkedIn profile (opens in new tab)"
+          aria-label={t("contact.linkedinLabel")}
         >
           <div class="contact-icon">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
@@ -63,7 +67,7 @@ import { CONTACT_INFO } from '../../constants/contact';
           href={CONTACT_INFO.github}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="GitHub profile (opens in new tab)"
+          aria-label={t("contact.githubLabel")}
         >
           <div class="contact-icon">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">

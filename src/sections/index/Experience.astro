@@ -1,24 +1,28 @@
 ---
 import { works } from '../../constants/works';
+import { getLocale, localize, useTranslations } from '@/i18n/utils';
+
+const lang = getLocale(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="experience-section">
   <div class="section">
     <div class="section-header reveal">
       <span class="section-num">[ 02 ]</span>
-      <h2 class="section-title">Experience</h2>
+      <h2 class="section-title">{t("experience.title")}</h2>
       <div class="section-line"></div>
     </div>
     <div class="experience-list">
       {works.map((work, index) => (
         <div class={`exp-row reveal${['', ' reveal-delay-1', ' reveal-delay-2'][index % 3]}`}>
           <div class="exp-meta">
-            <div class="exp-period">{work.time}</div>
+            <div class="exp-period">{localize(work.time, lang)}</div>
             <div class="exp-company">{work.subtitle}</div>
           </div>
           <div class="exp-content">
-            <div class="exp-role">{work.title}</div>
-            <p class="exp-desc">{work.summary ?? work.description ?? ''}</p>
+            <div class="exp-role">{localize(work.title, lang)}</div>
+            <p class="exp-desc">{localize(work.summary ?? work.description, lang)}</p>
             {work.stack && work.stack.length > 0 && (
               <div class="tags">
                 {work.stack.map(tech => <span class="tag">{tech}</span>)}

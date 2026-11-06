@@ -1,36 +1,38 @@
 ---
+import { getLocale, useTranslations } from '@/i18n/utils';
+
+const lang = getLocale(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="about-section">
   <div class="section">
     <div class="section-header reveal">
       <span class="section-num">[ 01 ]</span>
-      <h2 class="section-title">About</h2>
+      <h2 class="section-title">{t("about.title")}</h2>
       <div class="section-line"></div>
     </div>
     <div class="about-grid">
       <div>
         <p class="about-text reveal">
-          I'm a <strong>Full-Stack Developer</strong> focused on solving real product problems with
-          clean, scalable web solutions. Based in Argentina, I work across frontend and backend
-          development with a strong focus on <strong>performance, maintainability, and user experience</strong>.
+          {t("about.intro")}<strong>{t("about.role")}</strong>{t("about.body")}<strong>{t("about.focus")}</strong>{t("about.end")}
         </p>
       </div>
       <dl class="about-stats reveal reveal-delay-2">
         <div class="stat-cell">
-          <dt class="stat-label">Full-Stack focus</dt>
+          <dt class="stat-label">{t("about.statFocus")}</dt>
           <dd class="stat-num">FS</dd>
         </div>
         <div class="stat-cell">
-          <dt class="stat-label">Years coding</dt>
+          <dt class="stat-label">{t("about.statYears")}</dt>
           <dd class="stat-num">3+</dd>
         </div>
         <div class="stat-cell">
-          <dt class="stat-label">Based in Córdoba</dt>
+          <dt class="stat-label">{t("about.statLocation")}</dt>
           <dd class="stat-num">ARG</dd>
         </div>
         <div class="stat-cell">
-          <dt class="stat-label">Technologies</dt>
+          <dt class="stat-label">{t("about.statTech")}</dt>
           <dd class="stat-num">10+</dd>
         </div>
       </dl>

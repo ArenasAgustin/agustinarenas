@@ -2,19 +2,23 @@
 import { Image } from 'astro:assets';
 import profileImg from '../../assets/profile.webp';
 import { CONTACT_INFO } from '../../constants/contact';
+import { getLocale, useTranslations } from '@/i18n/utils';
+
+const lang = getLocale(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
 ---
 
 <section id="hero">
   <div class="hero-inner">
     <div class="hero-bg-text" aria-hidden="true">FS</div>
     <div class="hero-left">
-      <div class="hero-label">Full-Stack Developer · Córdoba, ARG</div>
+      <div class="hero-label">{t("hero.label")}</div>
       <h1>
         Agustín<br /><span class="accent">Arenas</span>
       </h1>
       <p class="hero-subtitle">
-        Building <strong>scalable</strong> web products from frontend to backend.<br />
-        Performance. Clean code. Real solutions.<span class="cursor" aria-hidden="true"></span>
+        {t("hero.subtitleBefore")}<strong>{t("hero.subtitleStrong")}</strong>{t("hero.subtitleAfter")}<br />
+        {t("hero.subtitleLine2")}<span class="cursor" aria-hidden="true"></span>
       </p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href={CONTACT_INFO.cv} target="_blank" rel="noopener noreferrer">
@@ -23,9 +27,9 @@ import { CONTACT_INFO } from '../../constants/contact';
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" y1="15" x2="12" y2="3"></line>
           </svg>
-          Download CV<span class="sr-only"> (PDF, opens in new tab)</span>
+          {t("hero.downloadCv")}<span class="sr-only"> {t("hero.downloadCvHint")}</span>
         </a>
-        <a class="btn btn-ghost" href="#projects-section">View projects</a>
+        <a class="btn btn-ghost" href="#projects-section">{t("hero.viewProjects")}</a>
       </div>
     </div>
 
@@ -34,7 +38,7 @@ import { CONTACT_INFO } from '../../constants/contact';
         <div class="photo-frame">
            <Image
              src={profileImg}
-             alt="Agustín Arenas — Full-Stack Developer"
+             alt={t("hero.photoAlt")}
              width={260}
              height={320}
              widths={[260, 520]}
@@ -47,7 +51,7 @@ import { CONTACT_INFO } from '../../constants/contact';
           <div class="corner corner-br"></div>
         </div>
         <div class="photo-badge">
-          <strong>3+</strong> Years coding
+          <strong>3+</strong> {t("hero.badge")}
         </div>
       </div>
     </div>
