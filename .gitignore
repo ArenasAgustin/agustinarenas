@@ -36,3 +36,9 @@ skills-lock.json
 
 # Local agent skills
 .claude/skills/
+
+# test and audit reports
+playwright-report/
+test-results/
+.lighthouseci/
+lhci-report/
