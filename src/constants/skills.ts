@@ -1,5 +1,5 @@
 import {
-  BOOTSTRAP,
+  ASTRO,
   CSS,
   EXPRESS,
   GIT,
@@ -29,7 +29,6 @@ export const skills: Technology[] = [
   SASS,
   LESS,
   TAILWIND,
-  BOOTSTRAP,
   JAVASCRIPT,
   TYPESCRIPT,
   JQUERY,
@@ -37,6 +36,7 @@ export const skills: Technology[] = [
   NODE,
   REACT,
   NEXT,
+  ASTRO,
   LARAVEL,
   EXPRESS,
   SEQUELIZE,

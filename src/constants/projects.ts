@@ -57,20 +57,12 @@ const allProjects: Project[] = [
     id: "brain_games_es",
     name: "Brain Games",
     description:
-      "Word puzzle game with 16 levels where players decode encrypted words using clues, scoring, and progressive difficulty.",
-    technologies: [TYPESCRIPT, SASS, REACT, NODE, MONGODB],
+      "Word puzzle game with 16 levels where players decode encrypted words using clues, scoring, and progressive difficulty. Backed by its own Express + MongoDB REST API.",
+    technologies: [TYPESCRIPT, SASS, REACT, NODE, EXPRESS, MONGODB],
     repositoryUrl: "https://github.com/ArenasAgustin/brain-games",
     deployedUrl: "https://brain-games.vercel.app/",
     featured: true,
     image: brainGamesImg,
-  },
-  {
-    id: "brain_games_es_api",
-    name: "Brain Games API",
-    description:
-      "API for the Brain Games project, it is a game that consists of 16 levels to decipher an encrypted word, score and clues.",
-    technologies: [JAVASCRIPT, MONGODB, EXPRESS],
-    repositoryUrl: "https://github.com/ArenasAgustin/brain-games-es-api",
   },
   {
     id: "wave_music",
