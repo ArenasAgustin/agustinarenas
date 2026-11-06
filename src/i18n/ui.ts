@@ -56,15 +56,16 @@ const en = {
 
   // Hero
   "hero.label": "Full-Stack Developer · Córdoba, ARG",
-  "hero.subtitleBefore": "Building ",
-  "hero.subtitleStrong": "scalable",
-  "hero.subtitleAfter": " web products from frontend to backend.",
-  "hero.subtitleLine2": "Performance. Clean code. Real solutions.",
+  "hero.subtitleBefore": "Building web products — ",
+  "hero.subtitleStrong": "from database to deploy",
+  "hero.subtitleAfter": ".",
+  "hero.subtitleLine2": "Currently at Dequo.",
   "hero.downloadCv": "Download CV",
   "hero.downloadCvHint": "(PDF, opens in new tab)",
   "hero.viewProjects": "View projects",
   "hero.photoAlt": "Agustín Arenas — Full-Stack Developer",
-  "hero.badge": "Years coding",
+  "hero.badgeStrong": "Open",
+  "hero.badge": "to remote",
 
   // About
   "about.title": "About",
@@ -179,15 +180,16 @@ const es: Record<UIKey, string> = {
 
   // Hero
   "hero.label": "Desarrollador Full-Stack · Córdoba, ARG",
-  "hero.subtitleBefore": "Construyo productos web ",
-  "hero.subtitleStrong": "escalables",
-  "hero.subtitleAfter": " del frontend al backend.",
-  "hero.subtitleLine2": "Rendimiento. Código limpio. Soluciones reales.",
+  "hero.subtitleBefore": "Construyo productos web — ",
+  "hero.subtitleStrong": "de la base de datos al deploy",
+  "hero.subtitleAfter": ".",
+  "hero.subtitleLine2": "Actualmente en Dequo.",
   "hero.downloadCv": "Descargar CV",
   "hero.downloadCvHint": "(PDF, se abre en una pestaña nueva)",
   "hero.viewProjects": "Ver proyectos",
   "hero.photoAlt": "Agustín Arenas — Desarrollador Full-Stack",
-  "hero.badge": "Años programando",
+  "hero.badgeStrong": "Disponible",
+  "hero.badge": "para remoto",
 
   // About
   "about.title": "Sobre mí",

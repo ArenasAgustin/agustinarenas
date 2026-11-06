@@ -15,6 +15,7 @@
 - [x] T1 — Merge "Brain Games API" into "Brain Games"; drop Bootstrap from skills; add Astro to skills. Route: inline (mechanical constants edits).
 - [x] T2 — Contact: remove WhatsApp; show Email, LinkedIn, GitHub. Route: inline (one component + constants).
 - [x] T3 — i18n EN (default, `/`) + ES (`/es/`): Astro i18n config, UI dictionary, localized content, language switcher, `lang`/hreflang/og:locale, sitemap i18n. Route: delegated writer (2+ non-trivial files).
+- [x] T4 — Hero copy: "Building web products — from database to deploy. Currently at Dequo." + "Open to remote" badge (EN/ES). Route: inline (dictionary + one component).
 
 ## Checks
 - `pnpm build` (astro check + build).
@@ -22,6 +23,7 @@
 ## Progress
 - T1/T2: `pnpm build` exit 0, 0 errors. Solidity kept in Black Paradox project stack (factual), not in skills.
 - T3: `pnpm build` exit 0, astro check 0 errors / 0 warnings. `dist/index.html` `lang="en"`, `dist/es/index.html` `lang="es"` with Spanish copy; both emit `hreflang` en/es/x-default + `og:locale`/`og:locale:alternate`; sitemap has `xhtml:link` alternates (es-AR). Content approach: `Localized` `{ en, es }` fields in constants; UI strings in `src/i18n/ui.ts`; pages moved to shared `src/components/pages/*` with thin `src/pages/` and `src/pages/es/` wrappers. 404 English-only (`translatable={false}`).
+- T4: `pnpm build` exit 0, 0 errors.
 - RDD: off (global), no review.
 
 ## Next step
