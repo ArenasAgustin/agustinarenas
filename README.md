@@ -1,5 +1,7 @@
 # Portfolio
 
+[![CI](https://github.com/ArenasAgustin/agustinarenas/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/ArenasAgustin/agustinarenas/actions/workflows/ci.yml)
+
 Welcome to my portfolio! This repository showcases my projects and skills as a software developer.
 
 ## About Me
