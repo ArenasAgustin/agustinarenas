@@ -1,6 +1,10 @@
 ---
 import { skills } from '../../constants/skills';
 import type { Technology } from '../../constants/technologies';
+import { getLocale, useTranslations } from '@/i18n/utils';
+
+const lang = getLocale(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
 
 // Size weights — xl=most used, sm=least
 const sizeMap: Partial<Record<Technology, string>> = {
@@ -10,6 +14,7 @@ const sizeMap: Partial<Record<Technology, string>> = {
   'Next.js':     'sc-lg',
   'Laravel':     'sc-lg',
   'Tailwind':    'sc-lg',
+  'Astro':       'sc-md',
   'Node.js':     'sc-md',
   'PHP':         'sc-md',
   'PostgreSQL':  'sc-md',
@@ -27,7 +32,7 @@ function sizeClass(skill: string): string {
   <div class="section">
     <div class="section-header reveal">
       <span class="section-num">[ 03 ]</span>
-      <h2 class="section-title">Skills</h2>
+      <h2 class="section-title">{t("skills.title")}</h2>
       <div class="section-line"></div>
     </div>
     <ul role="list" class="skills-cloud reveal">

@@ -1,4 +1,6 @@
 ---
+import { getLocale, useTranslations } from '@/i18n/utils';
+
 interface BreadcrumbItem {
   label: string;
   href?: string;
@@ -9,6 +11,8 @@ interface Props {
 }
 
 const { items } = Astro.props;
+const t = useTranslations(getLocale(Astro.currentLocale, Astro.url));
+const baseURL = Astro.site ?? Astro.url;
 
 const schema = {
   "@context": "https://schema.org",
@@ -17,12 +21,12 @@ const schema = {
     "@type": "ListItem",
     "position": index + 1,
     "name": item.label,
-    ...(item.href ? { "item": item.href } : {}),
+    ...(item.href ? { "item": new URL(item.href, baseURL).href } : {}),
   })),
 };
 ---
 
-<nav aria-label="Breadcrumb" class="breadcrumbs" data-breadcrumbs>
+<nav aria-label={t("breadcrumbs.label")} class="breadcrumbs" data-breadcrumbs>
   <ol class="breadcrumb-list">
     {items.map((item, index) => (
       <li class="breadcrumb-item">

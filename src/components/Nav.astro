@@ -1,26 +1,57 @@
 ---
 import ToggleTheme from './Buttons/ToggleTheme.astro';
+import { htmlLang, languageShortName, languageSwitchLabel } from '@/i18n/config';
+import {
+  getAlternatePath,
+  getLocale,
+  getLocalizedPath,
+  getOtherLocale,
+  useTranslations,
+} from '@/i18n/utils';
+
+interface Props {
+  /** False for pages without a counterpart in the other locale (e.g. 404). */
+  translatable?: boolean;
+}
+
+const { translatable = true } = Astro.props;
+
+const lang = getLocale(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
+const otherLang = getOtherLocale(lang);
+const switchHref = translatable
+  ? getAlternatePath(Astro.url.pathname, otherLang)
+  : getLocalizedPath('/', otherLang);
 ---
 
 <header>
-  <nav id="navbar" aria-label="Main navigation">
-  <a class="nav-logo" href="/" aria-label="Agustín Arenas — home">
+  <nav id="navbar" aria-label={t("nav.label")}>
+  <a class="nav-logo" href={getLocalizedPath("/", lang)} aria-label={t("nav.homeLabel")}>
     <svg class="nav-logo-mark" viewBox="0 0 256 256" aria-hidden="true" focusable="false">
       <path class="nav-logo-slashes" d="M47 204H79L119.73 52H87.73Z M209 204H177L136.27 52H168.27Z" />
       <rect class="nav-logo-dash" x="110" y="136" width="36" height="24" />
     </svg>
   </a>
-  <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links-list">
+  <button id="menu-toggle" class="menu-toggle" aria-label={t("nav.toggleMenu")} aria-expanded="false" aria-controls="nav-links-list" data-label-open={t("nav.openMenu")} data-label-close={t("nav.closeMenu")}>
     <span></span>
     <span></span>
     <span></span>
   </button>
   <ul class="nav-links" id="nav-links-list" aria-live="polite">
-    <li><a href="#about-section" aria-label="Go to About section">about</a></li>
-    <li><a href="#experience-section" aria-label="Go to Experience section">experience</a></li>
-    <li><a href="#skills-section" aria-label="Go to Skills section">skills</a></li>
-    <li><a href="#projects-section" aria-label="Go to Projects section">projects</a></li>
-    <li><a href="#contact-section" aria-label="Go to Contact section">contact</a></li>
+    <li><a href="#about-section" aria-label={t("nav.aboutLabel")}>{t("nav.about")}</a></li>
+    <li><a href="#experience-section" aria-label={t("nav.experienceLabel")}>{t("nav.experience")}</a></li>
+    <li><a href="#skills-section" aria-label={t("nav.skillsLabel")}>{t("nav.skills")}</a></li>
+    <li><a href="#projects-section" aria-label={t("nav.projectsLabel")}>{t("nav.projects")}</a></li>
+    <li><a href="#contact-section" aria-label={t("nav.contactLabel")}>{t("nav.contact")}</a></li>
+    <li>
+      <a
+        class="lang-switch"
+        href={switchHref}
+        hreflang={htmlLang[otherLang]}
+        lang={htmlLang[otherLang]}
+        aria-label={languageSwitchLabel[otherLang]}
+      >{languageShortName[otherLang]}</a>
+    </li>
     <li><ToggleTheme /></li>
   </ul>
 </nav>
@@ -92,6 +123,25 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
     .nav-links a { transition: color 0.2s; }
   }
   .nav-links a:hover { color: var(--accent); }
+  .nav-links a:active { color: var(--accent2); }
+
+  /* Language switcher: bordered like the theme toggle, text styled like nav links */
+  .nav-links .lang-switch {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3rem;
+    height: 3rem;
+    padding: 0 0.75rem;
+    border: 1px solid var(--border2);
+    border-radius: 0.5rem;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .nav-links .lang-switch { transition: color 0.2s, border-color 0.2s; }
+  }
+  .nav-links .lang-switch:hover,
+  .nav-links .lang-switch:focus-visible { border-color: var(--accent); color: var(--accent); }
+  .nav-links .lang-switch:active { border-color: var(--accent2); color: var(--accent2); }
 
   /* Hamburger button — hidden on desktop */
   .menu-toggle {
@@ -159,6 +209,11 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
       padding: 8px 0;
       font-size: 13px;
     }
+    .nav-links .lang-switch {
+      display: inline-flex;
+      width: auto;
+      padding: 0 0.75rem;
+    }
   }
 </style>
 
@@ -186,7 +241,7 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
       if (isMobile()) navList?.setAttribute('inert', '');
       if (toggle) {
         toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Open menu');
+        toggle.setAttribute('aria-label', toggle.dataset.labelOpen ?? 'Open menu');
       }
     }
 
@@ -210,7 +265,7 @@ import ToggleTheme from './Buttons/ToggleTheme.astro';
           navList.classList.add('open');
           if (isMobile()) navList.removeAttribute('inert');
           toggle.setAttribute('aria-expanded', 'true');
-          toggle.setAttribute('aria-label', 'Close menu');
+          toggle.setAttribute('aria-label', toggle.dataset.labelClose ?? 'Close menu');
         }
       }, { signal });
 

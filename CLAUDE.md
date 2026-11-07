@@ -23,14 +23,16 @@ Path alias: `@/*` → `src/*`.
 
 ## Architecture
 
-Portfolio built around one main route. `src/pages/index.astro` renders all sections in order: Hero → About → Experience → Skills → Projects → Contact. The other routes are `src/pages/cv.astro`, `src/pages/privacy.astro` and `src/pages/404.astro`.
+Portfolio built around one main route. `src/components/pages/HomePage.astro` renders all sections in order: Hero → About → Experience → Skills → Projects → Contact. Routes in `src/pages/` are thin wrappers around shared page components in `src/components/pages/` (`HomePage`, `CvPage`, `PrivacyPage`); `src/pages/es/` holds the Spanish wrappers. `src/pages/404.astro` is English-only.
+
+**i18n**: Astro built-in i18n (`astro.config.mjs`): `en` is the default at `/`, `es` lives under `/es/`. `src/i18n/` holds `config.ts` (locales, `Localized<T>` type, `lang`/`og:locale` maps), `ui.ts` (UI string dictionary; ES is typed against the EN key set, so a missing key fails `astro check`) and `utils.ts` (`getLocale`, `useTranslations`, `localize`, `getLocalizedPath`, `getAlternatePath`). Components read the locale with `getLocale(Astro.currentLocale, Astro.url)`. `Layout.astro` emits `lang`, canonical, `hreflang` alternates (pass `translatable={false}` to skip them) and `og:locale`; `Nav.astro` renders the language switcher.
 
 **Layers:**
 
 - `src/layouts/Layout.astro` — root HTML shell with full SEO (OpenGraph, Schema.org JSON-LD, canonical URL, theme detection). Accepts optional `schema` prop to merge page-level Schema.org `@graph` items into the base graph.
 - `src/sections/index/` — one `.astro` file per section; imported by `index.astro`
 - `src/components/` — reusable components (`Nav`, `Footer`, `Breadcrumbs`, `Buttons/ToggleTheme`, `utils/EventController`)
-- `src/constants/` — all site content as plain TypeScript exports. **Content lives here, not in sections.**
+- `src/constants/` — all site content as plain TypeScript exports. **Content lives here, not in sections.** Translatable fields are `Localized` (`{ en, es }`); technology names stay untranslated.
 - `src/assets/` — project preview images (`.webp`) imported in `projects.ts` as `ImageMetadata`
 - `src/styles/global.css` — design tokens, shared utility classes, reset
 
@@ -85,3 +87,6 @@ Portfolio built around one main route. `src/pages/index.astro` renders all secti
 | Skills / technologies | `src/constants/skills.ts`, `src/constants/technologies.ts` |
 | Education | `src/constants/educations.ts` |
 | Contact info / site URL | `src/constants/contact.ts` |
+| Privacy policy text | `src/constants/privacy.ts` |
+| UI strings (labels, headings, SEO meta) | `src/i18n/ui.ts` — add the key to both `en` and `es` |
+| Translated content | Fill both `en` and `es` in each `Localized` field |

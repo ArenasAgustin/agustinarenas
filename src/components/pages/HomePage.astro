@@ -1,0 +1,89 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Hero from '@/sections/index/Hero.astro';
+import About from '@/sections/index/About.astro';
+import Experience from '@/sections/index/Experience.astro';
+import Skills from '@/sections/index/Skills.astro';
+import Projects from '@/sections/index/Projects.astro';
+import Contact from '@/sections/index/Contact.astro';
+import { CONTACT_INFO } from '@/constants/contact';
+import { projects } from '@/constants/projects';
+import { works } from '@/constants/works';
+import { htmlLang } from '@/i18n/config';
+import { getLocale, getLocalizedPath, localize, useTranslations } from '@/i18n/utils';
+
+const lang = getLocale(Astro.currentLocale, Astro.url);
+const t = useTranslations(lang);
+
+const siteURL = CONTACT_INFO.site;
+const pageURL = new URL(getLocalizedPath('/', lang), siteURL).href;
+
+const projectItems = projects.map((p, i) => ({
+  "@type": "ListItem",
+  "position": i + 1,
+  "name": p.name,
+  ...(p.deployedUrl || p.repositoryUrl
+    ? { "url": p.deployedUrl ?? p.repositoryUrl }
+    : {}),
+}));
+
+const workItems = works.map((w, i) => ({
+  "@type": "ListItem",
+  "position": i + 1,
+  "name": w.subtitle,
+  "description": localize(w.description, lang),
+}));
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${pageURL}#webpage`,
+      "url": pageURL,
+      "name": t("home.schemaName"),
+      "description": t("home.schemaDescription"),
+      "inLanguage": htmlLang[lang],
+      "isPartOf": { "@id": `${siteURL}#website` },
+      "about": { "@id": `${siteURL}#person` },
+      "hasPart": [
+        { "@id": `${pageURL}#about` },
+        { "@id": `${pageURL}#experience` },
+        { "@id": `${pageURL}#skills` },
+        { "@id": `${pageURL}#projects` },
+        { "@id": `${pageURL}#contact` }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${pageURL}#experience`,
+      "name": t("home.experienceListName"),
+      "description": t("home.experienceListDescription"),
+      "itemListElement": workItems
+    },
+    {
+      "@type": "ItemList",
+      "@id": `${pageURL}#projects`,
+      "name": t("home.projectsListName"),
+      "description": t("home.projectsListDescription"),
+      "itemListElement": projectItems
+    }
+  ],
+};
+---
+
+<Layout
+  title={t("home.title")}
+  description={t("home.description")}
+  image="/img/meta-home.webp"
+  schema={homeSchema}
+>
+  <main id="main-content" tabindex="-1">
+    <Hero />
+    <About />
+    <Experience />
+    <Skills />
+    <Projects />
+    <Contact />
+  </main>
+</Layout>

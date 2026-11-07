@@ -1,7 +1,15 @@
+---
+import { getLocale, useTranslations } from '@/i18n/utils';
+
+const t = useTranslations(getLocale(Astro.currentLocale, Astro.url));
+---
+
 <button
   id="theme-toggle"
   class="theme-toggle"
-  aria-label="Switch to light theme"
+  aria-label={t("theme.toLight")}
+  data-label-light={t("theme.toLight")}
+  data-label-dark={t("theme.toDark")}
   aria-pressed="false"
 >
   <svg id="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -49,7 +57,8 @@
       if (moon) moon.style.display = isLight ? 'none' : '';
       if (sun) sun.style.display = isLight ? '' : 'none';
       if (btn) {
-        btn.setAttribute('aria-label', isLight ? 'Switch to dark theme' : 'Switch to light theme');
+        const label = isLight ? btn.dataset.labelDark : btn.dataset.labelLight;
+        if (label) btn.setAttribute('aria-label', label);
         btn.setAttribute('aria-pressed', isLight.toString());
       }
     }
