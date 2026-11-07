@@ -18,7 +18,8 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !page.endsWith('/404'),
+      // 404 and the CV (a noindex page used only to generate the PDF) stay out of the sitemap.
+      filter: (page) => !/\/(404|cv)\/?$/.test(page),
       changefreq: 'weekly',
       priority: 0.7,
       i18n: {
