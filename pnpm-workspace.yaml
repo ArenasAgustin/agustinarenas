@@ -18,3 +18,10 @@ overrides:
   fast-uri: ^3.1.9 # GHSA-v2hh-gcrm-f6hx, GHSA-4c8g-83qw-93j6, GHSA-7p8r-x3mc-p8w7, GHSA-jqff-g426-hqxp, GHSA-f65p-4m7j-42xc, GHSA-fph4-wmhf-6fwf, GHSA-5jgf-p345-68v8, GHSA-hrr3-gc8f-f4qj, GHSA-xhq7-xmqj-769h, GHSA-w74x-v6f9-j3xg, GHSA-333x-w4r6-6crp, GHSA-wjr9-j795-jxcr
   source-map-js: ^1.2.2 # GHSA-68fv-2mgg-jv7q
   zod: ^4.6.6 # GHSA-mrhx-c7xc-m3w5
+  basic-ftp: ^6.2.4 # GHSA-c475-qrg2-pj4r, GHSA-r4jh-29pc-gfqr, GHSA-5pm8-86m8-9m6r (dev-only, via @lhci/cli)
+  # Compatibility pin, not a security floor: @astrojs/check resolves
+  # @emnapi/runtime to 2.0.0-beta.x while @emnapi/core stays on 1.x, and the
+  # mismatch crashes `astro check` ("this.bridge.setLastError is not a
+  # function"). The caret keeps both on the 1.x line until 2.0 is stable.
+  "@emnapi/core": ^1.11.3
+  "@emnapi/runtime": ^1.11.3
